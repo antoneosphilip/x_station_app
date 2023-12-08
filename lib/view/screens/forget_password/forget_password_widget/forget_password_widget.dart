@@ -6,6 +6,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
+import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
+import 'package:x_station_app/view/core_widget/custom_top_snack/custom_top_snack.dart';
+import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
+import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_states.dart';
 
 import '../../../../core/assets_manager/assets_manager.dart';
 import '../../../../core/regexp.dart';
@@ -25,32 +29,65 @@ class ForgetPasswordWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Padding(
-      padding:  EdgeInsets.only(left: 24.w,right: 24.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-         SizedBox(height: 94.h,),
-          Text(TextManager.forgetPassword2,style: TextStyleManager.textStyle24w500),
-          SizedBox(height: 170.h,),
-          Center(child: Text(TextManager.dontWory,style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorPrimary))),
-          SizedBox(height: 32.h,),
-          TextFormFieldCustom(
-            keyboardType: TextInputType.emailAddress,
-            validate: (value) {},
-            label: TextManager.enterYourEmail,
-            suffix: true,
-            suffixIcon: SvgPicture.asset(AssetsImage.email),
-          ),
-          SizedBox(height: 32.h,),
-           Center(child: XStationButtonCustom(textButton: TextManager.continuee,pageName: PageName.verification,onPressed: (){
-             Get.toNamed(PageName.verification);
-           },)),
-          SizedBox(
-            height: 40.h,
-          ),
-          // text Form
-        ],
+    return Form(
+      key: ForgetPasswordCubit.get(context).formKey,
+      child: Padding(
+        padding:  EdgeInsets.only(left: 24.w,right: 24.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+           SizedBox(height: 94.h,),
+            Text(TextManager.forgetPassword2,style: TextStyleManager.textStyle24w500),
+            SizedBox(height: 170.h,),
+            Center(child: Text(TextManager.dontWory,style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorPrimary))),
+            SizedBox(height: 32.h,),
+            TextFormFieldCustom(
+              keyboardType: TextInputType.emailAddress,
+              validate: (value) {
+                if (value == null || value.isEmpty) {
+                  return TextManager.pleaseEnterEmail;
+                }
+                else if (!Regexp.isValidEmail(value)) {
+                  return TextManager.invalidEmail;
+                }
+                return null;
+              },
+              label: TextManager.enterYourEmail,
+              suffix: true,
+              suffixIcon: SvgPicture.asset(AssetsImage.email),
+            ),
+            SizedBox(height: 32.h,),
+             BlocConsumer<ForgetPasswordCubit,ForgetPasswordStates>(
+               listener: (context,state){
+                 if(state is ForgetPasswordSuccessState){
+                   Get.toNamed(PageName.verification);
+                 }
+                 else if(state is ForgetPasswordErrorState){
+                   // CustomTopSnackBar(
+                   //     message: state.err,
+                   //     snackBarType: SnackBarType.error,
+                   // );
+                 }
+               },
+               builder: (context,state){
+                 return state is ForgetPasswordLoadingState?
+                     const CustomCircleLoading():
+                 Center(
+                     child: XStationButtonCustom(
+                   textButton: TextManager.continuee,
+                   onPressed: (){
+                     if(ForgetPasswordCubit.get(context).formKey.currentState!.validate()){
+                       // ForgetPasswordCubit.get(context).forgetPassword();
+                     }
+                   },));
+               },
+             ),
+            SizedBox(
+              height: 40.h,
+            ),
+            // text Form
+          ],
+        ),
       ),
     );
   }

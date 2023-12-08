@@ -20,6 +20,10 @@ class   ColorManager
   );
   static const Color colorThird = Color(0xff6C63FF);
 
+  static const Color colorXWhite = Color(0xffD9D9D9);
+  static const Color colorXXWhite = Color(0xffF0F0F0);
+  static const Color colorXXGrey = Color(0xff6A6B70);
+  static const Color colorLightColorPrimary = Color(0xffBFBECF);
 
 }
 

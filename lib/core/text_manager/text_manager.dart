@@ -55,6 +55,18 @@ class TextManager {
   static const String confirm = "Confirm";
   static const String services = "Services";
   static const String topServices = "Top Services";
+  static const String pleaseEnterEmail = "Please enter email";
+  static const String invalidEmail = "Invalid email";
+  static const String pleaseEnterPassword = "Please enter password";
+  static const String pleaseEnterRePassword = "Please enter Re password";
+  static const String invalidPass = "Invalid pass";
+  static const String invalidRePass = "Invalid Re pass";
+  static const String category = "Category";
 
+  static const String electrician = "Electrician";
+  static const String notification = "Notification";
+  static const String message = "message";
+  static const String userProfile = "User Profile";
+  static const String faveoriteList = "Faveorite List";
 
 }

@@ -12,6 +12,11 @@ abstract class TextStyleManager {
       fontSize: 24.sp,
       fontWeight: FontWeight.w300,
       color: ColorManager.colorSecondary);
+  static final TextStyle textStyle20w700 = TextStyle(
+      fontSize: 20.sp,
+      fontWeight: FontWeight.w700,
+      color: ColorManager.colorSecondary);
+
 
   static final TextStyle textStyle24w500 = TextStyle(
       fontSize: 24.sp,
@@ -43,6 +48,9 @@ abstract class TextStyleManager {
 
   static final TextStyle textStyle14w500 =
   TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500,color: ColorManager.colorSecondary);
-
+  static final TextStyle textStyle16w500 =
+  TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500,color: ColorManager.colorSecondary);
+  static final TextStyle textStyle48w700 =
+  TextStyle(fontSize: 48.sp, fontWeight: FontWeight.w700,color: ColorManager.colorSecondary);
 
 }

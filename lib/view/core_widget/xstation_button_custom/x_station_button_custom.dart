@@ -14,10 +14,9 @@ import '../elevated_button/elevated_button_custom.dart';
 
 class XStationButtonCustom extends StatelessWidget {
   final String textButton;
-  final   String pageName;
   final   Function onPressed;
 
-  const XStationButtonCustom({super.key,  this.textButton=TextManager.next,  this.pageName=PageName.login, required this.onPressed});
+  const XStationButtonCustom({super.key,  this.textButton=TextManager.next,required this.onPressed});
   @override
   Widget build(BuildContext context) {
     return ElevatedButtonCustom(

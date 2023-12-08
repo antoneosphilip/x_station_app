@@ -2,6 +2,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/view/screens/Signup/Signup_screen/Signup_screen.dart';
+import 'package:x_station_app/view/screens/electrican_details/electrican_details_screen/electrican_details_screen.dart';
 import 'package:x_station_app/view/screens/forget_password/forget_password_screen/forget_password_screen.dart';
 import 'package:x_station_app/view/screens/home_layout/home_layout.dart';
 import 'package:x_station_app/view/screens/login/login_screen/login_screen.dart';
@@ -67,6 +68,13 @@ List<GetPage> pages = [
       name: PageName.homeLayout,
       page: () => const LayoutScreen(),
       transition: Transition.rightToLeft,
+      transitionDuration: const Duration(
+        milliseconds: 250,
+      )),
+  GetPage(
+      name: PageName.electricianDetails,
+      page: () => const ElectricianDetailsScreen(),
+      transition: Transition.downToUp,
       transitionDuration: const Duration(
         milliseconds: 250,
       )),

@@ -8,6 +8,7 @@ class PageName {
   static const String forgetPassword= '/forgetPassword';
   static const String resetPassword= '/RESET_PASSWORD';
   static const String homeLayout= '/HOME_LAYOUT';
+  static const String electricianDetails= '/ELECTRICIAN_DETAILS';
 
   
   

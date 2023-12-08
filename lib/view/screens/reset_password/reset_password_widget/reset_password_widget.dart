@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
+import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
+import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
+import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_states.dart';
 
 import '../../../../core/assets_manager/assets_manager.dart';
+import '../../../../core/regexp.dart';
 import '../../../../core/style_font_manager/style_manager.dart';
 import '../../../../core/text_manager/text_manager.dart';
 import '../../../core_widget/text_form_field/text_form_field_custom.dart';
@@ -17,8 +22,6 @@ class ResetPasswordWidget extends StatelessWidget {
    ResetPasswordWidget({
     super.key,
   });
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,24 +35,53 @@ class ResetPasswordWidget extends StatelessWidget {
           Text(TextManager.resetPassword,style: TextStyleManager.textStyle24w500),
           SizedBox(height: 170.h,),
           TextFormFieldCustom(
+            controller: ForgetPasswordCubit.get(context).passwordController,
             keyboardType: TextInputType.text,
-            validate: (value) {},
+            validate: (value) {
+              if (value == null || value.isEmpty) {
+                return TextManager.pleaseEnterPassword;
+              }    else if (!Regexp.isValidPassword(value)) {
+                return TextManager.invalidPass;
+              }
+              return null;
+            },
             label: TextManager.password,
             suffix: true,
             suffixIcon: SvgPicture.asset(AssetsImage.lock),
           ),
           SizedBox(height: 32.h,),
           TextFormFieldCustom(
+            controller: ForgetPasswordCubit.get(context).passwordConfirmationController,
             keyboardType: TextInputType.text,
-            validate: (value) {},
+            validate: (value) {
+              if (value == null || value.isEmpty) {
+                return TextManager.pleaseEnterRePassword;
+              }    else if (!Regexp.isValidPassword(value)) {
+                return TextManager.invalidRePass;
+              }
+              return null;
+            },
             label: TextManager.rePassword,
             suffix: true,
             suffixIcon: SvgPicture.asset(AssetsImage.lock),
           ),
           SizedBox(height: 32.h,),
-           Center(child: XStationButtonCustom(textButton: TextManager.confirm,pageName: PageName.verification,onPressed: (){
-             Get.toNamed(PageName.login);
-           },)),
+           BlocConsumer<ForgetPasswordCubit,ForgetPasswordStates>(
+             listener: (context,state){
+               if(state is ResetPasswordSuccessState){
+                 Get.offAndToNamed(PageName.login);
+               }
+             },
+             builder: (context,state){
+               return state is ResetPasswordLoadingState?
+                   const CustomCircleLoading():
+               Center(child: XStationButtonCustom(
+                 textButton: TextManager.confirm,
+                 onPressed: (){
+                   // ForgetPasswordCubit.get(context).resetPassword();
+                 },));
+             },
+           ),
           SizedBox(
             height: 40.h,
           ),

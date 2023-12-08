@@ -11,6 +11,7 @@ class AssetsImage {
   static const String signupImage = '${_imagesPath}signupimage.png';
   static const String signupImagePart2 = '${_imagesPath}signupimagepart2.png';
   static const String testHome = '${_imagesPath}test_home.png';
+  static const String electrican = '${_imagesPath}carpenter 1.png';
 
 
   // icons
@@ -31,8 +32,18 @@ class AssetsImage {
   static const String menu = '${_iconsPath}Menu.svg';
   static const String clean = '${_iconsPath}clean.svg';
   static const String heart = '${_iconsPath}heart.svg';
+  static const String line = '${_iconsPath}Line 1.svg';
+  static const String profile2 = '${_iconsPath}profile2.svg';
+  static const String terms = '${_iconsPath}terms.svg';
+  static const String faqs = '${_iconsPath}FAQUS.svg';
 
+  static const String contuctUs = '${_iconsPath}contuct_us.svg';
 
+  static const String logOut = '${_iconsPath}log_out.svg';
+  static const String chat2 = '${_iconsPath}chat2.svg';
+  static const String phone = '${_iconsPath}phone.svg';
+  static const String webSite = '${_iconsPath}website.svg';
+  static const String faveoriteList = '${_iconsPath}faveorite-list.svg';
 
 
 
