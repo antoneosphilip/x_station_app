@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import '../../../model/login_model/login_model.dart';
 import 'cache_helper.dart';
 
-/*
 class CachingDataManager {
   CachingDataManager._();
 
@@ -18,4 +18,4 @@ class CachingDataManager {
     return LoginModel.fromJson(jsonDecode(data));
   }
 }
-*/
+

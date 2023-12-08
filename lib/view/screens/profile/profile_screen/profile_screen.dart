@@ -11,6 +11,7 @@ import '../../../../core/route_manager/page_name.dart';
 import '../../../../core/text_manager/text_manager.dart';
 import '../../../../utility/database/local/cache_helper.dart';
 import '../../../core_widget/tab_bar_widget/tab_bar_widget.dart';
+import '../../profile_settings_screen/profile_settings_screen/profile_settings_screen.dart';
 import '../profile_widget/contact_us_card.dart';
 import '../profile_widget/first_row.dart';
 import '../profile_widget/item_card.dart';
@@ -71,6 +72,7 @@ class ProfileScreen extends StatelessWidget {
                   isProfile: true,
                     text:"profile",
                     onTap: () {
+                    Get.to(ProfileSettingsScreen());
                     },
                     image: AssetsImage.profile2),
                 BuildItemCard(

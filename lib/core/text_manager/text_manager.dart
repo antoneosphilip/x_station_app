@@ -34,7 +34,7 @@ class TextManager {
   static const String almostThere = "Alwos there";
   static const String pleaseEnter = "Please enter the6-digit code sent to your email ";
   static const String email= "hemmyhtec@gmail.com ";
-  static const String forVerification= "for verification";
+  static const String forVerification= " for verification";
 
   static const String didntReceive= "Didn't receive any code?";
   static const String resendAgain= "Resend Again";
@@ -68,5 +68,17 @@ class TextManager {
   static const String message = "message";
   static const String userProfile = "User Profile";
   static const String faveoriteList = "Faveorite List";
+  static const String profileSetting = "Profile Setting";
+  static const String account = "Account";
+  static const String address = "Address";
+  static const String changePassword = "Change Password";
+  static const String currentPassword = "Current Password";
+  static const String newPassword = "New Password";
+  static const String confirmPassword = "Confirm Password";
+  static const String deleteAccount = "Delete Account";
+  static const String name = "Name";
+  static const String pleaseEnterCode = "pleaseEnterCode";
+  static const String invalidCode = "code Legnth Must be 4";
+
 
 }

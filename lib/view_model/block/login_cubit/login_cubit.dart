@@ -8,26 +8,27 @@ import '../../../utility/database/local/cach_data.dart';
 
 class LoginCubit extends Cubit<LoginStates>
 {
-  LoginCubit():super(LoginInitialState());
-  // LoginRepo loginRepo;
+  LoginCubit(this.loginRepo):super(LoginInitialState());
+  LoginRepo loginRepo;
   static LoginCubit get(context)=>BlocProvider.of<LoginCubit>(context);
   var emailController=TextEditingController();
   var passwordController=TextEditingController();
   var formKey = GlobalKey<FormState>();
 
-  // Future<void> login()async{
-  //   emit(LoginLoadingState());
-  //   var data=await loginRepo.login(emailController.text, passwordController.text);
-  //   data.fold(
-  //         (l) {
-  //       emit(
-  //           LoginErrorState(l.toString()));
-  //     },
-  //         (r) {
-  //       CachingDataManager.instance.cachLoginInfo(r);
-  //       emit(LoginSuccessState(userModel: r));
-  //     },
-  //   );
-  // }
+  Future<void> login()async{
+    emit(LoginLoadingState());
+    var data=await loginRepo.login(emailController.text, passwordController.text);
+    data.fold(
+          (l) {
+            print(l);
+        emit(
+            LoginErrorState(l.message));
+      },
+          (r) {
+        CachingDataManager.instance.cachLoginInfo(r);
+        emit(LoginSuccessState(r));
+      },
+    );
+  }
 
 }

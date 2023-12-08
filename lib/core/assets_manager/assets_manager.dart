@@ -44,6 +44,7 @@ class AssetsImage {
   static const String phone = '${_iconsPath}phone.svg';
   static const String webSite = '${_iconsPath}website.svg';
   static const String faveoriteList = '${_iconsPath}faveorite-list.svg';
+  static const String addPhoto = '${_iconsPath}add_photo.svg';
 
 
 

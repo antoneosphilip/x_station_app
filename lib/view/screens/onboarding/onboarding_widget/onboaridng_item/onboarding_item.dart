@@ -54,7 +54,7 @@ class OnBoardingItem extends StatelessWidget {
                     onPressed: (){
                       pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInOutExpo);
                       if(isIndex+1==3){
-                        Get.toNamed(PageName.login);
+                        Get.offAndToNamed(PageName.login);
                       }
                     },
                     backgroundColor: ColorManager.colorPrimary,

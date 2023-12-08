@@ -22,8 +22,8 @@ class CategoryBody extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
               gridDelegate:  SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 190.h,
-                  childAspectRatio: 2.1 / 2.r,
-                  crossAxisSpacing: 1.w,
+                  childAspectRatio: .9.h,
+                  crossAxisSpacing: .1.w,
                   mainAxisSpacing: 10.h
               ),
               itemCount: 10,

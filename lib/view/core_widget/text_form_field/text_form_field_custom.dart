@@ -97,7 +97,7 @@ class TextFormFieldCustom extends StatelessWidget {
         LengthLimitingTextInputFormatter(maxDigit),
       ],
       style: TextStyle(
-        color: inputTextColor ??ColorManager.colorDarkBlue,
+        color: inputTextColor ??ColorManager.colorBlack.withOpacity(.90),
         fontWeight: FontWeight.bold,
         fontSize: 14.4.sp,
       ),

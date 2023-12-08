@@ -18,6 +18,7 @@ import '../../../../../view_model/repo/login_repo/login_repo.dart';
 import '../../../../core_widget/custom_circle_loading/custom_circle_loading.dart';
 import '../../../../core_widget/custom_top_snack/custom_top_snack.dart';
 import '../../../../core_widget/elevated_button/elevated_button_custom.dart';
+import '../../../../core_widget/snack_bar_custom/snack_bar_custom.dart';
 import '../../../../core_widget/text_form_field/text_form_field_custom.dart';
 import '../../../../core_widget/xstation_button_custom/x_station_button_custom.dart';
 import '../check_box/check_box.dart';
@@ -54,14 +55,16 @@ class LoginForm extends StatelessWidget {
               height: 25.h,
             ),
             TextFormFieldCustom(
-              // controller: LoginCubit.get(context).passwordController,
+
+              controller: LoginCubit.get(context).passwordController,
               keyboardType: TextInputType.visiblePassword,
               validate: (value) {
                 if (value == null || value.isEmpty) {
                   return TextManager.pleaseEnterPassword;
-                }    else if (!Regexp.isValidPassword(value)) {
-                  return TextManager.invalidPass;
                  }
+                // else if (!Regexp.isValidPassword(value)) {
+                //   return TextManager.invalidPass;
+                //  }
                 return null;
               },
               label: TextManager.password,
@@ -79,25 +82,33 @@ class LoginForm extends StatelessWidget {
                listener: (context,state){
                  if(state is LoginSuccessState) {
                    Get.offAndToNamed(PageName.homeLayout);
+                   customSnackBar(
+                       message: state.loginModel.message.toString(),
+                       snackBarType: SnackBarType.success,
+                       context: context);
                  }
                    else if(state is LoginErrorState){
-                   // CustomTopSnackBar(
-                   //     message: state.err!,
-                   //     snackBarType: SnackBarType.error,
-                   //     );
+                     customSnackBar(
+                         message: state.err,
+                         snackBarType: SnackBarType.error,
+                         context: context);
                  }
                },
                builder: (context,state){
                  return state is LoginLoadingState?
                  const CustomCircleLoading():
-                 XStationButtonCustom(
-                   textButton: TextManager.next, onPressed: (){
-                   Get.offAndToNamed(PageName.homeLayout);
-
-                   if(LoginCubit.get(context).formKey.currentState!.validate()){
-                       // LoginCubit.get(context).login();
+                 BlocConsumer<LoginCubit,LoginStates>(
+                   listener: (context,state){},
+                   builder: (context,state){
+                     return XStationButtonCustom(
+                       textButton: TextManager.next, onPressed: (){
+                       if(LoginCubit.get(context).formKey.currentState!.validate()){
+                         LoginCubit.get(context).login();
+                       }
                      }
-                 },);
+                     ,);
+                   },
+                 );
                },
              ),
             SizedBox(

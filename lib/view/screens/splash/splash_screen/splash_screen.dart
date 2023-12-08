@@ -9,10 +9,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: SplashWidget(),
-      ),
+      body: SplashWidget(),
     );
   }
 }

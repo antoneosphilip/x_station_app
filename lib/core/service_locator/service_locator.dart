@@ -10,8 +10,8 @@ import '../../view_model/repo/login_repo/login_repo.dart';
 final sl = GetIt.instance;
 
 Future<void> setup() async {
-  // sl.registerLazySingleton<LoginRepoImpl>(() => LoginRepoImpl());
-  // sl.registerLazySingleton<ForgetPasswordRepoImpl>(() => ForgetPasswordRepoImpl());
+  sl.registerLazySingleton<LoginRepoImpl>(() => LoginRepoImpl());
+  sl.registerLazySingleton<ForgetPasswordRepoImpl>(() => ForgetPasswordRepoImpl());
 
   // cubit
 }

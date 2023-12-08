@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
+import '../../../core/route_manager/page_name.dart';
 import '../local/cache_helper.dart';
 import 'end_points.dart';
+
 
 //Dio Helper That's Connect and Talk to API.
 class DioHelper {
@@ -29,40 +30,31 @@ class DioHelper {
         },
       ),
     )..interceptors.addAll([
-        InterceptorsWrapper(
-          // onRequest: (options, handle) async {
-          //   if(!isLogin())
-          //     {
-          //       options.headers['Authorization'] =
-          //       'Bearer ${CacheHelper.getDataString(key: 'token')}';
-          //     }
-          //   return handle.next(options);
-          // },
-          // onError: (error, handle)
-          // {
-          //   if(!isLogin())
-          //     {
-          //       if (error.response!.data['message'] ==
-          //           "You are not authenticated" &&
-          //           error.response!.statusCode == 401) {
-          //         CacheHelper.clearData();
-          //         Get.offAllNamed(PageName.LOG_IN);
-          //       }
-          //     }
-          //
-          //
-          //   return handle.next(error);
-          // },
-        ),
-        PrettyDioLogger(
-            requestHeader: true,
-            requestBody: true,
-            responseBody: true,
-            responseHeader: false,
-            error: true,
-            compact: true,
-            maxWidth: 90),
-      ]);
+      InterceptorsWrapper(
+        onRequest: (options , handle) async {
+          options.headers['Authorization'] = 'Bearer ${CacheHelper.getDataString(key: 'token')}';
+          // options.headers['Authorization'] = 'Bearer 579|hKYuHaor7ARdObih2o6dzX4N34fWLb97fqtpxMjW';
+          return handle.next(options);
+        },
+        onError: (error, handle)
+        {
+          if( error.response!.data['message'] ==  "You are not authenticated" && error.response!.statusCode == 401)
+          {
+            CacheHelper.clearData();
+            Get.offAllNamed(PageName.login);
+          }
+          return handle.next(error);
+        },
+      ),
+      PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          responseBody: true,
+          responseHeader: false,
+          error: true,
+          compact: true,
+          maxWidth: 90),
+    ]);
   }
 
   //This Function to call API and get Some Data based on url(End Points) and Headers needed in API to get the Specific Data.
@@ -83,7 +75,6 @@ class DioHelper {
     debugPrint("-------------End Point----------------");
     debugPrint(url);
     debugPrint("-------------End Point----------------");
-
     debugPrint("-------------Request Data----------------");
     debugPrint('data is $queryParameters');
     debugPrint("-------------Request Data----------------");
@@ -92,7 +83,9 @@ class DioHelper {
     debugPrint("-------------Request Data----------------");
 
     try {
-
+      dio.options.headers = {
+        'Authorization': 'Bearer ${token ?? ''}',
+      };
       final Response response = await dio.get(
         url,
         queryParameters: queryParameters,
@@ -178,7 +171,9 @@ class DioHelper {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-
+      dio.options.headers = {
+        'Authorization': 'Bearer ${token ?? ''}',
+      };
       final Response response = await dio.put(
         url,
         data: data,
@@ -203,11 +198,11 @@ class DioHelper {
   static Future<Response> patchData({
     required String url,
     required Map<String, dynamic> data,
-     String ?token,
+    required String token,
     bool files = false,
   }) async {
     dio.options.headers = {
-      // 'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer $token',
       // 'Authorization': token ,
       'Content-Type': 'application/json',
     };
@@ -246,11 +241,16 @@ class DioHelper {
     // });
   }
 
+
+
   static Future<Response> downloadData({
+    required String token,
     required String savePath,
     required String url,
   }) async {
+
     dio.options.headers = {
+      'Authorization': 'Bearer $token',
       // 'Authorization': token ,
       'Content-Type': 'application/json',
     };

@@ -8,6 +8,7 @@ import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
 import 'package:x_station_app/view/core_widget/custom_top_snack/custom_top_snack.dart';
+import 'package:x_station_app/view/core_widget/flutter_toast/flutter_toast.dart';
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_states.dart';
 
@@ -15,6 +16,7 @@ import '../../../../core/assets_manager/assets_manager.dart';
 import '../../../../core/regexp.dart';
 import '../../../../core/style_font_manager/style_manager.dart';
 import '../../../../core/text_manager/text_manager.dart';
+import '../../../core_widget/snack_bar_custom/snack_bar_custom.dart';
 import '../../../core_widget/text_form_field/text_form_field_custom.dart';
 import '../../../core_widget/xstation_button_custom/x_station_button_custom.dart';
 
@@ -42,6 +44,7 @@ class ForgetPasswordWidget extends StatelessWidget {
             Center(child: Text(TextManager.dontWory,style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorPrimary))),
             SizedBox(height: 32.h,),
             TextFormFieldCustom(
+              controller: ForgetPasswordCubit.get(context).emailController,
               keyboardType: TextInputType.emailAddress,
               validate: (value) {
                 if (value == null || value.isEmpty) {
@@ -61,12 +64,11 @@ class ForgetPasswordWidget extends StatelessWidget {
                listener: (context,state){
                  if(state is ForgetPasswordSuccessState){
                    Get.toNamed(PageName.verification);
+                   showFlutterToast(message: state.forgetPasswordModel.message, state: ToastState.ERROR);
                  }
                  else if(state is ForgetPasswordErrorState){
-                   // CustomTopSnackBar(
-                   //     message: state.err,
-                   //     snackBarType: SnackBarType.error,
-                   // );
+                   showFlutterToast(message: state.err, state: ToastState.ERROR);
+
                  }
                },
                builder: (context,state){
@@ -77,7 +79,7 @@ class ForgetPasswordWidget extends StatelessWidget {
                    textButton: TextManager.continuee,
                    onPressed: (){
                      if(ForgetPasswordCubit.get(context).formKey.currentState!.validate()){
-                       // ForgetPasswordCubit.get(context).forgetPassword();
+                       ForgetPasswordCubit.get(context).forgetPassword();
                      }
                    },));
                },

@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -12,9 +13,13 @@ import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
+import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
+import 'package:x_station_app/view/core_widget/flutter_toast/flutter_toast.dart';
 import 'package:x_station_app/view/core_widget/xstation_button_custom/pinput_custom.dart';
 // import 'package:pinput/pinput.dart';
 import 'package:x_station_app/view/core_widget/xstation_button_custom/x_station_button_custom.dart';
+import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
+import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_states.dart';
 
 
 class VerificationWidget extends StatefulWidget {
@@ -73,7 +78,7 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                       style: TextStyleManager.textStyle14w300,
                     ),
                     TextSpan(
-                      text: TextManager.email,
+                      text: ForgetPasswordCubit.get(context).emailController.text,
                       style: TextStyleManager.textStyle14w700,
                     ),
                     TextSpan(
@@ -87,11 +92,28 @@ class _VerificationWidgetState extends State<VerificationWidget> {
         ),
         const PinPutWidget(),
 
-        Padding(padding: EdgeInsets.symmetric(horizontal: 33.w),
-          child:
-          XStationButtonCustom(textButton: TextManager.verify, onPressed: (){
-            Get.toNamed(PageName.resetPassword);
-          },),
+        BlocConsumer<ForgetPasswordCubit,ForgetPasswordStates>(
+          listener: (context,state){
+            if(state is CheckCodeSuccessState){
+              Get.offAndToNamed(PageName.resetPassword);
+              showFlutterToast(message: state.forgetPasswordModel.message, state: ToastState.SUCCESS);
+            }
+            if(state is CheckCodeErrorState){
+              showFlutterToast(message: state.err, state: ToastState.ERROR);
+            }
+          },
+          builder: (context,state){
+            return state is CheckCodeLoadingState?
+            const CustomCircleLoading():Padding(padding: EdgeInsets.symmetric(horizontal: 33.w),
+              child:
+              XStationButtonCustom(
+                textButton: TextManager.verify, onPressed: (){
+                if(ForgetPasswordCubit.get(context).formKey.currentState!.validate()){
+                  ForgetPasswordCubit.get(context).checkCode();
+                }
+              },),
+            );
+          },
         ),
 
         Padding(padding: EdgeInsets.only(top: 62.h , left: 57.w , right: 33.w ),
@@ -102,6 +124,7 @@ class _VerificationWidgetState extends State<VerificationWidget> {
             InkWell(
                 onTap: (){
                   startTimer();
+                  ForgetPasswordCubit.get(context).forgetPassword();
                 },
                 child: Text(TextManager.resendAgain ,style: TextStyleManager.textStyle14w700.copyWith(color: ColorManager.colorPrimary)))
           ],):const SizedBox(),

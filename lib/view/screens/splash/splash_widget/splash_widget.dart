@@ -25,7 +25,7 @@ class _SplashWidgetState extends State<SplashWidget> {
   }
   navigateToLogin() async{
     await Future.delayed(const Duration(milliseconds: 5000),(){});
-    Get.toNamed(PageName.onBoarding);
+    Get.offAndToNamed(PageName.onBoarding);
   }
   @override
   Widget build(BuildContext context) {

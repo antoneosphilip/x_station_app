@@ -9,6 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
 import 'package:x_station_app/core/theme/themr.dart';
+import 'package:x_station_app/utility/database/local/cache_helper.dart';
+import 'package:x_station_app/utility/database/network/dio-helper.dart';
 import 'package:x_station_app/view/screens/onboarding/onboarding_screen/onboarding_screen.dart';
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
 import 'package:x_station_app/view_model/block/home_layout_cubit/home_layoout_cubit.dart';
@@ -27,6 +29,8 @@ import 'core/service_locator/service_locator.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await setup();
+  await DioHelper.init();
+  await CacheHelper.init();
   Bloc.observer = MyBlocObserver();
 
   runApp(
@@ -50,8 +54,7 @@ class MyApp extends StatelessWidget {
           return MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => HomeLayoutCubit(),),
-              // BlocProvider(create: (context) => ForgetPasswordCubit(sl.get<ForgetPasswordRepoImpl>()))
-              BlocProvider(create: (context) => LoginCubit(),),
+              BlocProvider(create: (context) => ForgetPasswordCubit(sl.get<ForgetPasswordRepoImpl>()))
 
             ],
             child: GetMaterialApp(
