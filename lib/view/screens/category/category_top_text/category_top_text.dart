@@ -21,10 +21,10 @@ final String text;
         children: [
           Text(
             "${text}",
-            style: TextStyleManager.textStyle36w500,
+            style: TextStyleManager.textStyle24w300.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 10),
-          SvgPicture.asset(AssetsImage.line),
+          SvgPicture.asset(AssetsImage.line,width: 105.w,),
         ],
       ),
     );

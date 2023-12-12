@@ -15,6 +15,7 @@ class CustomBottomSheetButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       color: ColorManager.colorWhite,
       child: Padding(
         padding: EdgeInsets.all(15.sp),
@@ -22,11 +23,10 @@ class CustomBottomSheetButton extends StatelessWidget {
           onPressed: () {
             onPressed!();
           },
-          height: 60.h,
           colors: ColorManager.colorPrimary,
           widget: Text(
             text!,
-            style: TextStyleManager.textStyle14w500.copyWith(fontSize: 18.sp),
+            style: TextStyleManager.textStyle14w500.copyWith(fontSize: 18.sp,color: Colors.white),
           ),
         ),
       ),

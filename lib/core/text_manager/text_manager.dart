@@ -79,6 +79,29 @@ class TextManager {
   static const String name = "Name";
   static const String pleaseEnterCode = "pleaseEnterCode";
   static const String invalidCode = "code Legnth Must be 4";
-
+  static const String post = "Posts";
+  static const String AbanoubMaged = "Abanoub Maged";
+  static const String Twentyone = "21";
+  static const String Hourlyrate = "Hourly rate:";
+  static const String Rate = "15.00 \$/hr";
+  static const String details = "details ";
+  static const String major = "Major:";
+  static const String Electrician = "Electrician";
+  static const String Address = "Address: ";
+  static const String cairo = "Maadi - Cairo - Egypt ";
+  static const String Contact = "Contact:";
+  static const String phone = "+(20) 0123456789";
+  static const String contractme = "contract me";
+  static const String uploadHere = "Upload here";
+  static const String posting = "Posting";
+  static const String type = "Type your problem here";
+  static const String Addattachment = "Add attachment";
+  static const String postnow = "Post now";
+  static const String apply = "Applying";
+  static const String Problem = "Problem:";
+  static const String LoremIpsum = "Lorem Ipsum";
+  static const String Description = "Description:";
+  static const String Applynow = "Apply now";
+  static const String writeSomeThing = "Write Some thing...";
 
 }

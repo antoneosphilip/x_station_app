@@ -21,7 +21,7 @@ class AccountDataCard extends StatelessWidget {
         children: [
           Text(
             TextManager.account.tr,
-            style: TextStyleManager.textStyle16w500,
+            style: TextStyleManager.textStyle20w700.copyWith(color: ColorManager.colorXXGrey),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.h),

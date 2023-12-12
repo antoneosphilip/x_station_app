@@ -59,31 +59,14 @@ class ChangePasswordCard extends StatelessWidget {
                 ],
               ),
               children: [
-                TextFormFieldCustom(
-                  controller: currentPassword,
-                  validate: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a password';
-                    } else if (value.length < 6) {
-                      return 'Password must be at least 6 characters long';
-                    } else if (!Regexp.isValidPassword(value)) {
-                      return 'Password must contain at least one lowercase letter, one uppercase, and one special character (@, #, ., \$, &, *)';
-                    }
-                    return null;
-                  },
-                  label: TextManager.currentPassword.tr,
-                  suffix: true,
-                  inputTextColor: ColorManager.colorBlack,
-
-                  boarderColor: ColorManager.colorPrimary,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 12.h),
+                SizedBox(
+                  height: 80,
+                  width: double.infinity,
                   child: TextFormFieldCustom(
-                    controller: newPassword,
+                    controller: currentPassword,
                     validate: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return "Confirm password can't be empty";
+                        return 'Please enter a password';
                       } else if (value.length < 6) {
                         return 'Password must be at least 6 characters long';
                       } else if (!Regexp.isValidPassword(value)) {
@@ -91,32 +74,53 @@ class ChangePasswordCard extends StatelessWidget {
                       }
                       return null;
                     },
-                    label: TextManager.newPassword.tr,
-                    suffix: true,
-                    inputTextColor: ColorManager.colorBlack,
-                    suffixOnPressed: () {
+                    label: TextManager.currentPassword.tr,
 
-                    },
-                    boarderColor: ColorManager.colorPrimary,
                   ),
                 ),
-                TextFormFieldCustom(
-                  controller: confirmPassword,
-                  validate: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return "Confirm password can't be empty";
-                    } else if (value != newPassword.text) {
-                      return 'Password not match';
-                    }
-                    return null;
-                  },
-                  label: TextManager.confirmPassword.tr,
-                  suffix: true,
-                  inputTextColor: ColorManager.colorBlack,
-                  suffixOnPressed: () {
+                SizedBox(
+                  height: 80.h,
+                  width: double.infinity,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12.h),
+                    child: TextFormFieldCustom(
+                      controller: newPassword,
+                      validate: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Confirm password can't be empty";
+                        } else if (value.length < 6) {
+                          return 'Password must be at least 6 characters long';
+                        } else if (!Regexp.isValidPassword(value)) {
+                          return 'Password must contain at least one lowercase letter, one uppercase, and one special character (@, #, ., \$, &, *)';
+                        }
+                        return null;
+                      },
+                      label: TextManager.newPassword.tr,
 
-                  },
-                  boarderColor: ColorManager.colorPrimary,
+                      suffixOnPressed: () {
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 80.h,
+                  width: double.infinity,
+                  child: Padding(
+                    padding:  EdgeInsets.symmetric(vertical: 12.h),
+                    child: TextFormFieldCustom(
+                      controller: confirmPassword,
+                      validate: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Confirm password can't be empty";
+                        } else if (value != newPassword.text) {
+                          return 'Password not match';
+                        }
+                        return null;
+                      },
+                      label: TextManager.confirmPassword.tr,
+
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -128,7 +132,7 @@ class ChangePasswordCard extends StatelessWidget {
                     },
                     widget: Text(
                       TextManager.changePassword.tr,
-                        style: TextStyleManager.textStyle16w500,
+                        style: TextStyleManager.textStyle16w500.copyWith(color: Colors.white),
                     ),
                   ),
                 )

@@ -23,6 +23,7 @@ class ProfileSettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             // const EditPhotoCard(),
@@ -34,13 +35,11 @@ class ProfileSettingsScreen extends StatelessWidget {
                 children: [
                   AppBarWidget(
                     text: TextManager.profileSetting.tr,
-                    height: 200,
-                    rightPadding: 80,
                   ),
                   Positioned(
                       left: 120.w,
                       top: 135.h,
-                      child: 
+                      child:
                       Stack(
                         //fit: StackFit.expand,
                         clipBehavior: Clip.none,
@@ -50,15 +49,15 @@ class ProfileSettingsScreen extends StatelessWidget {
                               backgroundImage: NetworkImage('https://th.bing.com/th/id/OIP.SzixlF6Io24jCN67HHZulAHaLH?rs=1&pid=ImgDetMain')
                           ),
                           Positioned(
-                            bottom: 10.h,
-                            right: 2.w,
+                            bottom: -20.h,
+                            right: 50.w,
                             child: InkWell(
                               onTap: ()  {
 
                               },
                               child: Container(
-                                width: 50.w,
-                                height: 50.h,
+                                width: 40.w,
+                                height: 40.h,
                                 decoration: BoxDecoration(
                                     borderRadius:
                                     BorderRadius.circular(16.r),
@@ -85,7 +84,7 @@ class ProfileSettingsScreen extends StatelessWidget {
             SizedBox(
               height: ScreenUtil().setHeight(10),
             ),
-            Form( child: const AccountDataCard())
+            const Form( child: AccountDataCard())
           ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:x_station_app/view/screens/home_technical/home_technical_screen/home_technical_screen.dart';
 
 import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/color_manager/color_manager.dart';
@@ -93,7 +94,10 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
         SizedBox(
           height: 21.h,
         ),
-         XStationButtonCustom(textButton: TextManager.continuee, onPressed: (){},),
+         XStationButtonCustom(textButton: TextManager.continuee, onPressed: (){
+           Get.toNamed(PageName.homeLayout);
+
+         },),
         SizedBox(
           height: 25.h,
         ),

@@ -13,6 +13,7 @@ import 'package:x_station_app/view/core_widget/text_form_field/text_form_field_c
 import 'package:x_station_app/view/core_widget/xstation_button_custom/x_station_button_custom.dart';
 import 'package:x_station_app/view/screens/Signup/Singup_widget/check_box_sin/checkbox_sign.dart';
 import 'package:x_station_app/view/screens/login/login_widget/check_box/check_box.dart';
+import 'package:x_station_app/view_model/block/home_layout_cubit/home_layoout_cubit.dart';
 
 import '../sign_up_textformfield/sign_up_textform_field.dart';
 
@@ -23,7 +24,6 @@ class SinupForm extends StatefulWidget {
 }
 
 class _SinupFormState extends State<SinupForm> {
-  String selectedValue=TextManager.client;
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +39,10 @@ class _SinupFormState extends State<SinupForm> {
                 contentPadding: EdgeInsets.zero,
                 activeColor: ColorManager.colorPrimary,
                 value: TextManager.client,
-                groupValue: selectedValue,
+                groupValue: HomeLayoutCubit.get(context).selectedValue,
                 onChanged: (value) {
                   setState(() {
-                    selectedValue=value!;
+                    HomeLayoutCubit.get(context).selectedValue=value!;
                   });
                 },
               ),
@@ -53,10 +53,10 @@ class _SinupFormState extends State<SinupForm> {
                 contentPadding: EdgeInsets.zero,
                 activeColor: ColorManager.colorPrimary,
                 value: TextManager.technical,
-                groupValue: selectedValue,
+                groupValue: HomeLayoutCubit.get(context).selectedValue,
                 onChanged: (value) {
                   setState(() {
-                    selectedValue=value!;
+                    HomeLayoutCubit.get(context).selectedValue=value!;
                   });
                 },
               ),
@@ -65,7 +65,7 @@ class _SinupFormState extends State<SinupForm> {
 
           ],
         ),
-            SignUpTextFormField( value: selectedValue,),
+            SignUpTextFormField( value: HomeLayoutCubit.get(context).selectedValue!,),
 
       ]),
     );

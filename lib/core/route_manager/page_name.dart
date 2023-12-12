@@ -9,6 +9,9 @@ class PageName {
   static const String resetPassword= '/RESET_PASSWORD';
   static const String homeLayout= '/HOME_LAYOUT';
   static const String electricianDetails= '/ELECTRICIAN_DETAILS';
+  static const String electricianInformation= '/ELECTRICIAN_INFORMATION';
+  static const String postScreen= '/POST_SCREEN';
+  static const String fullNotifictionScreen= '/FULL_NOTIFICATION';
 
   
   

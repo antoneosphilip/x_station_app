@@ -25,17 +25,17 @@ class BuildItemCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          width: size.width,
-          height: ScreenUtil().setHeight(64),
+          width: 358.w,
+          height: ScreenUtil().setHeight(48),
           decoration: BoxDecoration(
             color: ColorManager.colorWhite,
             borderRadius: BorderRadius.circular(8.sp),
             boxShadow: const [
-              BoxShadow(
-                  blurRadius: 2,
-                  color: ColorManager.colorSecondary,
-                  offset: Offset(0, 0),
-                  spreadRadius: 1)
+            BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.2), // #000000 with 20% opacity
+              blurRadius: 8,
+              spreadRadius: 0,
+            ),
             ],
           ),
           child: Padding(
@@ -46,7 +46,7 @@ class BuildItemCard extends StatelessWidget {
                   image,
                   width: ScreenUtil().setWidth(24),
                   height: ScreenUtil().setHeight(24),
-                  color: ColorManager.colorSecondary,
+                  color: ColorManager.colorXXGrey,
                 ),
                 SizedBox(
                   width: ScreenUtil().setWidth(10),

@@ -12,7 +12,7 @@ import '../../../core_widget/text_form_field/text_form_field_custom.dart';
 
 
 class UserDataCard extends StatelessWidget {
-  const UserDataCard({super.key});
+  const   UserDataCard({super.key});
 
   @override
   Widget build(BuildContext context) {

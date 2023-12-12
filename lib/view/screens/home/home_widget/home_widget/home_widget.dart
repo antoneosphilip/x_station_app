@@ -1,9 +1,13 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
+import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/core_widget/text_form_field/text_form_field_custom.dart';
@@ -32,9 +36,27 @@ class HomeWidget extends StatelessWidget {
               SizedBox(height: 16.h,),
               const HomeServicesWidget(),
               SizedBox(height: 50.h,),
-              Text(TextManager.topServices,style: TextStyleManager.textStyle36w700,),
+              Text(TextManager.post,style: TextStyleManager.textStyle36w700,),
+              SvgPicture.asset(AssetsImage.line,width: 114.w,),
               SizedBox(height: 16.h,),
               const HomeTopServiceList(),
+              SizedBox(height: 16.h,),
+              Row(
+                children: [
+                  const Spacer(),
+                  FloatingActionButton(
+                    onPressed: (){
+                      Get.toNamed(PageName.postScreen);
+                    },
+                    backgroundColor: ColorManager.colorPrimary,
+                    child:SvgPicture.asset(AssetsImage.plus),
+
+                  ),
+                  SizedBox(width: 31.w,),
+                  SizedBox(height: 28.h,)
+                ],
+              ),
+
             ],
           ),
         )

@@ -28,12 +28,12 @@ class _ContactUsCardState extends State<ContactUsCard> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.sp),
                 color: ColorManager.colorWhite,
-                boxShadow:  [
+                boxShadow:  const [
                   BoxShadow(
-                      blurRadius: 2,
-                      color: ColorManager.colorSecondary,
-                      offset: Offset(0, 0),
-                      spreadRadius: 1)
+                    color: Color.fromRGBO(0, 0, 0, 0.2), // #000000 with 20% opacity
+                    blurRadius: 8,
+                    spreadRadius: 0,
+                  ),
                 ],
               ),
               child: ClipRRect(

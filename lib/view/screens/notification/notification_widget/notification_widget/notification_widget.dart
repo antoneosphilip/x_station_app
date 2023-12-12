@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:x_station_app/core/text_manager/text_manager.dart';
+import 'package:x_station_app/view/core_widget/tab_bar_widget/tab_bar_widget.dart';
 
 
 import '../notification_body/notifiaction_list.dart';
@@ -13,7 +15,10 @@ class NotificationWidget extends StatelessWidget {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-          NotificationAppBar(),
+         AppBarWidget(
+           text: TextManager.notification,
+           isArrow: false,
+         ),
         MessageText(),
         NotificationList(),
       ],

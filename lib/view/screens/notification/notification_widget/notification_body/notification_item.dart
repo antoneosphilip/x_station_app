@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
+import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 
@@ -15,7 +17,9 @@ class NotificationItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: InkWell(
-          onTap: () => print("123456"),
+          onTap: () {
+            Get.toNamed(PageName.fullNotifictionScreen);
+          },
           child: Container(
             width: 360.w,
             decoration: BoxDecoration(
@@ -47,7 +51,7 @@ class NotificationItem extends StatelessWidget {
                         style: TextStyleManager.textStyle14w700.copyWith(
                             color: ColorManager.colorPrimary),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Text(

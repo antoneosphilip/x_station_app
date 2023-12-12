@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:x_station_app/core/assets_manager/assets_manager.dart';
 
 import '../../../core/color_manager/color_manager.dart';
 import '../../../core/style_font_manager/style_manager.dart';
@@ -15,6 +16,7 @@ class AppBarWidget extends StatelessWidget {
   final double? bottomIcon;
   final double? bottomText;
   final bool? isSearch;
+  final bool? isArrow;
 
   const AppBarWidget(
       {super.key,
@@ -24,7 +26,7 @@ class AppBarWidget extends StatelessWidget {
         this.height = 124,
         this.bottomIcon = 40,
         this.bottomText = 39,
-        this.isSearch = false});
+        this.isSearch = false, this.isArrow=true});
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +40,19 @@ class AppBarWidget extends StatelessWidget {
             bottomRight: Radius.circular(16.w)),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
 
+        children: [
+          isArrow==true?
+          Padding(
+            padding:  EdgeInsets.only(left: 34.w),
+            child: SvgPicture.asset(AssetsImage.arrowLeft,color: ColorManager.colorWhite,),
+          ):const SizedBox(),
+          Spacer(),
           Text(
             text!,
             style: TextStyleManager.textStyle24w500.copyWith(fontSize: 22.sp,color: ColorManager.colorWhite),
           ),
+          Spacer(),
 
         ],
       ),

@@ -16,7 +16,7 @@ class XStationButtonCustom extends StatelessWidget {
   final String textButton;
   final   Function onPressed;
 
-  const XStationButtonCustom({super.key,  this.textButton=TextManager.next,required this.onPressed});
+  const XStationButtonCustom({super.key,  this.textButton=TextManager.next,required this.onPressed,  });
   @override
   Widget build(BuildContext context) {
     return ElevatedButtonCustom(
@@ -31,7 +31,6 @@ class XStationButtonCustom extends StatelessWidget {
         children: [
            Text(textButton!),
           SizedBox(width: 11.w,),
-          SvgPicture.asset(AssetsImage.arrowRight),
         ],
       ),
       colors: ColorManager.colorPrimary,

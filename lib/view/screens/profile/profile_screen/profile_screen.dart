@@ -25,6 +25,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        physics:  const BouncingScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:
@@ -34,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
               [
                 Stack(
                   children: [
-                    const AppBarWidget(text: TextManager.userProfile,height: 199,),
+                    const AppBarWidget(text: TextManager.userProfile,isArrow: false,),
                     Center(
                       child: Padding(
                         padding:  EdgeInsets.only(top: 130.h),
@@ -68,6 +69,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 32.h,),
                 BuildItemCard(
                   isProfile: true,
                     text:"profile",

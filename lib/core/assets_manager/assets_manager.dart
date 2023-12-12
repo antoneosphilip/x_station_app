@@ -45,8 +45,10 @@ class AssetsImage {
   static const String webSite = '${_iconsPath}website.svg';
   static const String faveoriteList = '${_iconsPath}faveorite-list.svg';
   static const String addPhoto = '${_iconsPath}add_photo.svg';
+  static const String plus = '${_iconsPath}plus.svg';
 
-
+  static const String heart2 = '${_iconsPath}heart2.svg';
+  static const String upload = '${_iconsPath}upload.svg';
 
   // svg
   static const String lOGO = '${_svgPath}Logo.svg';
