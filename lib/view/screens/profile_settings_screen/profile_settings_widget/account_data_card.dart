@@ -36,7 +36,6 @@ class AccountDataCard extends StatelessWidget {
           //   child:  const AddressCard(),
           // ),
           ChangePasswordCard(),
-          DeleteAccountWidget(),
         ],
       ),
     );

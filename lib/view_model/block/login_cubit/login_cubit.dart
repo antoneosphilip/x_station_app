@@ -15,6 +15,13 @@ class LoginCubit extends Cubit<LoginStates>
   var emailController=TextEditingController();
   var passwordController=TextEditingController();
   var formKey = GlobalKey<FormState>();
+  bool visibility = true;
+
+
+  void changeVisibilityPassword() {
+    visibility = !visibility;
+    emit(ChangeVisibilityPassword());
+  }
 
   Future<void> login()async{
     emit(LoginLoadingState());

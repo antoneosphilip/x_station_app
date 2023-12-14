@@ -1,14 +1,14 @@
-class ForgetPasswordModel {
-  Null? data;
+class LogOutModel {
+  bool? data;
   String? message;
   String? type;
   int? code;
   bool? showToast;
 
-  ForgetPasswordModel(
+  LogOutModel(
       {this.data, this.message, this.type, this.code, this.showToast});
 
-  ForgetPasswordModel.fromJson(Map<String, dynamic> json) {
+  LogOutModel.fromJson(Map<String, dynamic> json) {
     data = json['data'];
     message = json['message'];
     type = json['type'];

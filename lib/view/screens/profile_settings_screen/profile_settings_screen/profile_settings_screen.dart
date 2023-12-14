@@ -5,11 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_utils/get_utils.dart';
+import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
+import 'package:x_station_app/view/core_widget/flutter_toast/flutter_toast.dart';
+import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
+import 'package:x_station_app/view_model/block/profile_cubit/profile_states.dart';
 
 import '../../../../core/assets_manager/assets_manager.dart';
 import '../../../../core/color_manager/color_manager.dart';
 import '../../../../core/text_manager/text_manager.dart';
 import '../../../core_widget/custom_bottom_sheet_button/custom_bottom_sheet_button.dart';
+import '../../../core_widget/snack_bar_custom/snack_bar_custom.dart';
 import '../../../core_widget/tab_bar_widget/tab_bar_widget.dart';
 
 import '../profile_settings_widget/account_data_card.dart';
@@ -88,10 +93,23 @@ class ProfileSettingsScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomSheet: CustomBottomSheetButton(
-        text: "Save Change",
-        onPressed: () async {
+      bottomSheet: BlocConsumer<ProfileCubit,ProfileStates>(
+        listener: (context,state){
+          if(state is UpdateProfileSuccessState) {
+            showFlutterToast(message: state.updateProfileModel.message, state: ToastState.SUCCESS);
+          }
+          else if(state is UpdateProfileErrorState){
+            showFlutterToast(message: state.err, state: ToastState.ERROR);
 
+          }
+        },
+        builder: (contex,state){
+          return state is UpdateProfileLoadingState?const CustomCircleLoading():CustomBottomSheetButton(
+            text: "Save Change",
+            onPressed: () async {
+              ProfileCubit.get(context).updateProfileData();
+            },
+          );
         },
       ),
     );

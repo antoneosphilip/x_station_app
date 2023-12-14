@@ -9,19 +9,20 @@ import '../../../utility/database/network/dio-helper.dart';
 
 abstract class ForgetPasswordRepo {
   Future<Either<Failure,ForgetPasswordModel>> forgetPassword({required email});
-  Future<Either<Failure,ForgetPasswordModel>> checkCode({required code,required email});
-  Future<Either<Failure,ForgetPasswordModel>> resetPassword({required password,required confirmPassword,required email});
+  // Future<Either<Failure,ForgetPasswordModel>> checkCode({required code,required email});
+  Future<Either<Failure,ForgetPasswordModel>> resetPassword({required password,required confirmPassword,required email,required code});
 }
 class ForgetPasswordRepoImpl implements ForgetPasswordRepo{
   @override
   Future<Either<Failure, ForgetPasswordModel>> forgetPassword({required email}) async {
     try
     {
-      Response response =await DioHelper.postData(
-          url: EndPoint.forgetPasswordEndPoint,
-          data: {
+      Response response =await DioHelper.getData(
+          url: EndPoint.sendCode,
+         queryParameters: {
             'email':email,
-          });
+         }
+          );
       return Right(ForgetPasswordModel.fromJson(response.data));
     }on DioException catch(e)
     {
@@ -36,40 +37,41 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo{
     }
   }
 
-  @override
-  Future<Either<Failure, ForgetPasswordModel>> checkCode({required code,required email}) async {
-    try
-    {
-      Response response =await DioHelper.postData(
-          url: EndPoint.checkCode,
-          data: {
-            'token':code,
-            'email':email,
-          });
-      return Right(ForgetPasswordModel.fromJson(response.data));
-    }on DioException catch(e)
-    {
-      debugPrint("-------------Response Data----------------");
-      debugPrint(e.response!.data.toString());
-      debugPrint("-------------Response Data----------------");
-      return Left(ServerFailure.fromDioError(e));
-    }
-    catch(e)
-    {
-      return Left(FailureLocal(message: e.toString()));
-    }
-  }
+  // @override
+  // Future<Either<Failure, ForgetPasswordModel>> checkCode({required code,required email}) async {
+  //   try
+  //   {
+  //     Response response =await DioHelper.postData(
+  //         url: EndPoint.checkCode,
+  //         data: {
+  //           'token':code,
+  //           'email':email,
+  //         });
+  //     return Right(ForgetPasswordModel.fromJson(response.data));
+  //   }on DioException catch(e)
+  //   {
+  //     debugPrint("-------------Response Data----------------");
+  //     debugPrint(e.response!.data.toString());
+  //     debugPrint("-------------Response Data----------------");
+  //     return Left(ServerFailure.fromDioError(e));
+  //   }
+  //   catch(e)
+  //   {
+  //     return Left(FailureLocal(message: e.toString()));
+  //   }
+  // }
 
   @override
-  Future<Either<Failure, ForgetPasswordModel>> resetPassword({required password, required confirmPassword,required email}) async {
+  Future<Either<Failure, ForgetPasswordModel>> resetPassword({required password, required confirmPassword,required email,required code}) async {
     try
     {
       Response response =await DioHelper.postData(
           url: EndPoint.resetPassword,
           data: {
-            'password':password,
-            'password_confirmation':confirmPassword,
-            'email':email
+            'new_password':password,
+            'confirm_password':confirmPassword,
+            'email':email,
+            'code':code,
           });
       return Right(ForgetPasswordModel.fromJson(response.data));
     }on DioException catch(e)

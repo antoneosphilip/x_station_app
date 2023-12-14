@@ -109,5 +109,6 @@ class TextManager {
   static const String pleaseEnterName = "Please enter full name";
   static const String pleaseEnterPhone = "Please enter phone";
   static const String pleaseEnterAddress = "Please enter address";
+  static const String nationalId = "National Id";
 
 }

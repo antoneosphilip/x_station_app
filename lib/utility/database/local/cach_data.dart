@@ -17,5 +17,6 @@ class CachingDataManager {
     String data = CacheHelper.getDataString(key: "loginModel");
     return LoginModel.fromJson(jsonDecode(data));
   }
+
 }
 

@@ -16,3 +16,18 @@ class SignUpErrorState extends SignUpStates{
 
 }
 class SelectAddressState extends SignUpStates{}
+
+class SignTechnicalUpLoadingState extends SignUpStates{}
+class SignUpTechnicalSuccessState extends SignUpStates{
+ SignUpModel signUpModel;
+ SignUpTechnicalSuccessState(this.signUpModel);
+}
+class SignUpTechnicalErrorState extends SignUpStates{
+ final String err;
+
+ SignUpTechnicalErrorState(this.err);
+
+}
+
+class ChangeVisibilityPasswordSignUp extends SignUpStates{}
+class ChangeVisibilityRePasswordSignUp extends SignUpStates{}

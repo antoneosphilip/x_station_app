@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_utils/get_utils.dart';
+import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
 
 
 import '../../../../core/assets_manager/assets_manager.dart';
@@ -16,6 +17,12 @@ class UserDataCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+   ProfileCubit.get(context). nameController.text=ProfileCubit.get(context).profileModel!.data!.name!;
+   ProfileCubit.get(context). emailController.text=ProfileCubit.get(context).profileModel!.data!.email!;
+    ProfileCubit.get(context).phoneController.text=ProfileCubit.get(context).profileModel!.data!.phoneNumber!;
+    ProfileCubit.get(context).addressController.text=ProfileCubit.get(context).profileModel!.data!.address!;
+
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: 10.w,
@@ -39,6 +46,7 @@ class UserDataCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormFieldCustom(
+              controller:ProfileCubit.get(context). nameController,
               //label: 'errrrrrr',
               validate: (String? value) {
                 if (value!.isEmpty) {
@@ -58,30 +66,12 @@ class UserDataCard extends StatelessWidget {
               // ),
               // label: 'Name',
             ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(vertical: 10.h),
-            //   child: TextFormFieldCustom(
-            //     controller: ProfileCubit.get(context).idController,
-            //     validate: (String? value) {
-            //       if (value!.isEmpty) {
-            //         return 'Filed Required';
-            //       }
-            //       return null;
-            //     },
-            //     boarderColor: ColorManager.colorPrimary,
-            //     suffixIcon: Padding(
-            //       padding: EdgeInsets.all(8.sp),
-            //       child: SvgPicture.asset(AssetsManager.EDIT),
-            //     ),
-            //     hint: TextManager.NATIONAL_ID,
-            //     keyboardType: TextInputType.number,
-            //   ),
-            // ),
 
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0.h),
               child: TextFormFieldCustom(
-                enable: false,
+                controller: ProfileCubit.get(context).emailController,
+                enable: true,
                 validate: (String? value) {
                   if (value!.isEmpty) {
                     return 'Filed Required';
@@ -100,6 +90,8 @@ class UserDataCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10.h),
               child: TextFormFieldCustom(
+                controller: ProfileCubit.get(context).phoneController,
+
                 validate: (String? value) {
                   if (value!.isEmpty) {
                     return 'Filed Required';
@@ -118,6 +110,7 @@ class UserDataCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10.h),
               child: TextFormFieldCustom(
+                controller: ProfileCubit.get(context).addressController,
                 validate: (String? value) {
                   if (value!.isEmpty) {
                     return 'Filed Required';

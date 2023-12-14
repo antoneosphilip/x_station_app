@@ -20,15 +20,33 @@ class SignUpCubit extends Cubit<SignUpStates>
   var phoneController=TextEditingController();
   var rePasswordController=TextEditingController();
   var addressController=TextEditingController();
+  var nationalId=TextEditingController();
+
+
   var formKey = GlobalKey<FormState>();
   String? type;
   String? technicalTypeSelected;
   String? technicalExperienceYears;
 
+
+  bool visibility = true;
+  bool visibilityRePassword = true;
+
+  void changeVisibilityPassword() {
+    visibility = !visibility;
+    emit(ChangeVisibilityPasswordSignUp());
+  }
+  void changeVisibilityRePassword() {
+    visibilityRePassword = !visibilityRePassword;
+    emit(ChangeVisibilityRePasswordSignUp());
+  }
+
+
   void selectAddress(String address) {
     addressController.text = address;
     emit(SelectAddressState());
   }
+
 
   Future<void> signUp({required type})async{
     emit(SignUpLoadingState());
@@ -51,6 +69,34 @@ class SignUpCubit extends Cubit<SignUpStates>
             emit(SignUpSuccessState(r));
             CacheHelper.put(key: 'token', value: r.data!.token);
           },
+    );
+  }
+
+
+  Future<void> signUpTechnical({required type})async{
+    emit(SignTechnicalUpLoadingState());
+    var data=await signUpRepo.signUpTechnical(
+      nameController.text,
+      emailController.text,
+      phoneController.text,
+      passwordController.text,
+      rePasswordController.text,
+      addressController.text,
+      type!,
+      technicalTypeSelected!,
+      nationalId.text,
+      technicalExperienceYears!,
+    );
+    data.fold(
+          (l) {
+        print(l);
+        emit(
+            SignUpTechnicalErrorState(l.message));
+      },
+          (r) {
+        emit(SignUpTechnicalSuccessState(r));
+        CacheHelper.put(key: 'token', value: r.data!.token);
+      },
     );
   }
 

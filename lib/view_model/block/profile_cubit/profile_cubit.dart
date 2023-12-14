@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:x_station_app/model/profile_model/profile_model.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_states.dart';
 import 'package:x_station_app/view_model/block/profile_cubit/profile_states.dart';
 import 'package:x_station_app/view_model/block/signup_cubit/signup_states.dart';
@@ -15,9 +16,20 @@ class ProfileCubit extends Cubit<ProfileStates>
 {
   ProfileCubit(this.profileRepo):super(ProfileInitialState());
   ProfileRepo profileRepo;
+  ProfileModel? profileModel;
+  var nameController=TextEditingController();
+  var emailController=TextEditingController();
+  var phoneController=TextEditingController();
+  var addressController=TextEditingController();
+  var oldPasswordController=TextEditingController();
+  var newPasswordController=TextEditingController();
+  var confirmPasswordController=TextEditingController();
+
   static ProfileCubit get(context)=>BlocProvider.of<ProfileCubit>(context);
 
 
+
+//////////// get profile data/////////
   Future<void> getProfileData()async{
     emit(ProfileLoadingState());
     var data=await profileRepo.getProfileData();
@@ -29,6 +41,72 @@ class ProfileCubit extends Cubit<ProfileStates>
       },
           (r) {
             emit(ProfileSuccessState(r));
+            profileModel=r;
+
+          },
+    );
+  }
+
+
+
+  ////////////// update profile data////////////
+  Future<void> updateProfileData()async{
+    emit(UpdateProfileLoadingState());
+    var data=await profileRepo.updateProfileData( nameController.text, addressController.text,  phoneController.text,  emailController.text);
+    data.fold(
+          (l) {
+        print(l);
+        emit(
+            UpdateProfileErrorState(l.message));
+      },
+          (r) {
+        emit(UpdateProfileSuccessState(r));
+        getProfileData();
+
+      },
+    );
+  }
+
+
+
+
+  /////////////log out//////////////
+  Future<void> logOut()async{
+    emit(LogOutLoadingState());
+    var data=await profileRepo.logOut();
+    data.fold(
+          (l) {
+        print(l);
+        emit(
+            LogOutErrorState(l.message));
+      },
+          (r) {
+        emit(LogOutSuccessState(r));
+
+      },
+    );
+  }
+
+
+
+  //////////////change password////////////
+  Future<void> changePassword()async{
+    emit(ChangePasswordLoadingState());
+    var data=await profileRepo.changePassword(
+        oldPasswordController.text,
+        newPasswordController.text,
+        confirmPasswordController.text,
+    );
+    data.fold(
+          (l) {
+        print(l);
+        emit(
+            ChangePasswordErrorState(l.message));
+      },
+          (r) {
+        emit(ChangePasswordSuccessState(r));
+        getProfileData();
+
       },
     );
   }

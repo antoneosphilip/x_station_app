@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_utils/get_utils.dart';
+import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
 
 import '../../../../core/color_manager/color_manager.dart';
 import '../../../../core/regexp.dart';
 import '../../../../core/service_locator/service_locator.dart';
 import '../../../../core/style_font_manager/style_manager.dart';
 import '../../../../core/text_manager/text_manager.dart';
+import '../../../../view_model/block/profile_cubit/profile_states.dart';
 import '../../../core_widget/elevated_button/elevated_button_custom.dart';
+import '../../../core_widget/flutter_toast/flutter_toast.dart';
 import '../../../core_widget/text_form_field/text_form_field_custom.dart';
 
 
@@ -16,9 +19,6 @@ class ChangePasswordCard extends StatelessWidget {
   ChangePasswordCard({super.key});
 
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
-  TextEditingController currentPassword = TextEditingController();
-  TextEditingController confirmPassword = TextEditingController();
-  TextEditingController newPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,15 +63,16 @@ class ChangePasswordCard extends StatelessWidget {
                   height: 80,
                   width: double.infinity,
                   child: TextFormFieldCustom(
-                    controller: currentPassword,
+                    controller: ProfileCubit.get(context).oldPasswordController,
                     validate: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a password';
                       } else if (value.length < 6) {
                         return 'Password must be at least 6 characters long';
-                      } else if (!Regexp.isValidPassword(value)) {
-                        return 'Password must contain at least one lowercase letter, one uppercase, and one special character (@, #, ., \$, &, *)';
                       }
+                      //  else if (!Regexp.isValidPassword(value)) {
+                      //   return 'Password must contain at least one lowercase letter, one uppercase, and one special character (@, #, ., \$, &, *)';
+                      // }
                       return null;
                     },
                     label: TextManager.currentPassword.tr,
@@ -84,15 +85,16 @@ class ChangePasswordCard extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 12.h),
                     child: TextFormFieldCustom(
-                      controller: newPassword,
+                      controller: ProfileCubit.get(context).newPasswordController,
                       validate: (String? value) {
                         if (value == null || value.isEmpty) {
                           return "Confirm password can't be empty";
                         } else if (value.length < 6) {
                           return 'Password must be at least 6 characters long';
-                        } else if (!Regexp.isValidPassword(value)) {
-                          return 'Password must contain at least one lowercase letter, one uppercase, and one special character (@, #, ., \$, &, *)';
                         }
+                        // else if (!Regexp.isValidPassword(value)) {
+                        //   return 'Password must contain at least one lowercase letter, one uppercase, and one special character (@, #, ., \$, &, *)';
+                        // }
                         return null;
                       },
                       label: TextManager.newPassword.tr,
@@ -108,11 +110,12 @@ class ChangePasswordCard extends StatelessWidget {
                   child: Padding(
                     padding:  EdgeInsets.symmetric(vertical: 12.h),
                     child: TextFormFieldCustom(
-                      controller: confirmPassword,
+                      controller: ProfileCubit.get(context).confirmPasswordController,
                       validate: (String? value) {
                         if (value == null || value.isEmpty) {
                           return "Confirm password can't be empty";
-                        } else if (value != newPassword.text) {
+                        }
+                        else if (value != ProfileCubit.get(context).newPasswordController.text) {
                           return 'Password not match';
                         }
                         return null;
@@ -122,19 +125,34 @@ class ChangePasswordCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.h),
-                  child: ElevatedButtonCustom(
-                    height: 60.h,
-                    colors: ColorManager.colorPrimary,
-                    onPressed: ()  {
+                BlocConsumer<ProfileCubit,ProfileStates>(
+                  listener: (context,state){
+                    if(state is ChangePasswordSuccessState){
+                      showFlutterToast(message: state.changePasswordModel.message, state: ToastState.SUCCESS);
+                    }
+                    else if(state is ChangePasswordErrorState){
+                      showFlutterToast(message: state.err, state: ToastState.ERROR);
 
-                    },
-                    widget: Text(
-                      TextManager.changePassword.tr,
-                        style: TextStyleManager.textStyle16w500.copyWith(color: Colors.white),
-                    ),
-                  ),
+                    }
+                  },
+                  builder: (context,state){
+                    return Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
+                      child: ElevatedButtonCustom(
+                        height: 60.h,
+                        colors: ColorManager.colorPrimary,
+                        onPressed: ()  {
+                          if(_key.currentState!.validate()){
+                            ProfileCubit.get(context).changePassword();
+                          }
+                        },
+                        widget: Text(
+                          TextManager.changePassword.tr,
+                          style: TextStyleManager.textStyle16w500.copyWith(color: Colors.white),
+                        ),
+                      ),
+                    );
+                  },
                 )
 
               ],

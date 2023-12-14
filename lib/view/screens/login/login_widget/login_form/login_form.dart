@@ -33,110 +33,115 @@ class LoginForm extends StatelessWidget {
       key: LoginCubit.get(context).formKey,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30.w),
-        child: Column(
-          children: [
-            TextFormFieldCustom(
-              controller: LoginCubit.get(context).emailController,
-              keyboardType: TextInputType.emailAddress,
-              validate: (value) {
-                if (value == null || value.isEmpty) {
-                  return TextManager.pleaseEnterEmail;
-                }
-                else if (!Regexp.isValidEmail(value)) {
-                  return TextManager.invalidEmail;
-                }
-                return null;
-              },
-              label: TextManager.enterYourEmail,
-              suffix: true,
-              suffixIcon: SvgPicture.asset(AssetsImage.email),
-            ),
-            SizedBox(
-              height: 25.h,
-            ),
-            TextFormFieldCustom(
-
-              controller: LoginCubit.get(context).passwordController,
-              keyboardType: TextInputType.visiblePassword,
-              validate: (value) {
-                if (value == null || value.isEmpty) {
-                  return TextManager.pleaseEnterPassword;
-                 }
-                // else if (!Regexp.isValidPassword(value)) {
-                //   return TextManager.invalidPass;
-                //  }
-                return null;
-              },
-              label: TextManager.password,
-              suffix: true,
-              suffixIcon: SvgPicture.asset(AssetsImage.password),
-            ),
-            SizedBox(
-              height: 16.h,
-            ),
-            const CheckBoxWidget(),
-            SizedBox(
-              height: 150.h,
-            ),
-             BlocConsumer<LoginCubit,LoginStates>(
-               listener: (context,state){
-                 if(state is LoginSuccessState) {
-                   Get.offAndToNamed(PageName.homeLayout);
-                   customSnackBar(
-                       message: state.loginModel.message.toString(),
-                       snackBarType: SnackBarType.success,
-                       context: context);
-                 }
-                   else if(state is LoginErrorState){
-                     customSnackBar(
-                         message: state.err,
-                         snackBarType: SnackBarType.error,
-                         context: context);
-                 }
-               },
-               builder: (context,state){
-                 return state is LoginLoadingState?
-                 const CustomCircleLoading():
-                 XStationButtonCustom(
-                   textButton: TextManager.next, onPressed: (){
-                   if(LoginCubit.get(context).formKey.currentState!.validate()){
-                     LoginCubit.get(context).login();
-                   }
-                 }
-                   );
-               },
-             ),
-            SizedBox(
-              height: 23.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+        child: BlocConsumer<LoginCubit,LoginStates>(
+          listener: (context,state){
+            if(state is LoginSuccessState) {
+              Get.offAndToNamed(PageName.homeLayout);
+              customSnackBar(
+                  message: state.loginModel.message.toString(),
+                  snackBarType: SnackBarType.success,
+                  context: context);
+            }
+            else if(state is LoginErrorState){
+              customSnackBar(
+                  message: state.err,
+                  snackBarType: SnackBarType.error,
+                  context: context);
+            }
+          },
+          builder: (context,state){
+            return Column(
               children: [
-                Text(
-                  TextManager.newMember,
-                  style: TextStyleManager.textStyle12w400
-                      .copyWith(fontWeight: FontWeight.w500),
+                TextFormFieldCustom(
+                  controller: LoginCubit.get(context).emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  validate: (value) {
+                    if (value == null || value.isEmpty) {
+                      return TextManager.pleaseEnterEmail;
+                    }
+                    else if (!Regexp.isValidEmail(value)) {
+                      return TextManager.invalidEmail;
+                    }
+                    return null;
+                  },
+                  label: TextManager.enterYourEmail,
+                  suffix: true,
+                  suffixIcon: SvgPicture.asset(AssetsImage.email),
                 ),
                 SizedBox(
-                  width: 3.w,
+                  height: 25.h,
                 ),
-                InkWell(
-                  onTap: () {
-                    Get.toNamed(PageName.register);
+
+                TextFormFieldCustom(
+
+                  controller: LoginCubit.get(context).passwordController,
+                  keyboardType: TextInputType.visiblePassword,
+                  validate: (value) {
+                    if (value == null || value.isEmpty) {
+                      return TextManager.pleaseEnterPassword;
+                    }
+                    // else if (!Regexp.isValidPassword(value)) {
+                    //   return TextManager.invalidPass;
+                    //  }
+                    return null;
                   },
-                  child: Text(
-                    TextManager.registerNow,
-                    style: TextStyleManager.textStyle12w400.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: ColorManager.colorPrimary),
-                  ),
+                  label: TextManager.password,
+                  suffix: true,
+                  suffixIcon: LoginCubit.get(context).visibility?const Icon(Icons.visibility,color: ColorManager.colorPrimary,):Icon(Icons.visibility_off,color: ColorManager.colorPrimary,),
+                  suffixOnPressed:(){
+                    LoginCubit.get(context).changeVisibilityPassword();
+                  } ,
+                  obSecure: LoginCubit.get(context).visibility,
+                ),
+                SizedBox(
+                  height: 16.h,
+                ),
+                const CheckBoxWidget(),
+                SizedBox(
+                  height: 150.h,
+                ),
+                state is LoginLoadingState?
+                const CustomCircleLoading():
+                XStationButtonCustom(
+                    textButton: TextManager.next, onPressed: (){
+                  if(LoginCubit.get(context).formKey.currentState!.validate()){
+                    LoginCubit.get(context).login();
+                  }
+                }
+                ),
+                SizedBox(
+                  height: 23.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      TextManager.newMember,
+                      style: TextStyleManager.textStyle12w400
+                          .copyWith(fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(
+                      width: 3.w,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed(PageName.register);
+                      },
+                      child: Text(
+                        TextManager.registerNow,
+                        style: TextStyleManager.textStyle12w400.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: ColorManager.colorPrimary),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 59.h,
                 ),
               ],
-            ),
-            SizedBox(
-              height: 59.h,
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

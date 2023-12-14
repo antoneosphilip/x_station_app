@@ -13,3 +13,4 @@ class LoginErrorState extends LoginStates{
   LoginErrorState(this.err);
 
 }
+class ChangeVisibilityPassword extends LoginStates{}

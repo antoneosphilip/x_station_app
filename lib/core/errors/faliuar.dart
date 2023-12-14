@@ -29,11 +29,11 @@ class ServerFailure extends Failure {
         if (dioError.message!.contains("SocketException")) {
           return ServerFailure(message: "No Internet Connection");
         } else {
-          return ServerFailure(message: "Something Went Wrong");
+          return ServerFailure(message:  dioError.response!.data['message']);
         }
 
       default:
-        return ServerFailure(message: "Something Went Wrong");
+        return ServerFailure(message: dioError.response!.data['message']);
     }
   }
 
@@ -50,7 +50,7 @@ class ServerFailure extends Failure {
       // 500 internal server error
       return ServerFailure(message: "Internal Server Error , Try Again Later");
     } else {
-      return ServerFailure(message: "Something Went Wrong");
+      return ServerFailure(message: response.data['message']);
     }
   }
 }

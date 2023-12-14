@@ -84,7 +84,13 @@ class ResetPasswordWidget extends StatelessWidget {
                    Get.offAndToNamed(PageName.login);
                  }
                  if(state is ResetPasswordErrorState){
-                   showFlutterToast(message: state.err, state: ToastState.ERROR);
+                   if(state.err=="Your Request Not Found Try Again Later"){
+                     showFlutterToast(message: "messages.expired_invalid_code", state: ToastState.ERROR);
+                   }
+                   else{
+                     showFlutterToast(message: state.err, state: ToastState.ERROR);
+                   }
+
                  }
                },
                builder: (context,state){

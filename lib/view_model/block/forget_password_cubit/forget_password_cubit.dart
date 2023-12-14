@@ -33,26 +33,28 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
             }
     );
 }
-///////////////////////Check Code//////////////////////
-  Future<void> checkCode() async {
-    emit(CheckCodeLoadingState());
-    var data= await forgetPasswordRepo.checkCode(email: emailController.text, code: pinController.text);
-    data.fold((l) {
-      emit(CheckCodeErrorState(l.message));
-    },
-            (r)  {
-          emit(CheckCodeSuccessState(r));
-        }
-    );
-  }
+// ///////////////////////Check Code//////////////////////
+//   Future<void> checkCode() async {
+//     emit(CheckCodeLoadingState());
+//     var data= await forgetPasswordRepo.checkCode(email: emailController.text, code: pinController.text);
+//     data.fold((l) {
+//       emit(CheckCodeErrorState(l.message));
+//     },
+//             (r)  {
+//           emit(CheckCodeSuccessState(r));
+//         }
+//     );
+//   }
 
 
   ///////////////////////Reset Password//////////////////////
   Future<void> resetPassword() async {
     emit(ResetPasswordLoadingState());
-    var data= await forgetPasswordRepo.resetPassword(email: emailController.text, password:passwordController.text,
-        confirmPassword: passwordConfirmationController.text );
+    var data= await forgetPasswordRepo.resetPassword(
+        email: emailController.text, password:passwordController.text,
+        confirmPassword: passwordConfirmationController.text, code: pinController.text );
     data.fold((l) {
+      print(l.message.toString());
       emit(ResetPasswordErrorState(l.message));
     },
             (r)  {

@@ -10,7 +10,6 @@ import '../../../utility/database/network/end_points.dart';
 
 abstract class SignUpRepo{
   Future<Either<Failure,SignUpModel>> signUp(
-
     String fullName,
      String  email,
      String  phone,
@@ -18,6 +17,22 @@ abstract class SignUpRepo{
      String  rePassword,
      String  address,
      String type,
+
+      );
+
+  Future<Either<Failure,SignUpModel>> signUpTechnical(
+      String fullName,
+      String  email,
+      String  phone,
+      String  password,
+      String  rePassword,
+      String  address,
+      String type,
+      String categoryId,
+  String nationalId,
+      String experienceYears,
+
+
 
       );
 }
@@ -35,7 +50,7 @@ class SignUpRepoImpl implements SignUpRepo {
       ) async {
   try {
     Response response =
-    await DioHelper.postData(url: EndPoint.signUpEndPoint, data: {
+    await DioHelper.postData(url: EndPoint.signUpTechnicalEndPoint, data: {
       'name': fullName,
       'password': password,
       'email': email,
@@ -52,6 +67,42 @@ class SignUpRepoImpl implements SignUpRepo {
     return Left(FailureLocal(message: e.toString()));
   }
 }
+
+  @override
+  Future<Either<Failure,SignUpModel>> signUpTechnical(
+      String? fullName,
+      String?  email,
+      String ? phone,
+      String ? password,
+      String ? rePassword,
+      String ? address,
+      String ?type,
+      String categoryId,
+      String nationalId,
+      String experienceYears,
+      ) async {
+    try {
+      Response response =
+      await DioHelper.postData(url: EndPoint.signUpEndPoint, data: {
+        'name': fullName,
+        'password': password,
+        'email': email,
+        'address':address,
+        "phone_number":phone,
+        "type":type==TextManager.client?"customer":type== TextManager.technical?"technical":"company",
+        "category_id":categoryId,
+        "national_id":nationalId,
+        "experience_years":experienceYears,
+      });
+      return Right(SignUpModel.fromJson(response.data));
+    }
+    on DioException catch (e) {
+      return Left(ServerFailure.fromDioError(e));
+    }
+    catch (e) {
+      return Left(FailureLocal(message: e.toString()));
+    }
+  }
 
 }
 

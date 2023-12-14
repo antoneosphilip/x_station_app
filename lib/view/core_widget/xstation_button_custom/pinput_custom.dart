@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:pinput/pinput.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
+
+import '../../../core/route_manager/page_name.dart';
 
 class PinPutWidget extends StatelessWidget {
   const PinPutWidget({super.key});
@@ -16,13 +20,12 @@ class PinPutWidget extends StatelessWidget {
         height: 50.h,
         child:  Pinput(
           onCompleted: (value){
-            ForgetPasswordCubit.get(context).checkCode();
-
+            Get.toNamed(PageName.resetPassword);
           },
-         errorPinTheme: PinTheme(textStyle: TextStyle(color: Colors.red)),
+         errorPinTheme: const PinTheme(textStyle: TextStyle(color: Colors.red)),
           controller: ForgetPasswordCubit.get(context).pinController,
           length: 4,
-          errorTextStyle: TextStyle(color: Colors.red),
+          errorTextStyle: const TextStyle(color: Colors.red),
 
         ),
       ),

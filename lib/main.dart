@@ -15,9 +15,11 @@ import 'package:x_station_app/view/screens/onboarding/onboarding_screen/onboardi
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
 import 'package:x_station_app/view_model/block/home_layout_cubit/home_layoout_cubit.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_cubit.dart';
+import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
 import 'package:x_station_app/view_model/block/signup_cubit/signup_cubit.dart';
 import 'package:x_station_app/view_model/repo/forget_password_repo/forget_password_repo.dart';
 import 'package:x_station_app/view_model/repo/login_repo/login_repo.dart';
+import 'package:x_station_app/view_model/repo/profile_repo/profile_repo.dart';
 import 'package:x_station_app/view_model/repo/signup_repo/sigup_repo.dart';
 
 
@@ -57,7 +59,8 @@ class MyApp extends StatelessWidget {
             providers: [
               BlocProvider(create: (context) => HomeLayoutCubit(),),
               BlocProvider(create: (context) => ForgetPasswordCubit(sl.get<ForgetPasswordRepoImpl>())),
-              BlocProvider(create: (context) => SignUpCubit(sl.get<SignUpRepoImpl>()))
+              BlocProvider(create: (context) => SignUpCubit(sl.get<SignUpRepoImpl>())),
+              BlocProvider(create: (context) => ProfileCubit(sl.get<ProfileRepoImpl>()))
 
             ],
             child: GetMaterialApp(

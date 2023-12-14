@@ -51,209 +51,212 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
   Widget build(BuildContext context) {
     return Form(
       key: SignUpCubit.get(context).formKey,
-      child: Column(
-        children: [
-          SizedBox(height: 10.h,),
-          TextFormFieldCustom(
-            keyboardType: TextInputType.name,
-            validate: (value) {
-              if (value == null || value.isEmpty) {
-                return TextManager.pleaseEnterName;
-              }
-              return null;
-            },
-            label: TextManager.fullName,
-            suffix: true,
-            suffixIcon: SvgPicture.asset(AssetsImage.user),
-            controller: SignUpCubit.get(context).nameController,
-          ),
-          SizedBox(
-            height: 19.h,
-          ),
-          TextFormFieldCustom(
-            keyboardType: TextInputType.emailAddress,
-            validate: (value) {
-              if (value == null || value.isEmpty) {
-                return TextManager.pleaseEnterEmail;
-              }
-              else if (!Regexp.isValidEmail(value)) {
-                return TextManager.invalidEmail;
-              }
-              return null;
-            },
-            label: TextManager.validemail,
-            suffix: true,
-            suffixIcon: SvgPicture.asset(AssetsImage.email),
-            controller: SignUpCubit.get(context).emailController,
+      child: BlocConsumer<SignUpCubit,SignUpStates>(
+        listener: (context,state){
+          if(state is SignUpSuccessState) {
+            Get.offAndToNamed(PageName.homeLayout);
+            customSnackBar(
+                message: state.signUpModel.message.toString(),
+                snackBarType: SnackBarType.success,
+                context: context);
+          }
+          else if(state is SignUpErrorState){
+            customSnackBar(
+                message: state.err,
+                snackBarType: SnackBarType.error,
+                context: context);
+          }
+        },
+        builder: (context,state){
+          return Column(
+            children: [
+              SizedBox(height: 10.h,),
+              TextFormFieldCustom(
+                keyboardType: TextInputType.name,
+                validate: (value) {
+                  if (value == null || value.isEmpty) {
+                    return TextManager.pleaseEnterName;
+                  }
+                  return null;
+                },
+                label: TextManager.fullName,
+                suffix: true,
+                suffixIcon: SvgPicture.asset(AssetsImage.user),
+                controller: SignUpCubit.get(context).nameController,
+              ),
+              SizedBox(
+                height: 19.h,
+              ),
+              TextFormFieldCustom(
+                keyboardType: TextInputType.emailAddress,
+                validate: (value) {
+                  if (value == null || value.isEmpty) {
+                    return TextManager.pleaseEnterEmail;
+                  }
+                  else if (!Regexp.isValidEmail(value)) {
+                    return TextManager.invalidEmail;
+                  }
+                  return null;
+                },
+                label: TextManager.validemail,
+                suffix: true,
+                suffixIcon: SvgPicture.asset(AssetsImage.email),
+                controller: SignUpCubit.get(context).emailController,
 
-          ),
-          SizedBox(
-            height: 19.h,
-          ),
-          TextFormFieldCustom(
-            keyboardType: TextInputType.name,
-            validate: (value) {
-              if (value == null || value.isEmpty) {
-                return TextManager.pleaseEnterAddress;
-              }
+              ),
+              SizedBox(
+                height: 19.h,
+              ),
+              TextFormFieldCustom(
+                keyboardType: TextInputType.name,
+                validate: (value) {
+                  if (value == null || value.isEmpty) {
+                    return TextManager.pleaseEnterAddress;
+                  }
 
-              return null;
-            },
-            label: TextManager.address,
-            suffix: true,
-            suffixIcon: const Icon(Icons.location_on),
-            suffixOnPressed: (){
-              Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => OpenMapSearchScreen(
-                    callBackFunction:
-                        (PickedData pickData) {
-                      SignUpCubit.get(context)
-                          .selectAddress(
-                          pickData.addressName);
-                      Get.back();
-                    },
-                  )));
-            },
-            controller: SignUpCubit.get(context).addressController,
+                  return null;
+                },
+                label: TextManager.address,
+                suffix: true,
+                suffixIcon: const Icon(Icons.location_on,color: ColorManager.colorPrimary,size: 30,),
+                suffixOnPressed: (){
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => OpenMapSearchScreen(
+                        callBackFunction:
+                            (PickedData pickData) {
+                          SignUpCubit.get(context)
+                              .selectAddress(
+                              pickData.addressName);
+                          Get.back();
+                        },
+                      )));
+                },
+                controller: SignUpCubit.get(context).addressController,
 
-          ),
-          SizedBox(
-            height: 19.h,
-          ),
-          TextFormFieldCustom(
-            keyboardType: TextInputType.phone,
-            validate: (value) {
-              if (value == null || value.isEmpty) {
-                return TextManager.pleaseEnterPhone;
-              }
-              return null;
-            },
-            label: TextManager.phonenumber,
-            suffix: true,
-            suffixIcon: SvgPicture.asset(AssetsImage.phonenumber),
-            controller: SignUpCubit.get(context).phoneController,
+              ),
+              SizedBox(
+                height: 19.h,
+              ),
+              TextFormFieldCustom(
+                keyboardType: TextInputType.phone,
+                validate: (value) {
+                  if (value == null || value.isEmpty) {
+                    return TextManager.pleaseEnterPhone;
+                  }
+                  return null;
+                },
+                label: TextManager.phonenumber,
+                suffix: true,
+                suffixIcon: SvgPicture.asset(AssetsImage.phonenumber),
+                controller: SignUpCubit.get(context).phoneController,
 
-          ),
-          SizedBox(
-            height: 19.h,
-          ),
-          TextFormFieldCustom(
-            keyboardType: TextInputType.text,
-            validate: (value) {
-              if (value == null || value.isEmpty) {
-                return TextManager.pleaseEnterPassword;
-              }
+              ),
+              SizedBox(
+                height: 19.h,
+              ),
+              TextFormFieldCustom(
+                keyboardType: TextInputType.text,
+                validate: (value) {
+                  if (value == null || value.isEmpty) {
+                    return TextManager.pleaseEnterPassword;
+                  }
 
-              return null;
-            },
-            label: TextManager.password,
-            suffix: true,
-            suffixIcon: SvgPicture.asset(AssetsImage.lock),
-            controller: SignUpCubit.get(context).passwordController,
-          ),
-          SizedBox(
-            height: 19.h,
-          ),
-          TextFormFieldCustom(
-            keyboardType: TextInputType.number,
-            validate: (value) {
-              if (value == null || value.isEmpty) {
-                return TextManager.pleaseEnterRePassword;
-              }
-              return null;
-            },
-            label: TextManager.rePassword,
-            suffix: true,
-            suffixIcon: SvgPicture.asset(AssetsImage.lock),
-            controller: SignUpCubit.get(context).rePasswordController,
+                  return null;
+                },
+                label: TextManager.password,
+                suffix: true,
+                suffixIcon: SignUpCubit.get(context).visibilityRePassword?const Icon(Icons.visibility,color: ColorManager.colorPrimary,):Icon(Icons.visibility_off,color: ColorManager.colorPrimary,),
+                suffixOnPressed:(){
+                  SignUpCubit.get(context).changeVisibilityRePassword();
+                } ,
+                obSecure: SignUpCubit.get(context).visibilityRePassword,
+                controller: SignUpCubit.get(context).passwordController,
+              ),
+              SizedBox(
+                height: 19.h,
+              ),
+              TextFormFieldCustom(
+                keyboardType: TextInputType.text,
+                validate: (value) {
+                  if (value == null || value.isEmpty) {
+                    return TextManager.pleaseEnterRePassword;
+                  }
+                  return null;
+                },
+                label: TextManager.rePassword,
+                suffix: true,
+                suffixIcon: SignUpCubit.get(context).visibility?const Icon(Icons.visibility,color: ColorManager.colorPrimary,):Icon(Icons.visibility_off,color: ColorManager.colorPrimary,),
+                suffixOnPressed:(){
+                  SignUpCubit.get(context).changeVisibilityPassword();
+                } ,
+                obSecure: SignUpCubit.get(context).visibility,
+                controller: SignUpCubit.get(context).rePasswordController,
 
-          ),
-          widget.value==TextManager.technical?
-          Padding(
-            padding:  EdgeInsets.only(top: 19.h),
-            child:  TechnicalTypes(
-              items: [
-                'cleaning',
-                'fixes',
-              ],
-              years: [],
-              technicalExperienceYears: "",
-              technicalTypeSelected: "",
-            ),
-          ):const SizedBox(),
-          SizedBox(
-            height: 29.h,
-          ),
-          widget.value==TextManager.company?  TextFormFieldCustom(
-            keyboardType: TextInputType.number,
-            validate: (value) {},
-            label: TextManager.companyId,
-            suffix: true,
-            suffixIcon: SvgPicture.asset(AssetsImage.user),
-          ):const SizedBox(),
+              ),
+              widget.value==TextManager.technical?
+              Padding(
+                padding:  EdgeInsets.only(top: 19.h),
+                child:  TechnicalTypes(
 
-          const CheckBoxSignup(),
-          SizedBox(
-            height: 21.h,
-          ),
-          BlocConsumer<SignUpCubit,SignUpStates>(
-            listener: (context,state){
-              if(state is SignUpSuccessState) {
-                Get.offAndToNamed(PageName.homeLayout);
-                customSnackBar(
-                    message: state.signUpModel.message.toString(),
-                    snackBarType: SnackBarType.success,
-                    context: context);
-              }
-              else if(state is SignUpErrorState){
-                customSnackBar(
-                    message: state.err,
-                    snackBarType: SnackBarType.error,
-                    context: context);
-              }
-            },
-            builder: (context,state){
-              return state is SignUpLoadingState?
+                ),
+              ):const SizedBox(),
+              SizedBox(
+                height: 29.h,
+              ),
+              widget.value==TextManager.company?  TextFormFieldCustom(
+                keyboardType: TextInputType.number,
+                validate: (value) {},
+                label: TextManager.companyId,
+                suffix: true,
+                suffixIcon: SvgPicture.asset(AssetsImage.user),
+              ):const SizedBox(),
+
+              const CheckBoxSignup(),
+              SizedBox(
+                height: 21.h,
+              ),
+              state is SignUpLoadingState?
               const CustomCircleLoading():
               XStationButtonCustom(
                 textButton: TextManager.continuee,
                 onPressed: (){
                   if(SignUpCubit.get(context).formKey.currentState!.validate()){
-                    SignUpCubit.get(context).signUp(type: widget.value);
+                    widget.value==TextManager.client?SignUpCubit.get(context).signUp(type: widget.value):
+                    SignUpCubit.get(context).signUpTechnical(type: widget.value);
                   }
                 }
-                ,);
-            },
-          ),
-          SizedBox(
-            height: 25.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                TextManager.alreadymember,
-                style: TextStyleManager.textStyle12w400
-                    .copyWith(fontWeight: FontWeight.w500),
-              ),
+                ,),
               SizedBox(
-                width: 3.w,
+                height: 25.h,
               ),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(PageName.login);
-                },
-                child: Text(
-                  TextManager.login,
-                  style: TextStyleManager.textStyle12w400.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: ColorManager.colorPrimary),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    TextManager.alreadymember,
+                    style: TextStyleManager.textStyle12w400
+                        .copyWith(fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    width: 3.w,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(PageName.login);
+                    },
+                    child: Text(
+                      TextManager.login,
+                      style: TextStyleManager.textStyle12w400.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: ColorManager.colorPrimary),
+                    ),
+                  ),
+                  SizedBox(height: 42.h,)
+                ],
               ),
-              SizedBox(height: 42.h,)
             ],
-          ),
-        ],
+          );
+        },
       ),
     );
   }

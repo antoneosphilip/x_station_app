@@ -1,14 +1,14 @@
-class ForgetPasswordModel {
+class UpdateProfileModel {
   Null? data;
   String? message;
   String? type;
   int? code;
   bool? showToast;
 
-  ForgetPasswordModel(
+  UpdateProfileModel(
       {this.data, this.message, this.type, this.code, this.showToast});
 
-  ForgetPasswordModel.fromJson(Map<String, dynamic> json) {
+  UpdateProfileModel.fromJson(Map<String, dynamic> json) {
     data = json['data'];
     message = json['message'];
     type = json['type'];

@@ -92,30 +92,12 @@ class _VerificationWidgetState extends State<VerificationWidget> {
         ),
         const PinPutWidget(),
 
-        BlocConsumer<ForgetPasswordCubit,ForgetPasswordStates>(
-          listener: (context,state){
-            if(state is CheckCodeSuccessState){
-              Get.offAndToNamed(PageName.resetPassword);
-              showFlutterToast(message: state.forgetPasswordModel.message, state: ToastState.SUCCESS);
-            }
-            if(state is CheckCodeErrorState){
-              showFlutterToast(message: state.err, state: ToastState.ERROR);
-            }
-          },
-          builder: (context,state){
-            return state is CheckCodeLoadingState?
-            const CustomCircleLoading():Padding(padding: EdgeInsets.symmetric(horizontal: 33.w),
-              child:
-              XStationButtonCustom(
-                textButton: TextManager.verify, onPressed: (){
-                if(ForgetPasswordCubit.get(context).formKey.currentState!.validate()){
-                  ForgetPasswordCubit.get(context).checkCode();
-                }
-              },),
-            );
-          },
-        ),
-
+        XStationButtonCustom(
+          textButton: TextManager.verify, onPressed: (){
+          if(ForgetPasswordCubit.get(context).formKey.currentState!.validate()){
+            Get.toNamed(PageName.resetPassword);
+          }
+        },),
         Padding(padding: EdgeInsets.only(top: 62.h , left: 57.w , right: 33.w ),
           child:
           resendTime==0? Row(children: [
