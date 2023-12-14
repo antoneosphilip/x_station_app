@@ -8,15 +8,13 @@ import '../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core/text_manager/text_manager.dart';
 
 class TechnicalTypes extends StatefulWidget {
-  final List<String> items = [
-    'cleaning',
-    'fixes',
-  ];
-  String? technicalTypeSelected;
-  final List<String> years=[];
 
-  String? technicalExperienceYears;
+  String technicalTypeSelected;
+  String technicalExperienceYears;
+  final List<String> items;
+  final List<String> years;
 
+   TechnicalTypes({super.key, required this.technicalTypeSelected, required this.technicalExperienceYears, required this.items, required this.years});
   @override
   State<TechnicalTypes> createState() => _TechnicalTypesState();
 
@@ -115,7 +113,7 @@ class _TechnicalTypesState extends State<TechnicalTypes> {
               value:  widget.technicalExperienceYears,
               onChanged: (String? value) {
                 setState(() {
-                  widget.technicalExperienceYears=value;
+                  widget.technicalExperienceYears=value!;
                 });
                 print(widget.technicalExperienceYears!);
               },

@@ -12,7 +12,8 @@ class PageName {
   static const String electricianInformation= '/ELECTRICIAN_INFORMATION';
   static const String postScreen= '/POST_SCREEN';
   static const String fullNotifictionScreen= '/FULL_NOTIFICATION';
+  static const String applyScreen= '/APLLY_SCREEN';
+  static const String favoriteList= '/FAVORITE_LIST';
 
-  
-  
+
 }

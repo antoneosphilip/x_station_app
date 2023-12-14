@@ -5,6 +5,7 @@ import 'package:x_station_app/view_model/block/login_cubit/login_states.dart';
 import 'package:x_station_app/view_model/repo/login_repo/login_repo.dart';
 
 import '../../../utility/database/local/cach_data.dart';
+import '../../../utility/database/local/cache_helper.dart';
 
 class LoginCubit extends Cubit<LoginStates>
 {
@@ -25,7 +26,8 @@ class LoginCubit extends Cubit<LoginStates>
             LoginErrorState(l.message));
       },
           (r) {
-        CachingDataManager.instance.cachLoginInfo(r);
+            CacheHelper.put(key: 'token', value: r.data!.token);
+            CachingDataManager.instance.cachLoginInfo(r);
         emit(LoginSuccessState(r));
       },
     );

@@ -34,20 +34,6 @@ class HomeTechnicalWidget extends StatelessWidget {
               SizedBox(height: 16.h,),
               const HomeTopServiceList(),
               SizedBox(height: 16.h,),
-              Row(
-                children: [
-                  const Spacer(),
-                  FloatingActionButton(
-                    onPressed: (){
-                    },
-                    backgroundColor: ColorManager.colorPrimary,
-                    child:SvgPicture.asset(AssetsImage.plus),
-
-                  ),
-                  SizedBox(width: 31.w,),
-                  SizedBox(height: 28.h,)
-                ],
-              ),
 
             ],
           ),

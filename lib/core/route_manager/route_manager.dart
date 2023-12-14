@@ -1,11 +1,14 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
+import 'package:x_station_app/view/screens/Applying/Applying_screen/Applying_screen.dart';
 import 'package:x_station_app/view/screens/Posting/Posting_Screen/Posting_Screen.dart';
 import 'package:x_station_app/view/screens/Signup/Signup_screen/Signup_screen.dart';
 import 'package:x_station_app/view/screens/electrican_details/electrican_details_screen/electrican_details_screen.dart';
 import 'package:x_station_app/view/screens/electrician_information/electrician_information_screen/electrician_information_Screen.dart';
 import 'package:x_station_app/view/screens/electrician_information/electrician_information_widget/electrician_information_form/electrician_information_form.dart';
+import 'package:x_station_app/view/screens/faverotite_list/faeorite_Widget/faveorite_list_listview/faveoritelist_listview.dart';
+import 'package:x_station_app/view/screens/faverotite_list/faveorite_Screen/faveorite_screen.dart';
 import 'package:x_station_app/view/screens/forget_password/forget_password_screen/forget_password_screen.dart';
 import 'package:x_station_app/view/screens/full_notification/full_notification_Screen/notifications.dart';
 import 'package:x_station_app/view/screens/home_layout/home_layout.dart';
@@ -99,6 +102,20 @@ List<GetPage> pages = [
   GetPage(
       name: PageName.fullNotifictionScreen,
       page: () => const FullNotificationScreen(),
+      transition: Transition.zoom,
+      transitionDuration: const Duration(
+        milliseconds: 250,
+      )),
+  GetPage(
+      name: PageName.applyScreen,
+      page: () => const ApplyScreen(),
+      transition: Transition.zoom,
+      transitionDuration: const Duration(
+        milliseconds: 250,
+      )),
+  GetPage(
+      name: PageName.favoriteList,
+      page: () => const FavoriteListScreen(),
       transition: Transition.zoom,
       transitionDuration: const Duration(
         milliseconds: 250,

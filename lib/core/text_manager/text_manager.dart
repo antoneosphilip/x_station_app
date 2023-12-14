@@ -103,5 +103,11 @@ class TextManager {
   static const String Description = "Description:";
   static const String Applynow = "Apply now";
   static const String writeSomeThing = "Write Some thing...";
+  static const String company = "Company";
+  static const String companyId = "Company Id";
+
+  static const String pleaseEnterName = "Please enter full name";
+  static const String pleaseEnterPhone = "Please enter phone";
+  static const String pleaseEnterAddress = "Please enter address";
 
 }

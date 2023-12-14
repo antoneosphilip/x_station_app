@@ -15,8 +15,10 @@ import 'package:x_station_app/view/screens/onboarding/onboarding_screen/onboardi
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
 import 'package:x_station_app/view_model/block/home_layout_cubit/home_layoout_cubit.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_cubit.dart';
+import 'package:x_station_app/view_model/block/signup_cubit/signup_cubit.dart';
 import 'package:x_station_app/view_model/repo/forget_password_repo/forget_password_repo.dart';
 import 'package:x_station_app/view_model/repo/login_repo/login_repo.dart';
+import 'package:x_station_app/view_model/repo/signup_repo/sigup_repo.dart';
 
 
 import 'core/bloc_obsarver/bloc_obsarver.dart';
@@ -54,7 +56,8 @@ class MyApp extends StatelessWidget {
           return MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => HomeLayoutCubit(),),
-              BlocProvider(create: (context) => ForgetPasswordCubit(sl.get<ForgetPasswordRepoImpl>()))
+              BlocProvider(create: (context) => ForgetPasswordCubit(sl.get<ForgetPasswordRepoImpl>())),
+              BlocProvider(create: (context) => SignUpCubit(sl.get<SignUpRepoImpl>()))
 
             ],
             child: GetMaterialApp(
@@ -63,7 +66,6 @@ class MyApp extends StatelessWidget {
               builder: DevicePreview.appBuilder,
               debugShowCheckedModeBanner: false,
               initialRoute: PageName.splash,
-              title: 'Everest',
               getPages: pages,
               // home:  AnimatedSplashScreen(
               //    splash: AssetsImage.onBoardingImage,splashIconSize: 200.sp,

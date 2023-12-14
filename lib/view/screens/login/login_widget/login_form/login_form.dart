@@ -97,18 +97,13 @@ class LoginForm extends StatelessWidget {
                builder: (context,state){
                  return state is LoginLoadingState?
                  const CustomCircleLoading():
-                 BlocConsumer<LoginCubit,LoginStates>(
-                   listener: (context,state){},
-                   builder: (context,state){
-                     return XStationButtonCustom(
-                       textButton: TextManager.next, onPressed: (){
-                       if(LoginCubit.get(context).formKey.currentState!.validate()){
-                         LoginCubit.get(context).login();
-                       }
-                     }
-                     ,);
-                   },
-                 );
+                 XStationButtonCustom(
+                   textButton: TextManager.next, onPressed: (){
+                   if(LoginCubit.get(context).formKey.currentState!.validate()){
+                     LoginCubit.get(context).login();
+                   }
+                 }
+                   );
                },
              ),
             SizedBox(

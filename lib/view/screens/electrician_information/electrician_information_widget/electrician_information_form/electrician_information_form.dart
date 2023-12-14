@@ -78,7 +78,7 @@ class ElectricianInformationForm extends StatelessWidget {
               child: Center(
                 child: Text(
                   TextManager.contractme,
-                  style: TextStyleManager.textStyle20600,
+                  style: TextStyleManager.textStyle20600White,
                 ),
               ),
             ),

@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
+import 'package:x_station_app/view/screens/everent/custom_ratting_bar/custom_rating_bar.dart';
 
 import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/color_manager/color_manager.dart';
@@ -32,7 +33,6 @@ class ElectricianDetailsItem extends StatelessWidget {
             padding:  EdgeInsets.all(5.0.sp),
             child: Row(
               children: [
-                SizedBox(width: 8.w,),
                 Container(
                     width: 96.w,
                     height: 96.w,
@@ -51,7 +51,13 @@ class ElectricianDetailsItem extends StatelessWidget {
                     SizedBox(height: 10.h,),
                     Text("15 \$ / hr",style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorDarkBlue),),
                     SizedBox(height: 8.h,),
-                    Text("4.5",style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorLightBlack),),
+                    Row(
+                      children: [
+                        const CustomRattingBar(size: 17,),
+                        SizedBox(width: 5.w,),
+                        Text("4.5",style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorLightBlack),),
+                      ],
+                    ),
                   ],
                 ),
                 const Spacer(),

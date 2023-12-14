@@ -50,22 +50,27 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 const UserData(),
                 SizedBox(height: 32.h,),
-                Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 80.w),
-                  child: Container(
-                    height: 64.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.r),
-                      color: ColorManager.colorLightColorPrimary
-                    ),
-                    child: Row(
-                      children: [
-                        SizedBox(width: 16.w,),
-                        Expanded(child: Text(TextManager.faveoriteList,style: TextStyleManager.textStyle14w500.copyWith(fontSize: 18.sp),)),
-                        SizedBox(width: 34.w,),
-                        Expanded(child: SvgPicture.asset(AssetsImage.faveoriteList)),
-                        SizedBox(width: 16.w,)
-                      ],
+                InkWell(
+                  onTap: (){
+                    Get.toNamed(PageName.favoriteList);
+                  },
+                  child: Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 80.w),
+                    child: Container(
+                      height: 64.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16.r),
+                        color: ColorManager.colorLightColorPrimary
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 16.w,),
+                          Expanded(child: Text(TextManager.faveoriteList,style: TextStyleManager.textStyle14w500.copyWith(fontSize: 18.sp),)),
+                          SizedBox(width: 34.w,),
+                          Expanded(child: SvgPicture.asset(AssetsImage.faveoriteList)),
+                          SizedBox(width: 16.w,)
+                        ],
+                      ),
                     ),
                   ),
                 ),
