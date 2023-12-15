@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
+import 'package:x_station_app/view_model/block/login_cubit/login_cubit.dart';
 import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
 import 'package:x_station_app/view_model/block/profile_cubit/profile_states.dart';
 
@@ -36,13 +37,13 @@ class ProfileScreen extends StatelessWidget {
         child: BlocConsumer<ProfileCubit,ProfileStates>(
           listener: (context,state){
             if(state is LogOutSuccessState){
-              Get.offAndToNamed(PageName.login);
+              CacheHelper.removeData(key: 'token');
+              Get.offAllNamed(PageName.login);
               customSnackBar(
                   message: state.logOutModel.message.toString(),
                   snackBarType: SnackBarType.success,
                   context: context);
-              CacheHelper.removeData(key: 'token');
-              CacheHelper.clearData();
+              LoginCubit.get(context).loginModel=null;
 
             }
             if(state is LogOutErrorState){
@@ -131,6 +132,7 @@ class ProfileScreen extends StatelessWidget {
                     text: "log out",
                     onTap: () {
                       ProfileCubit.get(context).logOut();
+
                     },
                     image: AssetsImage.logOut),
               ],

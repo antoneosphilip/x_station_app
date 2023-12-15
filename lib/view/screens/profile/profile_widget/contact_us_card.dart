@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_utils/get_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/assets_manager/assets_manager.dart';
 import '../../../../core/color_manager/color_manager.dart';
@@ -66,10 +67,8 @@ class _ContactUsCardState extends State<ContactUsCard> {
                         text: "phone call".tr,
                         onTap: () async {
                           // final Uri emailLaunchUri = Uri(
-                          //   scheme: "tel",
-                          //   path: ProfileCubit.get(context)
-                          //       .contactUsModel!
-                          //       .phone,
+                          //   scheme: "tel",s
+                          //   path: '01292670069',
                           // );
                           // launchUrl(emailLaunchUri);
                         },

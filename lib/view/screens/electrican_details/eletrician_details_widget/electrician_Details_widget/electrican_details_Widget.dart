@@ -8,7 +8,8 @@ import '../../../category/category_top_text/category_top_text.dart';
 import '../../../home/home_widget/home_top_services/home_top_service_list.dart';
 
 class ElectricianDetailsWidget extends StatelessWidget {
-  const ElectricianDetailsWidget({super.key});
+  final int id;
+  const ElectricianDetailsWidget({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class ElectricianDetailsWidget extends StatelessWidget {
         const AppBarWidget(text: TextManager.electrician,isArrow: false,),
         const CategoryTopText(text: TextManager.electrician),
         SizedBox(height: 10.5.h,),
-        const ElectricianDetailsList(),
+         ElectricianDetailsList(id: id,),
       ],
     );
   }

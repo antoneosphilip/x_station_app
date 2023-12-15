@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
+import 'package:x_station_app/utility/database/local/cache_helper.dart';
 
 import '../../../../core/route_manager/page_name.dart';
 
@@ -25,7 +26,8 @@ class _SplashWidgetState extends State<SplashWidget> {
   }
   navigateToLogin() async{
     await Future.delayed(const Duration(milliseconds: 5000),(){});
-    Get.offAndToNamed(PageName.onBoarding);
+    Get.offAllNamed(PageName.onBoarding);
+    CacheHelper.put(key: 'splash', value: 'splash');
   }
   @override
   Widget build(BuildContext context) {

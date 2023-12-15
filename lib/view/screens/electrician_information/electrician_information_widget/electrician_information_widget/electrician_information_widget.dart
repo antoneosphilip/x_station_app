@@ -8,7 +8,14 @@ import 'package:x_station_app/view/screens/electrician_information/electrician_i
 import '../electrician_information_form/upload.dart';
 
 class ElectricianInformationWidget extends StatelessWidget {
-  const ElectricianInformationWidget({super.key});
+  final  String name;
+  final  int rate;
+  final  String price;
+  final  String email;
+  final  String phone;
+  final  String address;
+
+  const ElectricianInformationWidget({super.key, required this.name, required this.rate, required this.price, required this.email, required this.phone, required this.address});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +57,11 @@ class ElectricianInformationWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Upload()
+                 Upload(
+                   rate: rate,
+                   name: name,
+                    price: price,
+                 )
               ],
             ),
           ),
@@ -58,7 +69,11 @@ class ElectricianInformationWidget extends StatelessWidget {
         SizedBox(
           height: 25.h,
         ),
-        const ElectricianInformationForm(),
+         ElectricianInformationForm(
+           address: address,
+         phone: phone,
+           email: email,
+         ),
       ],
     );
   }

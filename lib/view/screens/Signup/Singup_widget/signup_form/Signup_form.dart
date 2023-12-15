@@ -65,20 +65,20 @@ class _SinupFormState extends State<SinupForm> {
             },
           ),
         ),
-        Expanded(
-          child: RadioListTile(
-            title: const Text(TextManager.company),
-            contentPadding: EdgeInsets.zero,
-            activeColor: ColorManager.colorPrimary,
-            value: TextManager.company,
-            groupValue: HomeLayoutCubit.get(context).selectedValue,
-            onChanged: (value) {
-              setState(() {
-                HomeLayoutCubit.get(context).selectedValue=value!;
-              });
-            },
-          ),
-        ),
+        // Expanded(
+        //   child: RadioListTile(
+        //     title: const Text(TextManager.company),
+        //     contentPadding: EdgeInsets.zero,
+        //     activeColor: ColorManager.colorPrimary,
+        //     value: TextManager.company,
+        //     groupValue: HomeLayoutCubit.get(context).selectedValue,
+        //     onChanged: (value) {
+        //       setState(() {
+        //         HomeLayoutCubit.get(context).selectedValue=value!;
+        //       });
+        //     },
+        //   ),
+        // ),
       ],
     ),
         SignUpTextFormField( value: HomeLayoutCubit.get(context).selectedValue!,),

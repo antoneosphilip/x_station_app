@@ -83,7 +83,7 @@ class TextManager {
   static const String AbanoubMaged = "Abanoub Maged";
   static const String Twentyone = "21";
   static const String Hourlyrate = "Hourly rate:";
-  static const String Rate = "15.00 \$/hr";
+  static const String Rate = "15.00 \$";
   static const String details = "details ";
   static const String major = "Major:";
   static const String Electrician = "Electrician";
@@ -110,5 +110,6 @@ class TextManager {
   static const String pleaseEnterPhone = "Please enter phone";
   static const String pleaseEnterAddress = "Please enter address";
   static const String nationalId = "National Id";
+  static const String Email = "email: ";
 
 }

@@ -33,14 +33,7 @@ class SignUpTextFormField extends StatefulWidget {
   final String value;
 
   SignUpTextFormField({super.key, required this.value});
-  final List<String> items = [
-    'cleaning',
-    'fixes',
-  ];
-  String? technicalTypeSelected;
-  final List<String> years=[];
 
-  String? technicalExperienceYears;
 
   @override
   State<SignUpTextFormField> createState() => _SignUpTextFormFieldState();
@@ -53,19 +46,37 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
       key: SignUpCubit.get(context).formKey,
       child: BlocConsumer<SignUpCubit,SignUpStates>(
         listener: (context,state){
-          if(state is SignUpSuccessState) {
-            Get.offAndToNamed(PageName.homeLayout);
-            customSnackBar(
-                message: state.signUpModel.message.toString(),
-                snackBarType: SnackBarType.success,
-                context: context);
-          }
-          else if(state is SignUpErrorState){
-            customSnackBar(
-                message: state.err,
-                snackBarType: SnackBarType.error,
-                context: context);
-          }
+         if(widget.value==TextManager.client){
+           if(state is SignUpSuccessState) {
+             Get.offAllNamed(PageName.homeLayout);
+             customSnackBar(
+                 message: state.loginModel.message.toString(),
+                 snackBarType: SnackBarType.success,
+                 context: context);
+           }
+           else if(state is SignUpErrorState){
+             customSnackBar(
+                 message: state.err,
+                 snackBarType: SnackBarType.error,
+                 context: context);
+           }
+         }
+      else if(widget.value==TextManager.technical){
+        if(state is SignUpTechnicalSuccessState) {
+         Get.offAllNamed(PageName.homeLayout);
+         customSnackBar(
+             message: state.loginModel.message.toString(),
+             snackBarType: SnackBarType.success,
+             context: context);
+       }
+
+       else if(state is SignUpTechnicalErrorState){
+         customSnackBar(
+             message: state.err,
+             snackBarType: SnackBarType.error,
+             context: context);
+       }
+       }
         },
         builder: (context,state){
           return Column(
@@ -160,6 +171,9 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
                   if (value == null || value.isEmpty) {
                     return TextManager.pleaseEnterPassword;
                   }
+                  else if (value.length<8){
+                    return "password must be at least 8 characters";
+                  }
 
                   return null;
                 },
@@ -180,6 +194,9 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
                 validate: (value) {
                   if (value == null || value.isEmpty) {
                     return TextManager.pleaseEnterRePassword;
+                  }
+                  else if (value.length<8){
+                    return "password must be at least 8 characters";
                   }
                   return null;
                 },
@@ -203,25 +220,26 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
               SizedBox(
                 height: 29.h,
               ),
-              widget.value==TextManager.company?  TextFormFieldCustom(
-                keyboardType: TextInputType.number,
-                validate: (value) {},
-                label: TextManager.companyId,
-                suffix: true,
-                suffixIcon: SvgPicture.asset(AssetsImage.user),
-              ):const SizedBox(),
+              // widget.value==TextManager.company?  TextFormFieldCustom(
+              //   keyboardType: TextInputType.number,
+              //   validate: (value) {},
+              //   label: TextManager.companyId,
+              //   suffix: true,
+              //   suffixIcon: SvgPicture.asset(AssetsImage.user),
+              // ):const SizedBox(),
 
               const CheckBoxSignup(),
               SizedBox(
                 height: 21.h,
               ),
-              state is SignUpLoadingState?
+              state is SignUpLoadingState||state is SignTechnicalUpLoadingState?
               const CustomCircleLoading():
               XStationButtonCustom(
                 textButton: TextManager.continuee,
                 onPressed: (){
                   if(SignUpCubit.get(context).formKey.currentState!.validate()){
-                    widget.value==TextManager.client?SignUpCubit.get(context).signUp(type: widget.value):
+                    widget.value==TextManager.client?
+                    SignUpCubit.get(context).signUp(type: widget.value):
                     SignUpCubit.get(context).signUpTechnical(type: widget.value);
                   }
                 }

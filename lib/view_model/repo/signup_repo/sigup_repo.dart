@@ -5,22 +5,22 @@ import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/utility/database/network/dio-helper.dart';
 
 import '../../../model/login_model/login_model.dart';
+import '../../../model/sign_up_techinican_model/sign_up_technicain_model.dart';
 import '../../../model/signup_model/signup_model.dart';
 import '../../../utility/database/network/end_points.dart';
 
 abstract class SignUpRepo{
-  Future<Either<Failure,SignUpModel>> signUp(
-    String fullName,
+  Future<Either<Failure,LoginModel>> signUp(
+     String fullName,
      String  email,
      String  phone,
      String  password,
      String  rePassword,
      String  address,
      String type,
-
       );
 
-  Future<Either<Failure,SignUpModel>> signUpTechnical(
+  Future<Either<Failure,LoginModel>> signUpTechnical(
       String fullName,
       String  email,
       String  phone,
@@ -29,7 +29,7 @@ abstract class SignUpRepo{
       String  address,
       String type,
       String categoryId,
-  String nationalId,
+      String nationalId,
       String experienceYears,
 
 
@@ -39,7 +39,7 @@ abstract class SignUpRepo{
 
 class SignUpRepoImpl implements SignUpRepo {
   @override
-  Future<Either<Failure,SignUpModel>> signUp(
+  Future<Either<Failure,LoginModel>> signUp(
       String? fullName,
       String?  email,
       String ? phone,
@@ -50,7 +50,7 @@ class SignUpRepoImpl implements SignUpRepo {
       ) async {
   try {
     Response response =
-    await DioHelper.postData(url: EndPoint.signUpTechnicalEndPoint, data: {
+    await DioHelper.postData(url: EndPoint.signUpEndPoint, data: {
       'name': fullName,
       'password': password,
       'email': email,
@@ -58,7 +58,7 @@ class SignUpRepoImpl implements SignUpRepo {
       "phone_number":phone,
       "type":type==TextManager.client?"customer":type== TextManager.technical?"technical":"company",
     });
-    return Right(SignUpModel.fromJson(response.data));
+    return Right(LoginModel.fromJson(response.data));
   }
   on DioException catch (e) {
     return Left(ServerFailure.fromDioError(e));
@@ -69,7 +69,7 @@ class SignUpRepoImpl implements SignUpRepo {
 }
 
   @override
-  Future<Either<Failure,SignUpModel>> signUpTechnical(
+  Future<Either<Failure,LoginModel>> signUpTechnical(
       String? fullName,
       String?  email,
       String ? phone,
@@ -77,24 +77,26 @@ class SignUpRepoImpl implements SignUpRepo {
       String ? rePassword,
       String ? address,
       String ?type,
-      String categoryId,
-      String nationalId,
-      String experienceYears,
+      String? categoryId,
+      String ?nationalId,
+      String ?experienceYears,
+
       ) async {
     try {
       Response response =
-      await DioHelper.postData(url: EndPoint.signUpEndPoint, data: {
+      await DioHelper.postData(url: EndPoint.signUpTechnicalEndPoint, data: {
         'name': fullName,
         'password': password,
         'email': email,
         'address':address,
         "phone_number":phone,
         "type":type==TextManager.client?"customer":type== TextManager.technical?"technical":"company",
-        "category_id":categoryId,
+        "category_id":2,
         "national_id":nationalId,
-        "experience_years":experienceYears,
+        "experience_years":4,
+
       });
-      return Right(SignUpModel.fromJson(response.data));
+      return Right(LoginModel.fromJson(response.data));
     }
     on DioException catch (e) {
       return Left(ServerFailure.fromDioError(e));

@@ -32,8 +32,7 @@ class HomeWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(TextManager.services,style: TextStyleManager.textStyle36w700,),
-              SizedBox(height: 16.h,),
+
               const HomeServicesWidget(),
               SizedBox(height: 50.h,),
               Text(TextManager.post,style: TextStyleManager.textStyle36w700,),

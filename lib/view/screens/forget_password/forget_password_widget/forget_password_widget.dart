@@ -64,7 +64,7 @@ class ForgetPasswordWidget extends StatelessWidget {
                listener: (context,state){
                  if(state is ForgetPasswordSuccessState){
                    Get.toNamed(PageName.verification);
-                   showFlutterToast(message: state.forgetPasswordModel.message, state: ToastState.ERROR);
+                   showFlutterToast(message: state.forgetPasswordModel.message, state: ToastState.SUCCESS);
                  }
                  else if(state is ForgetPasswordErrorState){
                    showFlutterToast(message: state.err, state: ToastState.ERROR);

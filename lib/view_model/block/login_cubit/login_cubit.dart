@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:x_station_app/model/login_model/login_model.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_states.dart';
 import 'package:x_station_app/view_model/repo/login_repo/login_repo.dart';
 
@@ -11,6 +12,7 @@ class LoginCubit extends Cubit<LoginStates>
 {
   LoginCubit(this.loginRepo):super(LoginInitialState());
   LoginRepo loginRepo;
+  LoginModel? loginModel;
   static LoginCubit get(context)=>BlocProvider.of<LoginCubit>(context);
   var emailController=TextEditingController();
   var passwordController=TextEditingController();
@@ -36,6 +38,7 @@ class LoginCubit extends Cubit<LoginStates>
             CacheHelper.put(key: 'token', value: r.data!.token);
             CachingDataManager.instance.cachLoginInfo(r);
         emit(LoginSuccessState(r));
+            loginModel=r;
       },
     );
   }

@@ -26,7 +26,16 @@ class SignUpCubit extends Cubit<SignUpStates>
   var formKey = GlobalKey<FormState>();
   String? type;
   String? technicalTypeSelected;
+  int? technicalTypeSelectedId;
+
   String? technicalExperienceYears;
+  final List<String> years=[];
+  final List<String> items = [
+    'cleaning',
+    'fixes',
+  ];
+
+
 
 
   bool visibility = true;
@@ -58,6 +67,7 @@ class SignUpCubit extends Cubit<SignUpStates>
        rePasswordController.text,
        addressController.text,
        type!,
+
     );
     data.fold(
           (l) {
@@ -67,6 +77,7 @@ class SignUpCubit extends Cubit<SignUpStates>
       },
           (r) {
             emit(SignUpSuccessState(r));
+            CachingDataManager.instance.cachLoginInfo(r);
             CacheHelper.put(key: 'token', value: r.data!.token);
           },
     );
@@ -95,6 +106,7 @@ class SignUpCubit extends Cubit<SignUpStates>
       },
           (r) {
         emit(SignUpTechnicalSuccessState(r));
+        CachingDataManager.instance.cachLoginInfo(r);
         CacheHelper.put(key: 'token', value: r.data!.token);
       },
     );

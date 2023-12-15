@@ -3,14 +3,28 @@ import 'package:flutter/material.dart';
 import '../electrician_information_widget/electrician_information_widget/electrician_information_widget.dart';
 
 class ElectricianInformationScreen extends StatelessWidget {
-  const ElectricianInformationScreen({super.key});
+  final  String name;
+  final  int rate;
+  final  String price;
+  final  String email;
+  final  String phone;
+  final  String address;
+
+  const ElectricianInformationScreen({super.key, required this.name, required this.rate, required this.price, required this.email, required this.phone, required this.address});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
         body: SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-      child: ElectricianInformationWidget(),
+      physics: const BouncingScrollPhysics(),
+      child: ElectricianInformationWidget(
+        rate: rate,
+        name: name,
+        price: price,
+        phone: phone,
+        email: email,
+        address: address,
+      ),
     ));
   }
 }

@@ -14,7 +14,6 @@ class HomeAppBar extends StatelessWidget {
       padding:  EdgeInsets.only(left: 5.w,right: 17.w),
       child: Row(
         children: [
-          SvgPicture.asset(AssetsImage.menu,width: 50.w,height: 50.w,fit: BoxFit.cover),
           Expanded(
             child: TextFormFieldCustom(
               validate: (value){},

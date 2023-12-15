@@ -36,7 +36,7 @@ class LoginForm extends StatelessWidget {
         child: BlocConsumer<LoginCubit,LoginStates>(
           listener: (context,state){
             if(state is LoginSuccessState) {
-              Get.offAndToNamed(PageName.homeLayout);
+              Get.offAllNamed(PageName.homeLayout);
               customSnackBar(
                   message: state.loginModel.message.toString(),
                   snackBarType: SnackBarType.success,

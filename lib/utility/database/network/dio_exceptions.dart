@@ -3,7 +3,7 @@
 // import 'package:go_router/go_router.dart';
 //
 // import '../../../constants.dart';
-// import '../../../model/auth/profile_model.dart';
+// import '../../../model/auth/posts_model.dart';
 // import '../../../view/components/component.dart';
 // import '../local/cache_helper.dart';
 // import 'dio-helper.dart';

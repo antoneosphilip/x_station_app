@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
+import 'package:x_station_app/utility/database/local/cache_helper.dart';
 
 import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/color_manager/color_manager.dart';
@@ -54,7 +55,8 @@ class OnBoardingItem extends StatelessWidget {
                     onPressed: (){
                       pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInOutExpo);
                       if(isIndex+1==3){
-                        Get.offAndToNamed(PageName.login);
+                        Get.offAllNamed(PageName.login);
+                        CacheHelper.put(key: 'onBoarding', value: 'onBoarding');
                       }
                     },
                     backgroundColor: ColorManager.colorPrimary,

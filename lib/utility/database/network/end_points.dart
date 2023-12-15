@@ -10,6 +10,12 @@ abstract class EndPoint{
   static const String profileEndPoint = '/auth/profile';
   static const String logOutEndPoint = '/auth/logout';
   static const String changePasswordEndPoint = '/auth/change_password';
+  static const String category = '/categories';
+  static  String ?getTechnicans(String id) {
+    '/categories/${id}/technicals';
+  }
+  static const String getCategorySelectMenu = '/select_menu/categories';
+
 
 
 }

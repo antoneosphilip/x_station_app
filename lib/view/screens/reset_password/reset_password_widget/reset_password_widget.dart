@@ -85,7 +85,7 @@ class ResetPasswordWidget extends StatelessWidget {
                  }
                  if(state is ResetPasswordErrorState){
                    if(state.err=="Your Request Not Found Try Again Later"){
-                     showFlutterToast(message: "messages.expired_invalid_code", state: ToastState.ERROR);
+                     showFlutterToast(message: "Expired Or Invalid Code", state: ToastState.ERROR);
                    }
                    else{
                      showFlutterToast(message: state.err, state: ToastState.ERROR);

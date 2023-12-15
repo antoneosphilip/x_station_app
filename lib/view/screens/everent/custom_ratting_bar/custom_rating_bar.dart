@@ -19,14 +19,14 @@ class CustomRattingBar extends StatelessWidget {
   final double height;
   final double size;
   final Function? onRatingUpdate;
-  final double initRate;
+  final int initRate;
   final bool ignoreGesture;
   final Color color;
 
   @override
   Widget build(BuildContext context) {
     return RatingBar.builder(
-      initialRating: initRate,
+      initialRating: initRate.toDouble(),
       minRating: 1,
       direction: Axis.horizontal,
       allowHalfRating: true,

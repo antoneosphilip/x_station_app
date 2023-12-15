@@ -21,6 +21,7 @@ import 'package:x_station_app/view/screens/verification/verification_screen/veri
 import 'package:x_station_app/view/screens/verification/verification_widget/verification_widget.dart';
 
 List<GetPage> pages = [
+
   GetPage(
       name: PageName.splash,
       page: () => const SplashScreen(),
@@ -78,20 +79,20 @@ List<GetPage> pages = [
       transitionDuration: const Duration(
         milliseconds: 250,
       )),
-  GetPage(
-      name: PageName.electricianDetails,
-      page: () => const ElectricianDetailsScreen(),
-      transition: Transition.downToUp,
-      transitionDuration: const Duration(
-        milliseconds: 250,
-      )),
-  GetPage(
-      name: PageName.electricianInformation,
-      page: () => const ElectricianInformationScreen(),
-      transition: Transition.zoom,
-      transitionDuration: const Duration(
-        milliseconds: 250,
-      )),
+  // GetPage(
+  //     name: PageName.electricianDetails,
+  //     page: () => const ElectricianDetailsScreen(),
+  //     transition: Transition.downToUp,
+  //     transitionDuration: const Duration(
+  //       milliseconds: 250,
+  //     )),
+  // GetPage(
+  //     name: PageName.electricianInformation,
+  //     page: () => const ElectricianInformationScreen(),
+  //     transition: Transition.zoom,
+  //     transitionDuration: const Duration(
+  //       milliseconds: 250,
+  //     )),
   GetPage(
       name: PageName.postScreen,
       page: () => const Posting(),
