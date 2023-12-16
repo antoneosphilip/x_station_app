@@ -16,6 +16,7 @@ abstract class EndPoint{
   }
   static const String getCategorySelectMenu = '/select_menu/categories';
 
+  static const String posts = '/posts';
 
 
 }

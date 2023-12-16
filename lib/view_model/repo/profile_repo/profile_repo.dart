@@ -28,9 +28,6 @@ class ProfileRepoImpl implements ProfileRepo {
   try {
     Response response =
     await DioHelper.getData(url: EndPoint.profileEndPoint,
-        token:
-        CachingDataManager.instance.getLoginModel().data!.token
-
     );
     return Right(ProfileModel.fromJson(response.data));
   }

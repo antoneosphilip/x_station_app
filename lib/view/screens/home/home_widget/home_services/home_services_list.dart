@@ -26,7 +26,7 @@ class HomeServicesWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(TextManager.services,style: TextStyleManager.textStyle36w700,),
+            Text(TextManager.category,style: TextStyleManager.textStyle36w700,),
             SizedBox(height: 16.h,),
             SizedBox(
               height: 113.h,
@@ -48,7 +48,7 @@ class HomeServicesWidget extends StatelessWidget {
           ],
         ):
         state is CategoryErrorState?
-        Text(state.err.toString()):const SizedBox();
+        Text(state.err.toString()):const HomeServiceShimmer();
       },
     );
   }

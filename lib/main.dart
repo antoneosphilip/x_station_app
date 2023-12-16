@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
@@ -19,12 +20,14 @@ import 'package:x_station_app/view_model/block/category_cubit/category_cubit.dar
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
 import 'package:x_station_app/view_model/block/home_layout_cubit/home_layoout_cubit.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_cubit.dart';
+import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
 import 'package:x_station_app/view_model/block/signup_cubit/signup_cubit.dart';
 import 'package:x_station_app/view_model/block/technical_cubit/technical_cubit.dart';
 import 'package:x_station_app/view_model/repo/category_repo/category_repo.dart';
 import 'package:x_station_app/view_model/repo/forget_password_repo/forget_password_repo.dart';
 import 'package:x_station_app/view_model/repo/login_repo/login_repo.dart';
+import 'package:x_station_app/view_model/repo/posts_repo/post_Repo.dart';
 import 'package:x_station_app/view_model/repo/profile_repo/profile_repo.dart';
 import 'package:x_station_app/view_model/repo/signup_repo/sigup_repo.dart';
 import 'package:x_station_app/view_model/repo/technical_repo/technical_repo.dart';
@@ -45,7 +48,7 @@ void main() async{
 
 
   Bloc.observer = MyBlocObserver();
-
+  configLoading();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -53,7 +56,21 @@ void main() async{
     ),
   );
 }
-
+void configLoading() {
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..loadingStyle = EasyLoadingStyle.dark
+    ..indicatorSize = 45.0
+    ..radius = 10.0
+    ..progressColor = Colors.yellow
+    ..backgroundColor = Colors.green
+    ..indicatorColor = Colors.yellow
+    ..textColor = Colors.yellow
+    ..maskColor = Colors.blue.withOpacity(0.5)
+    ..userInteractions = true
+    ..dismissOnTap = false;
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key,});
 
@@ -63,6 +80,7 @@ class MyApp extends StatelessWidget {
         designSize: const Size(360, 800),
         minTextAdapt: true,
         splitScreenMode: true,
+
         builder: (context , child) {
           return MultiBlocProvider(
             providers: [
@@ -71,13 +89,15 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => SignUpCubit(sl.get<SignUpRepoImpl>())),
               BlocProvider(create: (context) => ProfileCubit(sl.get<ProfileRepoImpl>())..getProfileData()),
               BlocProvider(create: (context) => CategoryCubit(sl.get<CategoryRepoImpl>())..getCategory()..getCategorySelectMenu()),
-              BlocProvider(create: (context) => TechnicalCubit(sl.get<TechnicalRepoImpl>())..getTechnicalList(id: 1))
+              BlocProvider(create: (context) => TechnicalCubit(sl.get<TechnicalRepoImpl>())..getTechnicalList(id: 1)),
+              BlocProvider(create: (context) => PostsCubit(sl.get<PostsRepoImpl>())),
 
             ],
             child: GetMaterialApp(
+
               locale: const Locale('en'),
               useInheritedMediaQuery: true,
-              builder: DevicePreview.appBuilder,
+              builder: EasyLoading.init(),
               debugShowCheckedModeBanner: false,
               initialRoute:
                   CacheHelper.getDataString(key: 'onBoarding')!=null&&
@@ -100,7 +120,8 @@ class MyApp extends StatelessWidget {
               //  ),
             //  home: HomeScreen(),
 
-                theme: ThemeApp.light
+                theme: ThemeApp.light,
+
             ),
           );
 

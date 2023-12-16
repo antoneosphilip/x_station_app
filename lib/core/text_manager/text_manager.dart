@@ -111,5 +111,7 @@ class TextManager {
   static const String pleaseEnterAddress = "Please enter address";
   static const String nationalId = "National Id";
   static const String Email = "email: ";
+  static const String typeTitle = "Type title ";
+  static const String writeTitle = "Write title ";
 
 }

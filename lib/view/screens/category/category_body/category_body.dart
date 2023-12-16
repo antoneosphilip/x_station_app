@@ -49,7 +49,7 @@ class CategoryBody extends StatelessWidget {
                       }
                   ):
                       state is CategoryErrorState?
-                  Text(state.err.toString()):const SizedBox();
+                  Text(state.err.toString()):const CategoryShimmer();
             },
           ),
         ),

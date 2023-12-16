@@ -35,11 +35,11 @@ class CustomCategoryItem extends StatelessWidget {
             width: 153.w,
             color: ColorManager.colorWhite,
             child: CachedNetworkImage(imageUrl:image,fit: BoxFit.cover,
-              placeholder: (context, url) => const CircularProgressIndicator(color: ColorManager.colorPrimary,),
-              errorWidget: (context, url, error) => Icon(Icons.error),),
+              placeholder: (context, url) => const Center(child: CircularProgressIndicator(color: ColorManager.colorPrimary,)),
+              errorWidget: (context, url, error) => const Icon(Icons.error),),
           ),
           Text(
-            "${name}",
+            "$name",
             style: TextStyleManager.textStyle24w300.copyWith(fontWeight: FontWeight.w400),
           )
         ],

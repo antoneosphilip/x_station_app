@@ -20,12 +20,7 @@ class PostingWidget extends StatelessWidget {
           height: 46.h,
         ),
         const PostingForm(),
-        SizedBox(
-          height: 190.h,
-        ),
-        XStationButtonCustom(onPressed: (){},
-        textButton: TextManager.Applynow,
-        )
+
       ],
     );
   }
