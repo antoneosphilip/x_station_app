@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:x_station_app/model/profile_model/profile_model.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_states.dart';
 import 'package:x_station_app/view_model/block/profile_cubit/profile_states.dart';
@@ -26,7 +28,9 @@ class ProfileCubit extends Cubit<ProfileStates>
   var confirmPasswordController=TextEditingController();
 
   static ProfileCubit get(context)=>BlocProvider.of<ProfileCubit>(context);
-
+  final List<String> list = ['🇺🇸 English', '🇱🇧 العربية',];
+  final String selectedItem =
+      CacheHelper.getDataString(key: 'Language') ?? '🇺🇸 English';
 
 
 //////////// get profile data/////////
@@ -111,4 +115,13 @@ class ProfileCubit extends Cubit<ProfileStates>
     );
   }
 
+  void changeLanguage(String? value) {
+    Get.updateLocale(Locale(value == '🇺🇸 English'
+        ? 'en'
+        : value == '🇱🇧 العربية'
+        ? 'ar'
+        : 'ar'));
+    CacheHelper.put(key: 'Language', value: value);
+    emit(ChangeLanguage());
+  }
 }

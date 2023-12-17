@@ -34,6 +34,8 @@ import 'package:x_station_app/view_model/repo/technical_repo/technical_repo.dart
 
 
 import 'core/bloc_obsarver/bloc_obsarver.dart';
+import 'core/lang/language_service.dart';
+import 'core/lang/translate.dart';
 import 'core/route_manager/page_name.dart';
 import 'core/route_manager/route_manager.dart';
 import 'core/service_locator/service_locator.dart';
@@ -90,12 +92,13 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => ProfileCubit(sl.get<ProfileRepoImpl>())..getProfileData()),
               BlocProvider(create: (context) => CategoryCubit(sl.get<CategoryRepoImpl>())..getCategory()..getCategorySelectMenu()),
               BlocProvider(create: (context) => TechnicalCubit(sl.get<TechnicalRepoImpl>())..getTechnicalList(id: 1)),
-              BlocProvider(create: (context) => PostsCubit(sl.get<PostsRepoImpl>())),
+              BlocProvider(create: (context) => PostsCubit(sl.get<PostsRepoImpl>())..getPosts()),
 
             ],
             child: GetMaterialApp(
-
-              locale: const Locale('en'),
+              translations: WorldLanguage(), // your translations
+              locale: LanguageService()
+                  .locale, //
               useInheritedMediaQuery: true,
               builder: EasyLoading.init(),
               debugShowCheckedModeBanner: false,

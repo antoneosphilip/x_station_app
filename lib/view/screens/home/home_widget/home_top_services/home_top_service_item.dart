@@ -1,56 +1,60 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../../../../../core/assets_manager/assets_manager.dart';
-import '../../../../../core/color_manager/color_manager.dart';
-import '../../../../../core/style_font_manager/style_manager.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:x_station_app/core/color_manager/color_manager.dart';
+import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 
 class HomeTopServiceItem extends StatelessWidget {
-  const HomeTopServiceItem({super.key});
+  final String title;
+  final String description;
+  final String? image;
+  final String namePerson;
+
+  HomeTopServiceItem({
+
+   required this.title, required this.description, required this.image, required this.namePerson});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:  EdgeInsets.only(right: 21.w),
-      child: Container(
-        width: 323.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25.r),
-          color: ColorManager.colorXXPrimary
-        ),
-        child: Padding(
-          padding:  EdgeInsets.only(left: 19.w),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 7.h,),
-                    Text("problem here", style: TextStyleManager.textStyle14w500,),
-                    SizedBox(height: 8.h,),
-                    Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
-                      style: TextStyleManager.textStyle10w400.copyWith(fontSize: 8.sp),),
-                    SizedBox(height: 12.h,),
-                    Row(
-                      children: [
-                        Text("Technician",style: TextStyleManager.textStyle10w400.copyWith(fontSize: 8.sp) ,),
-                        SizedBox(width: 14.w,),
-                        Text("plubmer",style: TextStyleManager.textStyle10w400.copyWith(fontSize: 8.sp) ,),
-
-                      ],
-                    ),
-                    SizedBox(height: 6.h,)
-
-                  ],
+    return Container(
+      width: 390.w,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16.r),
+        color: ColorManager.colorWhite,
+        border: Border.all(
+          color: CupertinoColors.black
+        )
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(top: 16.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                SizedBox(width: 16.w,),
+                const CircleAvatar(
+                  radius: 30,
+                  backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.Z5BlhFYs_ga1fZnBWkcKjQHaHz?rs=1&pid=ImgDetMain")
                 ),
-              ),
-              SizedBox(width: 11.w,),
-              Text("15.00 \$ hr",style: TextStyleManager.textStyle10w400.copyWith(fontWeight: FontWeight.w800),),
-              SizedBox(width: 7.w,)
-            ],
-          ),
+                SizedBox(width: 7.w,),
+                Text("${namePerson}",style: TextStyleManager.textStyle14w500,),
+              ],
+            ),
+            SizedBox(height: 16.h,),
+           CachedNetworkImage(imageUrl: image!,fit: BoxFit.fill,width: 390.w,height: 390.h,),
+            SizedBox(height: 8.h,),
+            Padding(
+              padding:  EdgeInsets.all(16.0.sp),
+              child: Text(description,style: TextStyleManager.textStyle16w500,),
+            ),
+
+
+          ],
         ),
       ),
     );

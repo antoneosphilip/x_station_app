@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:x_station_app/model/get_post_model/get_post_model.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_states.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_states.dart';
 import 'package:x_station_app/view_model/repo/login_repo/login_repo.dart';
@@ -16,6 +17,7 @@ class PostsCubit extends Cubit<PostsStates>
 {
   PostsCubit(this.postsRepo):super(PostsInitialState());
   PostsRepo postsRepo;
+  GetPostModel? getPostModel;
   static PostsCubit get(context)=>BlocProvider.of<PostsCubit>(context);
   var titleController=TextEditingController();
   var descriptionController=TextEditingController();
@@ -55,7 +57,7 @@ class PostsCubit extends Cubit<PostsStates>
 
     if(fileImage!=null)
     {
-      formData.files.add(MapEntry("image", await di.MultipartFile.fromFile(fileImage!.path,filename:'upload.txt' )));
+      formData.files.add(MapEntry("image", await di.MultipartFile.fromFile(fileImage!.path,filename:fileImage!.path.split('/').last)));
     }
     var data=await postsRepo.createPost( data: formData);
     data.fold(
@@ -77,18 +79,17 @@ class PostsCubit extends Cubit<PostsStates>
 
   Future<void> getPosts()async{
     emit(GetPostsLoadingState());
-
-
     var data=await postsRepo.getPost();
     data.fold(
           (l) {
-        print(l);
         emit(
             GetPostsErrorState(l.message));
       },
           (r) {
-        emit(GetPostsSuccessState(r));
-      },
+            emit(GetPostsSuccessState(r));
+            getPostModel=r;
+
+          },
     );
   }
 }

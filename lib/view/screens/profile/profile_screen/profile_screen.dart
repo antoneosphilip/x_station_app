@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -121,6 +122,51 @@ class ProfileScreen extends StatelessWidget {
                         onTap: () {
                         },
                         image: AssetsImage.faqs),
+                    Container(
+                      width: 300.w,
+                      height: 50.h,
+                      decoration: BoxDecoration(
+                          border:
+                          Border.all(color: ColorManager.colorBlack),
+                          borderRadius: BorderRadius.circular(8.r)),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton2<String>(
+                          isExpanded: true,
+                          hint: const Text(
+                            'Select Item',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: ColorManager.colorBlack,
+                            ),
+                          ),
+                          items: ProfileCubit.get(context)
+                              .list
+                              .map(
+                                  (String item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(item,
+                                    style: TextStyleManager
+                                        .textStyle24w300
+                                        .copyWith(
+                                    )),
+                              ))
+                              .toList(),
+                          value: ProfileCubit.get(context).selectedItem,
+                          onChanged: (String? value) {
+                            ProfileCubit.get(context).changeLanguage(value);
+                          },
+                          buttonStyleData: const ButtonStyleData(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 10),
+                            height: 40,
+                            width: 140,
+                          ),
+                          menuItemStyleData: const MenuItemStyleData(
+                            height: 50,
+                          ),
+                        ),
+                      ),
+                    ),
 
                   ],
                 ),

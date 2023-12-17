@@ -23,13 +23,11 @@ class LanguageService {
     if (language != '') {
       if (language == '🇺🇸 English') {
         return const Locale('en');
-      } else if (language == '🇱🇧 العربية') {
-        return const Locale('ar');
       } else {
-        return const Locale('fr');
+        return const Locale('ar');
       }
     } else {
-      return const Locale('en');
+      return const Locale('ar');
     }
   }
 }

@@ -162,7 +162,7 @@ class _PostingFormState extends State<PostingForm> {
             return XStationButtonCustom(
               onPressed: (){
                 PostsCubit.get(context).createPosts();
-
+                PostsCubit.get(context).getPosts();
               },
               textButton: TextManager.Applynow,
             );

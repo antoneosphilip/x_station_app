@@ -27,37 +27,34 @@ class HomeWidget extends StatelessWidget {
         SizedBox(height: 30.h,),
         const HomeAppBar(),
         SizedBox(height: 38.h,),
-        Padding(
-          padding:  EdgeInsets.only(left: 16.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
 
-              const HomeServicesWidget(),
-              SizedBox(height: 50.h,),
-              Text(TextManager.post,style: TextStyleManager.textStyle36w700,),
-              SvgPicture.asset(AssetsImage.line,width: 114.w,),
-              SizedBox(height: 16.h,),
-              const HomeTopServiceList(),
-              SizedBox(height: 16.h,),
-              Row(
-                children: [
-                  const Spacer(),
-                  FloatingActionButton(
-                    onPressed: (){
-                      Get.toNamed(PageName.postScreen);
-                    },
-                    backgroundColor: ColorManager.colorPrimary,
-                    child:SvgPicture.asset(AssetsImage.plus),
+            Padding(
+              padding:  EdgeInsets.only(left: 16.w),
+              child: const HomeServicesWidget(),
+            ),
+            SizedBox(height: 50.h,),
 
-                  ),
-                  SizedBox(width: 31.w,),
-                  SizedBox(height: 28.h,)
-                ],
-              ),
+            const HomeTopServiceList(),
+            SizedBox(height: 16.h,),
+            Row(
+              children: [
+                const Spacer(),
+                FloatingActionButton(
+                  onPressed: (){
+                    Get.toNamed(PageName.postScreen);
+                  },
+                  backgroundColor: ColorManager.colorPrimary,
+                  child:SvgPicture.asset(AssetsImage.plus),
+                ),
+                SizedBox(width: 31.w,),
+                SizedBox(height: 28.h,)
+              ],
+            ),
 
-            ],
-          ),
+          ],
         )
       ],
     );

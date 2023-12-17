@@ -28,7 +28,7 @@ class HomeServiceShimmer extends StatelessWidget {
           child:    Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(TextManager.services,style: TextStyleManager.textStyle36w700,),
+              Text(TextManager.category,style: TextStyleManager.textStyle36w700,),
               SizedBox(height: 16.h,),
               SizedBox(
                 height: 113.h,

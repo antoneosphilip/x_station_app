@@ -2,7 +2,7 @@ class TextManager {
   static const String appName = "Xstation";
 
   static const String serviceBecomeEasier = "Services become easier";
-  static const String takeYourTime = "Take your time ";
+  static const String takeYourTime = "Take your time";
   static const String reachingInTheUnKnown = "Reaching in  the unknown spots";
   static const String toYourDestination = "To your destination";
   static const String prefectService = "perfect service without any doubt ";

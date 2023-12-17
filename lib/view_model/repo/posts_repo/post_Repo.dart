@@ -30,11 +30,12 @@ class PostsRepoImpl implements PostsRepo {
     }
   }
 
+
   @override
-  Future<Either<Failure, GetPostModel>> getPost() async {
+  Future<Either<Failure,GetPostModel>> getPost() async {
     try {
       Response response =
-          await DioHelper.getData(url: EndPoint.posts);
+      await DioHelper.getData(url: EndPoint.posts);
       return Right(GetPostModel.fromJson(response.data));
     }
     on DioException catch (e) {
@@ -44,7 +45,5 @@ class PostsRepoImpl implements PostsRepo {
       return Left(FailureLocal(message: e.toString()));
     }
   }
-
-
 }
 
