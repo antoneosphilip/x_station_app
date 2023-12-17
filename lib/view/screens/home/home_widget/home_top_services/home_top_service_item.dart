@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
+import 'package:x_station_app/core/text_manager/text_manager.dart';
 
 class HomeTopServiceItem extends StatelessWidget {
   final String title;
@@ -25,9 +26,6 @@ class HomeTopServiceItem extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
         color: ColorManager.colorWhite,
-        border: Border.all(
-          color: CupertinoColors.black
-        )
       ),
       child: Padding(
         padding: EdgeInsets.only(top: 16.h),
@@ -46,14 +44,17 @@ class HomeTopServiceItem extends StatelessWidget {
               ],
             ),
             SizedBox(height: 16.h,),
+           Padding(
+             padding:  EdgeInsets.only(left: 16.w,),
+             child: Text(title,style:TextStyleManager.textStyle16w500 ,),
+           ),
+           SizedBox(height: 8.h,),
            CachedNetworkImage(imageUrl: image!,fit: BoxFit.fill,width: 390.w,height: 390.h,),
             SizedBox(height: 8.h,),
             Padding(
               padding:  EdgeInsets.all(16.0.sp),
               child: Text(description,style: TextStyleManager.textStyle16w500,),
             ),
-
-
           ],
         ),
       ),

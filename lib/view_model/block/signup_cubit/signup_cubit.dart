@@ -30,10 +30,7 @@ class SignUpCubit extends Cubit<SignUpStates>
 
   String? technicalExperienceYears;
   final List<String> years=[];
-  final List<String> items = [
-    'cleaning',
-    'fixes',
-  ];
+  dynamic item;
 
 
 
@@ -94,7 +91,7 @@ class SignUpCubit extends Cubit<SignUpStates>
       rePasswordController.text,
       addressController.text,
       type!,
-      technicalTypeSelected!,
+      technicalTypeSelectedId.toString()!,
       nationalId.text,
       technicalExperienceYears!,
     );

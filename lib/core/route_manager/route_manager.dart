@@ -107,13 +107,13 @@ List<GetPage> pages = [
       transitionDuration: const Duration(
         milliseconds: 250,
       )),
-  GetPage(
-      name: PageName.applyScreen,
-      page: () => const ApplyScreen(),
-      transition: Transition.zoom,
-      transitionDuration: const Duration(
-        milliseconds: 250,
-      )),
+  // GetPage(
+  //     name: PageName.applyScreen,
+  //     page: () => const ApplyScreen(),
+  //     transition: Transition.zoom,
+  //     transitionDuration: const Duration(
+  //       milliseconds: 250,
+  //     )),
   GetPage(
       name: PageName.favoriteList,
       page: () => const FavoriteListScreen(),

@@ -50,7 +50,7 @@ class ElectricianDetailsItem extends StatelessWidget {
           height: 100.h,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(40.r),
-              color: ColorManager.colorXWhite.withOpacity(.40)
+              color: ColorManager.colorWhite
           ),
           child: Padding(
             padding:  EdgeInsets.all(5.0.sp),
@@ -94,9 +94,9 @@ class ElectricianDetailsItem extends StatelessWidget {
                 const Spacer(),
                 Padding(
                   padding:  EdgeInsets.only(bottom: 57.14.h),
-                  child: SvgPicture.asset(AssetsImage.heart2,color: ColorManager.colorPrimary,),
+                  child: SvgPicture.asset(AssetsImage.heart2,color: ColorManager.colorPrimary,width: 30),
                 ),
-                SizedBox(width: 33.2.w,)
+                SizedBox(width: 10.2.w,)
               ],
             ),
           ),

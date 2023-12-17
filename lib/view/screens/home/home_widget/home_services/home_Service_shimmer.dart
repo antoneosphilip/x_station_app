@@ -11,7 +11,6 @@ import '../../../../../core/color_shimmer/color_shimmer.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core/text_manager/text_manager.dart';
 import '../../../category/category_electrician/category_electrician.dart';
-import '../../../home_technical/home_technical_widget/home_services/home_services_item.dart';
 
 
 

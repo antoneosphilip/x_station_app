@@ -46,7 +46,7 @@ class _TechnicalTypesState extends State<TechnicalTypes> {
     return  BlocConsumer<CategoryCubit,CategoryStates>(
       listener: (context,state){},
       builder: (context,state){
-        return state is CategorySelectMenuLoadingState?CustomCircleLoading():
+        return state is CategorySelectMenuLoadingState?const CustomCircleLoading():
             Column(
               children: [
                 TextFormFieldCustom(
@@ -84,7 +84,13 @@ class _TechnicalTypesState extends State<TechnicalTypes> {
                       items: CategoryCubit.get(context).categorySelectMenuModel?.data!
                           .map<DropdownMenuItem<String>>(
                             (dynamic item) => DropdownMenuItem<String>(
-                          value: item.name.toString().isEmpty?'1':item.name.toString(), // Assuming 'name' is a string property in your Data class
+                              onTap: (){
+                                setState(() {
+                                  SignUpCubit.get(context).technicalTypeSelectedId=item.id;
+
+                                });
+                              },
+                          value: item.name.toString(),// Assuming 'name' is a string property in your Data class
                           child: Text(
                             item.name.toString(), // Assuming 'name' is a string property in your Data class
                             style: TextStyleManager.textStyle14w300,

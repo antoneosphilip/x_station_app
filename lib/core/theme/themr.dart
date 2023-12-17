@@ -8,7 +8,7 @@ abstract class ThemeApp {
     //     backgroundColor: ColorsManager.whiteXXColor, elevation: 0),
     // fontFamily: GoogleFonts.aBeeZee().fontFamily,
 
-    scaffoldBackgroundColor: ColorManager.colorWhite,
+    scaffoldBackgroundColor: ColorManager.colorScaffold,
     primaryColor: ColorManager.colorPrimary,
     // fontFamily: GoogleFonts.barlowCondensed().fontFamily,
   );

@@ -61,7 +61,7 @@ class TextFormFieldCustom extends StatelessWidget {
         this.initial,
         this.enable,
         this.fillColor = ColorManager.colorGrey,
-        this.boarderColor =ColorManager.colorGrey,
+        this.boarderColor =ColorManager.colorPrimary,
         this.padding = 22.0,
         this.maxLines})
       : super(key: key);
@@ -104,7 +104,7 @@ class TextFormFieldCustom extends StatelessWidget {
       //maxLength: maxDigit,
       decoration: InputDecoration(
         filled: true,
-        fillColor: fillColor!.withOpacity(.20),
+        fillColor: fillColor==ColorManager.colorGrey!?fillColor?.withOpacity(.20):fillColor,
         isDense: true,
         //floatingLabelBehavior: FloatingLabelBehavior.auto,
         border: OutlineInputBorder(

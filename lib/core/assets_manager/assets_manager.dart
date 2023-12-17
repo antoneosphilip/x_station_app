@@ -50,6 +50,7 @@ class AssetsImage {
   static const String heart2 = '${_iconsPath}heart2.svg';
   static const String upload = '${_iconsPath}upload.svg';
   static const String location = '${_iconsPath}location';
+  static const String notification = '${_iconsPath}notification.svg';
 
 
   // svg

@@ -47,7 +47,7 @@ class AppBarWidget extends StatelessWidget {
             padding:  EdgeInsets.only(left: 34.w),
             child: SvgPicture.asset(AssetsImage.arrowLeft,color: ColorManager.colorWhite,),
           ):const SizedBox(),
-          Spacer(),
+          const Spacer(),
           Text(
             text!,
             style: TextStyleManager.textStyle24w500.copyWith(fontSize: 22.sp,color: ColorManager.colorWhite),

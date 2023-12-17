@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 
 class ApplyForm extends StatelessWidget {
-  const ApplyForm({super.key});
+  final String title;
+  final String description;
+  const ApplyForm({super.key, required this.title, required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -14,21 +17,21 @@ class ApplyForm extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 286, top: 34),
           child: Text(
-            TextManager.Problem,
+            TextManager.Problem.tr,
             style: TextStyleManager.textStyle20w400,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 78, top: 16),
           child: Text(
-            TextManager.LoremIpsum,
+            title,
             style: TextStyleManager.textStyle24w300,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 255, top: 26),
           child: Text(
-            TextManager.Description,
+            TextManager.Description.tr,
             style: TextStyleManager.textStyle20w400,
           ),
         ),
@@ -45,10 +48,7 @@ class ApplyForm extends StatelessWidget {
           child: Padding(
             padding:  EdgeInsets.only(top: 10.h,left: 14.w,right: 39.w),
             child: Text(
-            "Lorem ipsum dolor sit amet, consectetur adipisc"
-            "ing elit, sed do eiusmod tempor incididunt ut labore et dolore m"
-    "agna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut "
-    "aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit ",
+            "${description}",
               style: TextStyleManager.textStyle16w500,
             ),
           ),

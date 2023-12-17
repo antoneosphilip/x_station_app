@@ -27,10 +27,9 @@ class HomeTopServiceList extends StatelessWidget {
                 children: [
                   Padding(
                     padding:  EdgeInsets.only(left: 16.w),
-                    child: Text(TextManager.post,style: TextStyleManager.textStyle36w700,),
+                    child: Text(TextManager.post,style: TextStyleManager.textStyle36w700.copyWith(fontSize: 25.sp,fontWeight: FontWeight.w500),),
                   ),
-                  SvgPicture.asset(AssetsImage.line,width: 114.w,),
-                  SizedBox(height: 16.h,),
+
                   ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
@@ -45,7 +44,7 @@ class HomeTopServiceList extends StatelessWidget {
                         );
                       },
                       separatorBuilder: (context,index){
-                        return SizedBox(height: 16.h);
+                        return SizedBox(height: 8.h);
                       },
                       itemCount: PostsCubit.get(context).getPostModel!.data!.length,
                   ),

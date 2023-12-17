@@ -23,7 +23,6 @@ class ElectricianDetailsList extends StatelessWidget {
       builder: (context,state){
         return state is TechnicalLoadingState?const ElectricalDetailsShimmer():
             (TechnicalCubit.get(context).technicalModel!=null)?
-            TechnicalCubit.get(context).technicalModel!.data!.length>0?
             ListView.separated(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
@@ -45,9 +44,8 @@ class ElectricianDetailsList extends StatelessWidget {
                 },
                 itemCount: TechnicalCubit.get(context).technicalModel!.data!.length,
             ):
-                Center(child: Text("electial not found",style: TextStyleManager.textStyle16w500,)):
                 state is TechnicalErrorState?
-            Text(state.err.toString()):const SizedBox();
+            Text(state.err.toString()):const ElectricalDetailsShimmer();
       },
     );
   }

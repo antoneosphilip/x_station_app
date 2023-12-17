@@ -26,17 +26,17 @@ class HomeServicesWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(TextManager.category,style: TextStyleManager.textStyle36w700,),
-            SizedBox(height: 16.h,),
+            Text(TextManager.category,style: TextStyleManager.textStyle36w700.copyWith(fontSize: 25.sp,fontWeight: FontWeight.w500),),
+            SizedBox(height: 8.h,),
             SizedBox(
-              height: 113.h,
+              height: 140.h,
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context,index){
                     return   HomeServicesItem(
                         image: CategoryCubit.get(context).categoryModel!.data![index].image!,
-
+                      name:  CategoryCubit.get(context).categoryModel!.data![index].name!,
                     );
                   },
                   separatorBuilder: (context,index){

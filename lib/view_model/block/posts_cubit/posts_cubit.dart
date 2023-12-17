@@ -68,6 +68,7 @@ class PostsCubit extends Cubit<PostsStates>
       },
           (r) {
         emit(PostsSuccessState(r));
+        getPosts();
       },
     );
   }

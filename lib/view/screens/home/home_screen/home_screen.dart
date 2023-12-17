@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:x_station_app/core/color_manager/color_manager.dart';
 
 import '../home_widget/home_widget/home_widget.dart';
 

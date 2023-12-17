@@ -26,7 +26,9 @@ class   ColorManager
   static const Color colorLightColorPrimary = Color(0xffBFBECF);
   static const Color colorGold = Color(0xffF2A91B);
   static const Color colorXXPrimary = Color(0xffCECEDA);
+  static const Color colorGrey4 = Color(0xffEDEDED);
 
+  static const Color colorScaffold = Color(0xffF4F4F4);
 
 
 }

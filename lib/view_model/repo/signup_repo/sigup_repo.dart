@@ -91,7 +91,7 @@ class SignUpRepoImpl implements SignUpRepo {
         'address':address,
         "phone_number":phone,
         "type":type==TextManager.client?"customer":type== TextManager.technical?"technical":"company",
-        "category_id":2,
+        "category_id":categoryId,
         "national_id":nationalId,
         "experience_years":4,
 

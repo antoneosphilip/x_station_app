@@ -57,14 +57,14 @@ class LoginForm extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   validate: (value) {
                     if (value == null || value.isEmpty) {
-                      return TextManager.pleaseEnterEmail;
+                      return TextManager.pleaseEnterEmail.tr;
                     }
                     else if (!Regexp.isValidEmail(value)) {
-                      return TextManager.invalidEmail;
+                      return TextManager.invalidEmail.tr;
                     }
                     return null;
                   },
-                  label: TextManager.enterYourEmail,
+                  label: TextManager.enterYourEmail.tr,
                   suffix: true,
                   suffixIcon: SvgPicture.asset(AssetsImage.email),
                 ),
@@ -78,14 +78,14 @@ class LoginForm extends StatelessWidget {
                   keyboardType: TextInputType.visiblePassword,
                   validate: (value) {
                     if (value == null || value.isEmpty) {
-                      return TextManager.pleaseEnterPassword;
+                      return TextManager.pleaseEnterPassword.tr;
                     }
                     // else if (!Regexp.isValidPassword(value)) {
                     //   return TextManager.invalidPass;
                     //  }
                     return null;
                   },
-                  label: TextManager.password,
+                  label: TextManager.password.tr,
                   suffix: true,
                   suffixIcon: LoginCubit.get(context).visibility?const Icon(Icons.visibility,color: ColorManager.colorPrimary,):Icon(Icons.visibility_off,color: ColorManager.colorPrimary,),
                   suffixOnPressed:(){
@@ -116,7 +116,7 @@ class LoginForm extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      TextManager.newMember,
+                      TextManager.newMember.tr,
                       style: TextStyleManager.textStyle12w400
                           .copyWith(fontWeight: FontWeight.w500),
                     ),
@@ -128,7 +128,7 @@ class LoginForm extends StatelessWidget {
                         Get.toNamed(PageName.register);
                       },
                       child: Text(
-                        TextManager.registerNow,
+                        TextManager.registerNow.tr,
                         style: TextStyleManager.textStyle12w400.copyWith(
                             fontWeight: FontWeight.w700,
                             color: ColorManager.colorPrimary),

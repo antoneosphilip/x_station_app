@@ -25,55 +25,23 @@ class PostingShimmer extends StatelessWidget {
           child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(TextManager.post,style: TextStyleManager.textStyle36w700,),
-              SvgPicture.asset(AssetsImage.line,width: 114.w,),
-              SizedBox(height: 16.h,),
+              Padding(
+                padding:  EdgeInsets.only(left: 16.w),
+                child: Text(TextManager.post,style: TextStyleManager.textStyle36w700,),
+              ),
               ListView.separated(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context,index){
-                    return   Padding(
-                      padding:  EdgeInsets.only(right: 21.w),
-                      child: Container(
-                        width: 323.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25.r),
-                          color: ColorManager.colorXPrimary
-                        ),
-                        child: Padding(
-                          padding:  EdgeInsets.only(left: 19.w),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(height: 7.h,),
-                                    Text("", style: TextStyleManager.textStyle24w300.copyWith(fontWeight: FontWeight.bold),),
-                                    SizedBox(height: 8.h,),
-                                    Text("",
-                                      style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w400),),
-                                    SizedBox(height: 12.h,),
-                                    // Row(
-                                    //   children: [
-                                    //     Text("Technician",style: TextStyleManager.textStyle10w400.copyWith(fontSize: 8.sp) ,),
-                                    //     SizedBox(width: 14.w,),
-                                    //     Text("plubmer",style: TextStyleManager.textStyle10w400.copyWith(fontSize: 8.sp) ,),
-                                    //
-                                    //   ],
-                                    // ),
-                                    SizedBox(height: 6.h,),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(width: 11.w,),
-                              // Text("15.00 \$ hr",style: TextStyleManager.textStyle10w400.copyWith(fontWeight: FontWeight.w800),),
-                              SizedBox(width: 7.w,)
-                            ],
-                          ),
-                        ),
+                    return Container(
+                      height: 80,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                        color: ColorManager.colorPrimary
                       ),
+                      child: Text(''),
                     );
                   },
                   separatorBuilder: (context,index){

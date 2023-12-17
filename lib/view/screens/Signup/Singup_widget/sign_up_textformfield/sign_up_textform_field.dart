@@ -8,6 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
 import 'package:x_station_app/view/screens/home_technical/home_technical_screen/home_technical_screen.dart';
+import 'package:x_station_app/view_model/block/category_cubit/category_cubit.dart';
 import 'package:x_station_app/view_model/block/signup_cubit/signup_cubit.dart';
 import 'package:x_station_app/view_model/block/signup_cubit/signup_states.dart';
 
@@ -68,6 +69,7 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
              message: state.loginModel.message.toString(),
              snackBarType: SnackBarType.success,
              context: context);
+         CategoryCubit.get(context).getCategory();
        }
 
        else if(state is SignUpTechnicalErrorState){

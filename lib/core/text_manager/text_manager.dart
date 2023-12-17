@@ -113,5 +113,7 @@ class TextManager {
   static const String Email = "email: ";
   static const String typeTitle = "Type title ";
   static const String writeTitle = "Write title ";
+  static const String needSomeHelp = "Need Some Help ?";
+  static const String findItHere = "find it here...";
 
 }
