@@ -143,6 +143,8 @@ class _PostingFormState extends State<PostingForm> {
             if(state is PostsSuccessState){
               _timer?.cancel();
               await EasyLoading.showSuccess('${state.createPostModel.message}',);
+              PostsCubit.get(context).titleController.clear();
+              PostsCubit.get(context).descriptionController.clear();
 
             }
             else if(state is PostsLoadingState){

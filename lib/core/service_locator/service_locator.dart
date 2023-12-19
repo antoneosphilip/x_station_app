@@ -8,10 +8,12 @@ import 'package:x_station_app/view_model/repo/category_repo/category_repo.dart';
 import 'package:x_station_app/view_model/repo/forget_password_repo/forget_password_repo.dart';
 import 'package:x_station_app/view_model/repo/posts_repo/post_Repo.dart';
 import 'package:x_station_app/view_model/repo/profile_repo/profile_repo.dart';
+import 'package:x_station_app/view_model/repo/search_repo/search_repo.dart';
 import 'package:x_station_app/view_model/repo/signup_repo/sigup_repo.dart';
 import 'package:x_station_app/view_model/repo/technical_repo/technical_repo.dart';
 
 import '../../view_model/repo/login_repo/login_repo.dart';
+import '../../view_model/repo/notification_repo/notification_repo.dart';
 
 final sl = GetIt.instance;
 
@@ -22,8 +24,12 @@ Future<void> setup() async {
   sl.registerLazySingleton<CategoryRepoImpl>(() => CategoryRepoImpl());
   sl.registerLazySingleton<ProfileRepoImpl>(() => ProfileRepoImpl());
   sl.registerLazySingleton<PostsRepoImpl>(() => PostsRepoImpl());
-
   sl.registerLazySingleton<TechnicalRepoImpl>(() => TechnicalRepoImpl());
+
+  sl.registerLazySingleton<GetNotificationRepoImpl>(() => GetNotificationRepoImpl());
+  sl.registerLazySingleton<SearchRepoImpl>(() => SearchRepoImpl());
+
+
 
   // cubit
 }

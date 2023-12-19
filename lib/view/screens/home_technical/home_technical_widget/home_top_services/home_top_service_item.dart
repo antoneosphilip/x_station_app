@@ -15,16 +15,16 @@ class HomePostsTechnician extends StatelessWidget {
   final String description;
   final String? image;
   final String namePerson;
-
+  final int id;
   HomePostsTechnician({
 
-    required this.title, required this.description, required this.image, required this.namePerson});
+    required this.title, required this.description, required this.image, required this.namePerson, required this.id});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.to( ApplyScreen(description: description,title: title),
+        Get.to( ApplyScreen(description: description,title: title,id: id,),
           duration: const Duration(
           milliseconds: 250,
         ),
@@ -32,13 +32,18 @@ class HomePostsTechnician extends StatelessWidget {
             ,);
       },
       child: Container(
+
         width: 390.w,
         decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(2.0, 2.0),
+              blurRadius: 5.0,
+            ),
+          ],
             borderRadius: BorderRadius.circular(16.r),
             color: ColorManager.colorWhite,
-            border: Border.all(
-                color: CupertinoColors.black
-            )
         ),
         child: Padding(
           padding: EdgeInsets.only(top: 16.h),
@@ -62,11 +67,13 @@ class HomePostsTechnician extends StatelessWidget {
                 child: Text(title,style:TextStyleManager.textStyle16w500 ,),
               ),
               SizedBox(height: 8.h,),
-              CachedNetworkImage(imageUrl: image!,fit: BoxFit.fill,width: 390.w,height: 390.h,),
+              image!=''?
+              CachedNetworkImage(imageUrl: image!,fit: BoxFit.fill,width: 390.w,height: 390.h,):
+                  const SizedBox(),
               SizedBox(height: 8.h,),
               Padding(
                 padding:  EdgeInsets.all(16.0.sp),
-                child: Text(description,style: TextStyleManager.textStyle16w500,),
+                child: Center(child: Text(description,style: TextStyleManager.textStyle16w500,)),
               ),
             ],
           ),

@@ -115,5 +115,6 @@ class TextManager {
   static const String writeTitle = "Write title ";
   static const String needSomeHelp = "Need Some Help ?";
   static const String findItHere = "find it here...";
+  static const String cancel = "Cancel";
 
 }

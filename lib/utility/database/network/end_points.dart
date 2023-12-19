@@ -15,9 +15,19 @@ abstract class EndPoint{
     '/categories/${id}/technicals';
   }
   static const String getCategorySelectMenu = '/select_menu/categories';
-
   static const String posts = '/posts';
+  static  String ?applyPost(String id) {
+    '/technicals/post/${id}/apply';
+  }
+  static const String notificationEndPoint = '/notifications';
 
+  static  String ?showPost(String id) {
+   '/posts/${id}' ;
+  }
+
+  static  String ?search(String id) {
+   '/technicals?handle=${id}';
+  }
 
 }
 

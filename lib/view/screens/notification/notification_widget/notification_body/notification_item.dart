@@ -10,7 +10,10 @@ import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 
 class NotificationItem extends StatelessWidget {
-  const NotificationItem({super.key});
+  final String message;
+  final String date;
+
+  const NotificationItem({super.key, required this.message, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,7 @@ class NotificationItem extends StatelessWidget {
                         height: 15,
                       ),
                       Text(
-                        "loream",
+                        "${message.toString()}",
                         style: TextStyleManager.textStyle10w400.copyWith(color: ColorManager.colorBlack.withOpacity(.65),fontWeight: FontWeight.w700),
                       )
                     ],
@@ -64,7 +67,7 @@ class NotificationItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 34, right: 15),
                 child: Text(
-                  "hours ago",
+                  "${date} ago",
                   style: TextStyleManager.textStyle10w400.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),

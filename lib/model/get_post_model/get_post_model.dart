@@ -31,28 +31,40 @@ class GetPostModel {
 }
 
 class Data {
+  int? id;
   String? title;
   String? description;
   String? image;
   User? user;
+  int? isApplied;
 
-  Data({this.title, this.description, this.image, this.user});
+  Data(
+      {this.id,
+        this.title,
+        this.description,
+        this.image,
+        this.user,
+        this.isApplied});
 
   Data.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     title = json['title'];
     description = json['description'];
-    image = json['image'];
+    image = json['image']??'';
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    isApplied = json['is_applied'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['title'] = this.title;
     data['description'] = this.description;
     data['image'] = this.image;
     if (this.user != null) {
       data['user'] = this.user!.toJson();
     }
+    data['is_applied'] = this.isApplied;
     return data;
   }
 }

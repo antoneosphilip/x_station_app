@@ -14,7 +14,8 @@ import '../../../../../core/text_manager/text_manager.dart';
 import '../../../home/home_widget/home_top_services/home_top_service_item.dart';
 
 class PostingShimmer extends StatelessWidget {
-  const PostingShimmer({super.key});
+  final bool isText;
+  const PostingShimmer({super.key,  this.isText=true});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +26,10 @@ class PostingShimmer extends StatelessWidget {
           child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
+              isText?  Padding(
                 padding:  EdgeInsets.only(left: 16.w),
                 child: Text(TextManager.post,style: TextStyleManager.textStyle36w700,),
-              ),
+              ):const SizedBox(),
               ListView.separated(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,

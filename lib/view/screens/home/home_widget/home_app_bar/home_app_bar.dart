@@ -9,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
+import 'package:x_station_app/view/screens/home/home_widget/home_Search/home_Search_Screen/home_Search_Screen.dart';
 import 'package:x_station_app/view/screens/home/home_widget/homebar_shimmer/home_app_bar_shimmer.dart';
 import 'package:x_station_app/view_model/block/category_cubit/category_cubit.dart';
 import 'package:x_station_app/view_model/block/category_cubit/category_states.dart';
@@ -68,21 +69,31 @@ class HomeAppBar extends StatelessWidget {
               SizedBox(width: 16.w,)
             ],
           ),
-          Padding(
-            padding:  EdgeInsets.only(left: 5.w,right: 17.w),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextFormFieldCustom(
-                    fillColor: Colors.white,
-                    boarderColor: ColorManager.colorPrimary,
-                    hint: TextManager.findItHere,
-                    validate: (value){},
-                    suffix: true,
-                    suffixIcon: SvgPicture.asset(AssetsImage.search),
+          InkWell(
+            onTap: (){
+              Get.to(const HomeSearchScreen());
+            },
+            child: Padding(
+              padding:  EdgeInsets.only(left: 5.w,right: 17.w),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormFieldCustom(
+                      fillColor: Colors.white,
+                      boarderColor: ColorManager.colorPrimary,
+                      hint: TextManager.findItHere,
+                      validate: (value){},
+                      suffix: true,
+                      suffixIcon: InkWell(
+                          onTap: (){
+                            Get.to(const HomeSearchScreen());
+
+                          },
+                          child: SvgPicture.asset(AssetsImage.search)),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

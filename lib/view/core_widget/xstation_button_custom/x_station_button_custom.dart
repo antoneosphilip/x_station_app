@@ -29,7 +29,7 @@ class XStationButtonCustom extends StatelessWidget {
       widget: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-           Text(textButton!),
+           Text(textButton!,style: const TextStyle(color: Colors.white),),
           SizedBox(width: 11.w,),
         ],
       ),

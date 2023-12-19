@@ -41,11 +41,12 @@ class HomePostsListTechnican extends StatelessWidget {
                     title:PostsCubit.get(context).getPostModel!.data![index].title!,
                     image: PostsCubit.get(context).getPostModel!.data![index].image! ,
                     namePerson: PostsCubit.get(context).getPostModel!.data![index].user!.name!,
+                    id:PostsCubit.get(context).getPostModel!.data![index].user!.id! ,
                     // imagePerson:PostsCubit.get(context).getPostModel!.data![index].user!.avatar! ,
                   );
                 },
                 separatorBuilder: (context,index){
-                  return SizedBox(height: 16.h);
+                  return SizedBox(height: 8.h);
                 },
                 itemCount: PostsCubit.get(context).getPostModel!.data!.length,
               ),

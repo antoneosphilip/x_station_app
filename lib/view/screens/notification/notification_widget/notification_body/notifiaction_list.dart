@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:x_station_app/view/screens/home/home_widget/posting_shimmer/posting_shimmer.dart';
 
+import '../../../../../view_model/block/notification_cubit/notification_cubit.dart';
+import '../../../../../view_model/block/notification_cubit/notification_states.dart';
 import 'notification_item.dart';
 
 class NotificationList extends StatelessWidget {
@@ -9,17 +13,32 @@ class NotificationList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        scrollDirection: Axis.vertical,
-        dragStartBehavior: DragStartBehavior.start,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return const NotificationItem();
-        },
-        separatorBuilder: (context, index) {
-          return const SizedBox(height: 0);
-        },
-        itemCount: 10);
+    return BlocConsumer<GetNotificationCubit,GetNotificationStates>(
+      listener: (context,state){},
+      builder: (context,state){
+        return state is GetNotificationLoadingState?
+            const PostingShimmer(isText: false,):
+       ( GetNotificationCubit.get(context).notificationModel!=null)?
+       ListView.separated(
+           scrollDirection: Axis.vertical,
+           dragStartBehavior: DragStartBehavior.start,
+           shrinkWrap: true,
+           physics: const NeverScrollableScrollPhysics(),
+           itemBuilder: (context, index) {
+             return  NotificationItem(
+               message: GetNotificationCubit.get(context).notificationModel!.data!.message!,
+               date: ''
+             );
+           },
+           separatorBuilder: (context, index) {
+             return const SizedBox(height: 0);
+           },
+           itemCount: 1,
+       ):
+           state is GetNotificationErrorState?
+            Text(state.err):const PostingShimmer(isText: false,);
+
+      },
+    );
   }
 }

@@ -20,15 +20,19 @@ import 'package:x_station_app/view_model/block/category_cubit/category_cubit.dar
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
 import 'package:x_station_app/view_model/block/home_layout_cubit/home_layoout_cubit.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_cubit.dart';
+import 'package:x_station_app/view_model/block/notification_cubit/notification_cubit.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
+import 'package:x_station_app/view_model/block/search_cubit/search_cubit.dart';
 import 'package:x_station_app/view_model/block/signup_cubit/signup_cubit.dart';
 import 'package:x_station_app/view_model/block/technical_cubit/technical_cubit.dart';
 import 'package:x_station_app/view_model/repo/category_repo/category_repo.dart';
 import 'package:x_station_app/view_model/repo/forget_password_repo/forget_password_repo.dart';
 import 'package:x_station_app/view_model/repo/login_repo/login_repo.dart';
+import 'package:x_station_app/view_model/repo/notification_repo/notification_repo.dart';
 import 'package:x_station_app/view_model/repo/posts_repo/post_Repo.dart';
 import 'package:x_station_app/view_model/repo/profile_repo/profile_repo.dart';
+import 'package:x_station_app/view_model/repo/search_repo/search_repo.dart';
 import 'package:x_station_app/view_model/repo/signup_repo/sigup_repo.dart';
 import 'package:x_station_app/view_model/repo/technical_repo/technical_repo.dart';
 
@@ -50,7 +54,7 @@ void main() async{
 
 
   Bloc.observer = MyBlocObserver();
-  configLoading();
+
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -75,14 +79,14 @@ void configLoading() {
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key,});
-
+  static final GlobalKey<NavigatorState> navigatorKey =
+  GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
         designSize: const Size(360, 800),
         minTextAdapt: true,
         splitScreenMode: true,
-
         builder: (context , child) {
           return MultiBlocProvider(
             providers: [
@@ -92,7 +96,9 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => ProfileCubit(sl.get<ProfileRepoImpl>())..getProfileData()),
               BlocProvider(create: (context) => CategoryCubit(sl.get<CategoryRepoImpl>())..getCategory()..getCategorySelectMenu()),
               BlocProvider(create: (context) => TechnicalCubit(sl.get<TechnicalRepoImpl>())..getTechnicalList(id: 1)),
-              BlocProvider(create: (context) => PostsCubit(sl.get<PostsRepoImpl>())..getPosts()),
+              BlocProvider(create: (context) => PostsCubit(sl.get<PostsRepoImpl>())..getPosts()..showPost(id: 1)),
+              BlocProvider(create: (context) => GetNotificationCubit(sl.get<GetNotificationRepoImpl>())..getNotification()),
+              BlocProvider(create: (context) => SearchCubit(sl.get<SearchRepoImpl>())),
 
             ],
             child: GetMaterialApp(
@@ -103,27 +109,27 @@ class MyApp extends StatelessWidget {
               builder: EasyLoading.init(),
               debugShowCheckedModeBanner: false,
               initialRoute:
-                  CacheHelper.getDataString(key: 'onBoarding')!=null&&
+              CacheHelper.getDataString(key: 'onBoarding')!=null&&
                   CacheHelper.getDataString(key: 'token')!=null?
               PageName.homeLayout:
-                  CacheHelper.getDataString(key: 'onBoarding')!=null&&
+              CacheHelper.getDataString(key: 'onBoarding')!=null&&
                   CacheHelper.getDataString(key: 'token')==null?
               PageName.login:
               CacheHelper.getDataString(key: 'onBoarding')==null&&
                   CacheHelper.getDataString(key: 'token')==null?
               PageName.splash:PageName.splash,
-                    getPages: pages,
+              getPages: pages,
 
-                // home:widget,
+              // home:widget,
               //  AnimatedSplashScreen(
               //    splash: AssetsImage.onBoardingImage,splashIconSize: 200.sp,
               //    nextScreen: const OnBoardingScreen(),
               //    splashTransition: SplashTransition.rotationTransition,
               //    duration: 3000,
               //  ),
-            //  home: HomeScreen(),
+              //  home: HomeScreen(),
 
-                theme: ThemeApp.light,
+              theme: ThemeApp.light,
 
             ),
           );

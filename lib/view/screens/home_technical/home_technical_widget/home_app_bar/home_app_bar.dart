@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:x_station_app/view/screens/notification/notification_screen/notification_screen.dart';
 
 import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/color_manager/color_manager.dart';
@@ -27,14 +30,17 @@ class HomeAppBar extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Hi,${CachingDataManager.instance.getLoginModel().data!.name}",style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700),),
+                    Text("Hi,${CachingDataManager.instance.getLoginModel().data!.name}",style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700,fontSize: 20),),
                     SizedBox(height: 28.h,),
                   ],
                 ),
               ),
               const Spacer(),
               SizedBox(width: 14.w,),
-              SvgPicture.asset(AssetsImage.notification,fit: BoxFit.cover,color: ColorManager.colorBlack,height: 25.h,),
+              InkWell(
+                  onTap: (){
+                  },
+                  child: SvgPicture.asset(AssetsImage.notification,fit: BoxFit.cover,color: ColorManager.colorBlack,height: 25.h,)),
               SizedBox(width: 14.w,),
               const CircleAvatar(
                 radius: 28,

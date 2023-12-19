@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
@@ -90,14 +91,15 @@ class ElectricianInformationForm extends StatelessWidget {
           ),
           InkWell(
             onTap: ()async {
-              final Uri phoneLaunchUri = Uri(
-                scheme: 'tel',
-                path: "${phone}",
-              );
-              if(await canLaunchUrl(phoneLaunchUri)){
-                await launchUrl(phoneLaunchUri);
-
-              }
+             await FlutterPhoneDirectCaller.callNumber(phone);
+              // final Uri phoneLaunchUri = Uri(
+              //   scheme: 'tel',
+              //   path: "${phone}",
+              // );
+              // if(await canLaunchUrl(phoneLaunchUri)){
+              //   await
+              //
+              // }
             },
             child: Padding(
               padding: const EdgeInsets.only(left: 199),

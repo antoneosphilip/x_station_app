@@ -9,53 +9,69 @@ import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 
+import '../home_post_item_Details/home_post_details_Screen/home_post_Details_Screen.dart';
+
 class HomeTopServiceItem extends StatelessWidget {
   final String title;
   final String description;
   final String? image;
   final String namePerson;
+  final int id;
 
   HomeTopServiceItem({
 
-   required this.title, required this.description, required this.image, required this.namePerson});
+   required this.title, required this.description, required this.image, required this.namePerson, required this.id});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 390.w,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.r),
-        color: ColorManager.colorWhite,
-      ),
-      child: Padding(
-        padding: EdgeInsets.only(top: 16.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                SizedBox(width: 16.w,),
-                const CircleAvatar(
-                  radius: 30,
-                  backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.Z5BlhFYs_ga1fZnBWkcKjQHaHz?rs=1&pid=ImgDetMain")
-                ),
-                SizedBox(width: 7.w,),
-                Text("${namePerson}",style: TextStyleManager.textStyle14w500,),
-              ],
-            ),
-            SizedBox(height: 16.h,),
-           Padding(
-             padding:  EdgeInsets.only(left: 16.w,),
-             child: Text(title,style:TextStyleManager.textStyle16w500 ,),
-           ),
-           SizedBox(height: 8.h,),
-           CachedNetworkImage(imageUrl: image!,fit: BoxFit.fill,width: 390.w,height: 390.h,),
-            SizedBox(height: 8.h,),
-            Padding(
-              padding:  EdgeInsets.all(16.0.sp),
-              child: Text(description,style: TextStyleManager.textStyle16w500,),
+
+    return InkWell(
+      onTap: (){
+        Get.to( HomePostDetailsScreen(id: id,));
+      },
+      child: Container(
+        width: 390.w,
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(2.0, 2.0),
+              blurRadius: 5.0,
             ),
           ],
+          borderRadius: BorderRadius.circular(16.r),
+          color: ColorManager.colorWhite,
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(top: 16.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  SizedBox(width: 16.w,),
+                  const CircleAvatar(
+                    radius: 30,
+                    backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.Z5BlhFYs_ga1fZnBWkcKjQHaHz?rs=1&pid=ImgDetMain")
+                  ),
+                  SizedBox(width: 7.w,),
+                  Text("${namePerson}",style: TextStyleManager.textStyle14w500),
+                ],
+              ),
+              SizedBox(height: 16.h,),
+             Padding(
+               padding:  EdgeInsets.only(left: 16.w,),
+               child: Text(title,style:TextStyleManager.textStyle16w500 ,),
+             ),
+             SizedBox(height: 8.h,),
+             image !=''?
+             CachedNetworkImage(imageUrl: image!,fit: BoxFit.fill,width: 390.w,height: 390.h,):
+                 const SizedBox(),
+              SizedBox(height: 8.h,),
+              Center(child: Text(description,style: TextStyleManager.textStyle16w500,)),
+              SizedBox(height: 8.h,),
+            ],
+          ),
         ),
       ),
     );

@@ -1,8 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:x_station_app/core/color_manager/color_manager.dart';
+import 'package:x_station_app/core/text_manager/text_manager.dart';
+import 'package:x_station_app/model/apply_post_model/apply_post_model.dart';
 import 'package:x_station_app/model/get_post_model/get_post_model.dart';
+import 'package:x_station_app/model/show_post_model/show_post_model.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_states.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_states.dart';
 import 'package:x_station_app/view_model/repo/login_repo/login_repo.dart';
@@ -22,6 +27,8 @@ class PostsCubit extends Cubit<PostsStates>
   var titleController=TextEditingController();
   var descriptionController=TextEditingController();
   var formKey = GlobalKey<FormState>();
+  ApplyPostModel? applyPostModel;
+  ShowPostModel? showPostModel;
 
   ////////////////////////////SelectPhoto////////////////////////////
   io.File? fileImage;
@@ -93,4 +100,66 @@ class PostsCubit extends Cubit<PostsStates>
           },
     );
   }
+
+
+  /////////////////////////apply post//////////////////////////////
+
+  Future<void> applyPost({required id})async{
+    emit(ApplyPostsLoadingState());
+    var data=await postsRepo.applyPost(id: id);
+    data.fold(
+          (l) {
+        emit(
+            ApplyPostsErrorState(l.message));
+      },
+          (r) {
+        emit(ApplyPostsSuccessState(r));
+        applyPostModel=r;
+
+      },
+    );
+  }
+  Color? color;
+void changeColor({required message}){
+    if(message=='Applied Successfully'){
+      color=Colors.red;
+      emit(ChangeColor());
+    }
+    else{
+      color=ColorManager.colorPrimary;
+      emit(ChangeColor());
+
+    }
+}
+
+  String? text;
+  void changeText({required message}){
+    if(message=='Applied Successfully'){
+      text=TextManager.cancel;
+      emit(ChangeText());
+    }
+    else{
+      text=TextManager.Applynow;
+      emit(ChangeText());
+
+    }
+  }
+
+
+  Future<void> showPost({required id})async{
+    emit(ShowPostsLoadingState());
+    var data=await postsRepo.showPost(id: id);
+    data.fold(
+          (l) {
+        emit(
+            ShowPostsErrorState(l.message));
+      },
+          (r) {
+        emit(ShowPostsSuccessState(r));
+        showPostModel=r;
+
+      },
+    );
+  }
+
 }

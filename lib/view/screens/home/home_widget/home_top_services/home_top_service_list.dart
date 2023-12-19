@@ -38,8 +38,9 @@ class HomeTopServiceList extends StatelessWidget {
                         return  HomeTopServiceItem(
                           description:PostsCubit.get(context).getPostModel!.data![index].description! ,
                           title:PostsCubit.get(context).getPostModel!.data![index].title!,
-                          image: PostsCubit.get(context).getPostModel!.data![index].image! ,
+                          image: PostsCubit.get(context).getPostModel!.data![index].image!,
                           namePerson: PostsCubit.get(context).getPostModel!.data![index].user!.name!,
+                          id: PostsCubit.get(context).getPostModel!.data![index].id!,
                           // imagePerson:PostsCubit.get(context).getPostModel!.data![index].user!.avatar! ,
                         );
                       },
