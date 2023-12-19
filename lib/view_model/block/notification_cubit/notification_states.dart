@@ -6,8 +6,8 @@ abstract class GetNotificationStates{}
 class GetNotificationInitialState extends GetNotificationStates{}
 class GetNotificationLoadingState extends GetNotificationStates{}
 class GetNotificationSuccessState extends GetNotificationStates{
- notfication loginModel;
-GetNotificationSuccessState(this.loginModel);
+ NotificationModel notificationModel;
+GetNotificationSuccessState(this.notificationModel);
 }
 class GetNotificationErrorState extends GetNotificationStates{
  final String err;

@@ -26,14 +26,15 @@ class NotificationList extends StatelessWidget {
            physics: const NeverScrollableScrollPhysics(),
            itemBuilder: (context, index) {
              return  NotificationItem(
-               message: GetNotificationCubit.get(context).notificationModel!.data!.message!,
-               date: ''
+               message: GetNotificationCubit.get(context).notificationModel!.data![index].data!.message!,
+               date:  GetNotificationCubit.get(context).notificationModel!.data![index].createdAt!,
+               id: GetNotificationCubit.get(context).notificationModel!.data![index].notifiableId!,
              );
            },
            separatorBuilder: (context, index) {
              return const SizedBox(height: 0);
            },
-           itemCount: 1,
+           itemCount: GetNotificationCubit.get(context).notificationModel!.data!.length,
        ):
            state is GetNotificationErrorState?
             Text(state.err):const PostingShimmer(isText: false,);

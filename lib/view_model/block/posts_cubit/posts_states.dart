@@ -62,3 +62,4 @@ class ShowPostsErrorState extends PostsStates{
  ShowPostsErrorState(this.err);
 
 }
+class ChangeMode extends PostsStates{}

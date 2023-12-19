@@ -8,18 +8,18 @@ import '../../../model/login_model/login_model.dart';
 import '../../../utility/database/network/end_points.dart';
 
 abstract class GetNotificationRepo{
-  Future<Either<Failure,notfication>> getNotification();
+  Future<Either<Failure,NotificationModel>> getNotification();
 }
 
 class GetNotificationRepoImpl implements GetNotificationRepo {
 
 
   @override
-  Future<Either<Failure,notfication>> getNotification() async {
+  Future<Either<Failure,NotificationModel>> getNotification() async {
   try {
     Response response =
     await DioHelper.getData(url: EndPoint.notificationEndPoint);
-    return Right(notfication.fromJson(response.data));
+    return Right(NotificationModel.fromJson(response.data));
   }
   on DioException catch (e) {
     return Left(ServerFailure.fromDioError(e));

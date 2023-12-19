@@ -18,8 +18,9 @@ class ApplayWidget extends StatelessWidget {
   final String title;
   final String description;
   final int id;
+  final int isApplied;
 
-  const ApplayWidget({super.key, required this.title, required this.description, required this.id});
+  const ApplayWidget({super.key, required this.title, required this.description, required this.id, required this.isApplied});
 
 
   @override
@@ -45,9 +46,11 @@ class ApplayWidget extends StatelessWidget {
             {
             EasyLoading.dismiss();
             showFlutterToast(message: state.applyPostModel.message, state: ToastState.SUCCESS);
-            PostsCubit.get(context).changeColor(message: state.applyPostModel.message);
-            PostsCubit.get(context).changeText(message: state.applyPostModel.message);
-            PostsCubit.get(context).showPost(id: id);
+            PostsCubit.get(context).changeMode();
+            //
+            // PostsCubit.get(context).changeColor(message: state.applyPostModel.message);
+            // PostsCubit.get(context).changeText(message: state.applyPostModel.message);
+            // PostsCubit.get(context).showPost(id: id);
 
             }
             if(state is ApplyPostsErrorState)
@@ -62,16 +65,17 @@ class ApplayWidget extends StatelessWidget {
               child: InkWell(
                 onTap: (){
                   PostsCubit.get(context).applyPost(id: id);
+                  PostsCubit.get(context).showPost(id: id);
                 },
                 child: Container(
                   height: 50.h,
                   width: 150.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(40),
-                      color:PostsCubit.get(context).color??ColorManager.colorPrimary),
+                      color:PostsCubit.get(context).isApply![id]!?ColorManager.colorPrimary:Colors.red),
                   child: Center(
                     child: Text(
-                      PostsCubit.get(context). text??TextManager.Applynow,
+                      PostsCubit.get(context).isApply![id]!?TextManager.Applynow:TextManager.cancel,
                       style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w600,color: Colors.white),
                     ),
                   ),

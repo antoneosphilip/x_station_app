@@ -5,16 +5,16 @@ class ApplyScreen extends StatelessWidget {
   final String title;
   final String description;
   final int id;
+  final int isApplied;
 
-
-  const ApplyScreen({super.key, required this.title, required this.description, required this.id});
+  const ApplyScreen({super.key, required this.title, required this.description, required this.id, required this.isApplied});
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
         body: SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
-      child: ApplayWidget(title: title,description: description, id: id,),
+      child: ApplayWidget(title: title,description: description, id: id,isApplied:isApplied),
     ));
   }
 }

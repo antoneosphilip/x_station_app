@@ -84,7 +84,7 @@ class PostsCubit extends Cubit<PostsStates>
 
 
   /////////////////////////get post//////////////////////////////
-
+Map<int,bool> isApply={};
   Future<void> getPosts()async{
     emit(GetPostsLoadingState());
     var data=await postsRepo.getPost();
@@ -96,6 +96,15 @@ class PostsCubit extends Cubit<PostsStates>
           (r) {
             emit(GetPostsSuccessState(r));
             getPostModel=r;
+            getPostModel!.data!.forEach((element) {
+              isApply?.addAll({
+                element.id!:element.isApplied==0?true:false,
+              });
+
+            });
+            print("modelll");
+            print(isApply);
+
 
           },
     );
@@ -105,13 +114,16 @@ class PostsCubit extends Cubit<PostsStates>
   /////////////////////////apply post//////////////////////////////
 
   Future<void> applyPost({required id})async{
+    isApply![id]=!isApply![id]!;
     emit(ApplyPostsLoadingState());
     var data=await postsRepo.applyPost(id: id);
     data.fold(
           (l) {
         emit(
             ApplyPostsErrorState(l.message));
-      },
+        isApply![id]=!isApply![id]!;
+
+          },
           (r) {
         emit(ApplyPostsSuccessState(r));
         applyPostModel=r;
@@ -161,5 +173,17 @@ void changeColor({required message}){
       },
     );
   }
+  Map<String,bool>? x;
+  void changeMode({String? message}){
+    if(message=='Applied Successfully'){
+      x={'Applied Successfully':true};
+    }
+    else{
+      x={'Canceled Successfully':false};
 
+    }
+    print("sssssssssssssssss");
+    print(x);
+    emit(ChangeMode());
+  }
 }

@@ -16,15 +16,17 @@ class HomePostsTechnician extends StatelessWidget {
   final String? image;
   final String namePerson;
   final int id;
+  final int isApplied;
+
   HomePostsTechnician({
 
-    required this.title, required this.description, required this.image, required this.namePerson, required this.id});
+    required this.title, required this.description, required this.image, required this.namePerson, required this.id, required this.isApplied});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.to( ApplyScreen(description: description,title: title,id: id,),
+        Get.to( ApplyScreen(description: description,title: title,id: id,isApplied:isApplied),
           duration: const Duration(
           milliseconds: 250,
         ),

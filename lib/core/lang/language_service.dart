@@ -27,7 +27,7 @@ class LanguageService {
         return const Locale('ar');
       }
     } else {
-      return const Locale('ar');
+      return const Locale('en');
     }
   }
 }

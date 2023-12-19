@@ -1,6 +1,5 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -56,10 +55,11 @@ void main() async{
   Bloc.observer = MyBlocObserver();
 
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) =>  const MyApp(), // Wrap your app
-    ),
+      const MyApp()
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (context) =>  , // Wrap your app
+    // ),
   );
 }
 void configLoading() {

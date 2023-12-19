@@ -15,7 +15,7 @@ class GetNotificationCubit extends Cubit<GetNotificationStates>
 {
   GetNotificationCubit(this.getNotificationRepo):super(GetNotificationInitialState());
   GetNotificationRepo getNotificationRepo;
-  notfication? notificationModel;
+  NotificationModel? notificationModel;
   static GetNotificationCubit get(context)=>BlocProvider.of<GetNotificationCubit>(context);
 
 
