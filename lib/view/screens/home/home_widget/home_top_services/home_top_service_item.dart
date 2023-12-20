@@ -60,7 +60,7 @@ class HomeTopServiceItem extends StatelessWidget {
               ),
               SizedBox(height: 16.h,),
              Padding(
-               padding:  EdgeInsets.only(left: 16.w,),
+               padding:  EdgeInsets.only(left: 16.w,right: 16.w),
                child: Text(title,style:TextStyleManager.textStyle16w500 ,),
              ),
              SizedBox(height: 8.h,),

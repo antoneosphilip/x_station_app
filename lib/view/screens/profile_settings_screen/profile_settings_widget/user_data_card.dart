@@ -50,7 +50,7 @@ class UserDataCard extends StatelessWidget {
               //label: 'errrrrrr',
               validate: (String? value) {
                 if (value!.isEmpty) {
-                  return 'Filed Required';
+                  return 'Filed Required'.tr;
                 }
                 return null;
               },
@@ -74,7 +74,7 @@ class UserDataCard extends StatelessWidget {
                 enable: true,
                 validate: (String? value) {
                   if (value!.isEmpty) {
-                    return 'Filed Required';
+                    return 'Filed Required'.tr;
                   }
                   return null;
                 },

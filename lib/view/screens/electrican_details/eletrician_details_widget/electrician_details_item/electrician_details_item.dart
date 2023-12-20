@@ -68,7 +68,7 @@ class ElectricianDetailsItem extends StatelessWidget {
                         height: 96,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(32),
-                          image: DecorationImage(image: NetworkImage('https://i.stack.imgur.com/l60Hf.png'),fit: BoxFit.cover)
+                          image: const DecorationImage(image: NetworkImage('https://i.stack.imgur.com/l60Hf.png'),fit: BoxFit.cover)
                         ),
 
                     )

@@ -39,9 +39,9 @@ class ForgetPasswordWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
            SizedBox(height: 94.h,),
-            Text(TextManager.forgetPassword2,style: TextStyleManager.textStyle24w500),
+            Text(TextManager.forgetPassword2.tr,style: TextStyleManager.textStyle24w500),
             SizedBox(height: 170.h,),
-            Center(child: Text(TextManager.dontWory,style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorPrimary))),
+            Center(child: Text(TextManager.dontWory.tr,style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorPrimary))),
             SizedBox(height: 32.h,),
             TextFormFieldCustom(
               controller: ForgetPasswordCubit.get(context).emailController,
@@ -55,7 +55,7 @@ class ForgetPasswordWidget extends StatelessWidget {
                 }
                 return null;
               },
-              label: TextManager.enterYourEmail,
+              label: TextManager.enterYourEmail.tr,
               suffix: true,
               suffixIcon: SvgPicture.asset(AssetsImage.email),
             ),

@@ -75,7 +75,7 @@ class ApplayWidget extends StatelessWidget {
                       color:PostsCubit.get(context).isApply![id]!?ColorManager.colorPrimary:Colors.red),
                   child: Center(
                     child: Text(
-                      PostsCubit.get(context).isApply![id]!?TextManager.Applynow:TextManager.cancel,
+                      PostsCubit.get(context).isApply![id]!?TextManager.Applynow.tr:TextManager.cancel.tr,
                       style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w600,color: Colors.white),
                     ),
                   ),

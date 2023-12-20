@@ -104,8 +104,8 @@ class ProfileSettingsScreen extends StatelessWidget {
           }
         },
         builder: (contex,state){
-          return state is UpdateProfileLoadingState?const CustomCircleLoading():CustomBottomSheetButton(
-            text: "Save Change",
+          return state is UpdateProfileLoadingState||state is ProfileLoadingState?const CustomCircleLoading():CustomBottomSheetButton(
+            text: "Save Change".tr,
             onPressed: () async {
               ProfileCubit.get(context).updateProfileData();
             },

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
@@ -17,7 +18,7 @@ class NotificationAppBar extends StatelessWidget {
           color: ColorManager.colorPrimary,
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(40))),
       child: Text(
-        TextManager.notification,
+        TextManager.notification.tr,
         style: TextStyleManager.textStyle36w700.copyWith(color: Colors.white),
       ),
     );

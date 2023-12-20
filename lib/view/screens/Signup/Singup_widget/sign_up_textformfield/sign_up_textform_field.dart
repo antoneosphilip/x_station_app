@@ -92,7 +92,7 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
                   }
                   return null;
                 },
-                label: TextManager.fullName,
+                label: TextManager.fullName.tr,
                 suffix: true,
                 suffixIcon: SvgPicture.asset(AssetsImage.user),
                 controller: SignUpCubit.get(context).nameController,
@@ -111,7 +111,7 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
                   }
                   return null;
                 },
-                label: TextManager.validemail,
+                label: TextManager.validemail.tr,
                 suffix: true,
                 suffixIcon: SvgPicture.asset(AssetsImage.email),
                 controller: SignUpCubit.get(context).emailController,
@@ -129,7 +129,7 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
 
                   return null;
                 },
-                label: TextManager.address,
+                label: TextManager.address.tr,
                 suffix: true,
                 suffixIcon: const Icon(Icons.location_on,color: ColorManager.colorPrimary,size: 30,),
                 suffixOnPressed: (){
@@ -158,7 +158,7 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
                   }
                   return null;
                 },
-                label: TextManager.phonenumber,
+                label: TextManager.phonenumber.tr,
                 suffix: true,
                 suffixIcon: SvgPicture.asset(AssetsImage.phonenumber),
                 controller: SignUpCubit.get(context).phoneController,
@@ -171,15 +171,15 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
                 keyboardType: TextInputType.text,
                 validate: (value) {
                   if (value == null || value.isEmpty) {
-                    return TextManager.pleaseEnterPassword;
+                    return TextManager.pleaseEnterPassword.tr;
                   }
                   else if (value.length<8){
-                    return "password must be at least 8 characters";
+                    return "password must be at least 8 characters".tr;
                   }
 
                   return null;
                 },
-                label: TextManager.password,
+                label: TextManager.password.tr,
                 suffix: true,
                 suffixIcon: SignUpCubit.get(context).visibilityRePassword?const Icon(Icons.visibility,color: ColorManager.colorPrimary,):Icon(Icons.visibility_off,color: ColorManager.colorPrimary,),
                 suffixOnPressed:(){
@@ -195,14 +195,14 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
                 keyboardType: TextInputType.text,
                 validate: (value) {
                   if (value == null || value.isEmpty) {
-                    return TextManager.pleaseEnterRePassword;
+                    return TextManager.pleaseEnterRePassword.tr;
                   }
                   else if (value.length<8){
-                    return "password must be at least 8 characters";
+                    return "password must be at least 8 characters".tr;
                   }
                   return null;
                 },
-                label: TextManager.rePassword,
+                label: TextManager.rePassword.tr,
                 suffix: true,
                 suffixIcon: SignUpCubit.get(context).visibility?const Icon(Icons.visibility,color: ColorManager.colorPrimary,):Icon(Icons.visibility_off,color: ColorManager.colorPrimary,),
                 suffixOnPressed:(){
@@ -253,7 +253,7 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    TextManager.alreadymember,
+                    TextManager.alreadymember.tr,
                     style: TextStyleManager.textStyle12w400
                         .copyWith(fontWeight: FontWeight.w500),
                   ),
@@ -265,7 +265,7 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
                       Get.toNamed(PageName.login);
                     },
                     child: Text(
-                      TextManager.login,
+                      TextManager.login.tr,
                       style: TextStyleManager.textStyle12w400.copyWith(
                           fontWeight: FontWeight.w700,
                           color: ColorManager.colorPrimary),

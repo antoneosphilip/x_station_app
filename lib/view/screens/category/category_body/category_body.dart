@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
@@ -22,7 +23,7 @@ class CategoryBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AppBarWidget(text: TextManager.category,isArrow: false,),
+         AppBarWidget(text: TextManager.category.tr,isArrow: false,),
         SizedBox(height: 38.h,),
         Expanded(
           child: BlocConsumer<CategoryCubit,CategoryStates>(

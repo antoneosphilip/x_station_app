@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
@@ -31,14 +32,14 @@ class SignupWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 25),
+                padding:  const EdgeInsets.only(bottom: 25),
                 child: Text(
-                  TextManager.getstarted,
+                  TextManager.getstarted.tr,
                   style: TextStyleManager.textStyle36w500,
                 ),
               ),
               Text(
-                TextManager.creataccount,
+                TextManager.creataccount.tr,
                 style: TextStyleManager.textStyle14w300,
               ),
             ],

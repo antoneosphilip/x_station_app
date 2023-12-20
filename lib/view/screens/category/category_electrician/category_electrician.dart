@@ -23,7 +23,7 @@ class CustomCategoryItem extends StatelessWidget {
 
     return InkWell(
       onTap: (){
-        Get.to( ElectricianDetailsScreen(id: id,),duration: const Duration(
+        Get.to( ElectricianDetailsScreen(id: id,name:name),duration: const Duration(
           milliseconds: 250,
         ),
           transition: Transition.downToUp,

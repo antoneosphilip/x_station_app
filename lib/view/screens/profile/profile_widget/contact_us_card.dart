@@ -74,7 +74,7 @@ class _ContactUsCardState extends State<ContactUsCard> {
                         },
                         image: AssetsImage.phone),
                     BuildItemCard(
-                        text: "web site",
+                        text: "web site".tr,
                         onTap: () async {
                           // var url = ProfileCubit.get(context)
                           //     .contactUsModel!

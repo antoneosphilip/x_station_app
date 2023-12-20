@@ -26,7 +26,6 @@ class AppliedItem extends StatelessWidget {
           email: emailPerson,
           price: '30 \$',
           rate: 4,
-
         ));
       },
       child: Padding(

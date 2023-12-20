@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
 
 import '../../../../../core/assets_manager/assets_manager.dart';
@@ -26,8 +27,8 @@ class HomeTopServiceList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding:  EdgeInsets.only(left: 16.w),
-                    child: Text(TextManager.post,style: TextStyleManager.textStyle36w700.copyWith(fontSize: 25.sp,fontWeight: FontWeight.w500),),
+                    padding:  EdgeInsets.only(left: 16.w,right: 16.w),
+                    child: Text(TextManager.post.tr,style: TextStyleManager.textStyle36w700.copyWith(fontSize: 25.sp,fontWeight: FontWeight.w500),),
                   ),
 
                   ListView.separated(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/core_widget/tab_bar_widget/tab_bar_widget.dart';
 import 'package:x_station_app/view/screens/electrican_details/eletrician_details_widget/electrician_Details_list/electrician_details_list.dart';
@@ -16,7 +17,7 @@ class FavoriteListWidget extends StatelessWidget {
     return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AppBarWidget(text: TextManager.faveoriteList,isArrow: true,),
+         AppBarWidget(text: TextManager.faveoriteList.tr,isArrow: true,),
         SizedBox(height: 43.h,),
         const FavoriteListView(),
       ],

@@ -15,7 +15,7 @@ final String text;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 48, left: 14),
+      padding:  EdgeInsets.only(top: 48.h, left: 14.w,right: 14.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

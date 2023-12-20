@@ -40,19 +40,22 @@ class AppBarWidget extends StatelessWidget {
             bottomRight: Radius.circular(16.w)),
       ),
       child: Row(
-
         children: [
-          isArrow==true?
-          Padding(
-            padding:  EdgeInsets.only(left: 34.w),
-            child: SvgPicture.asset(AssetsImage.arrowLeft,color: ColorManager.colorWhite,),
-          ):const SizedBox(),
           const Spacer(),
-          Text(
-            text!,
-            style: TextStyleManager.textStyle24w500.copyWith(fontSize: 22.sp,color: ColorManager.colorWhite),
+          Center(
+            child: Text(
+              text!.tr,
+              style: TextStyleManager.textStyle24w500.copyWith(fontSize: 22.sp,color: ColorManager.colorWhite),
+            ),
           ),
-          Spacer(),
+          const Spacer(),
+          isArrow==true?
+          InkWell(
+              onTap: (){
+                Get.back();
+              },
+              child: SvgPicture.asset(AssetsImage.arrowLeft,color: ColorManager.colorWhite,)):const SizedBox(),
+          SizedBox(width: 20.w,)
 
         ],
       ),

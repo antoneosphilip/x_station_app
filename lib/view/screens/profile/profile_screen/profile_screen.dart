@@ -26,12 +26,16 @@ import '../profile_widget/log_out_dialog.dart';
 import '../profile_widget/profile_shimmer.dart';
 import '../profile_widget/user_data_widget.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
   Widget build(BuildContext context) {
-    ProfileCubit.get(context).getProfileData();
     return Scaffold(
       body: SingleChildScrollView(
         physics:  const BouncingScrollPhysics(),
@@ -95,7 +99,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               SizedBox(width: 16.w,),
-                              Expanded(child: Text(TextManager.faveoriteList,style: TextStyleManager.textStyle14w500.copyWith(fontSize: 18.sp),)),
+                              Expanded(child: Text(TextManager.faveoriteList.tr,style: TextStyleManager.textStyle14w500.copyWith(fontSize: 18.sp),)),
                               SizedBox(width: 34.w,),
                               Expanded(child: SvgPicture.asset(AssetsImage.faveoriteList)),
                               SizedBox(width: 16.w,)
@@ -107,75 +111,88 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(height: 32.h,),
                     BuildItemCard(
                         isProfile: true,
-                        text:"profile",
+                        text:"profile".tr,
                         onTap: () {
                           Get.to(ProfileSettingsScreen());
                         },
                         image: AssetsImage.profile2),
                     BuildItemCard(
-                        text:"Terms and conditns",
+                        text:"Terms and conditns".tr,
                         onTap: () {
                         },
                         image: AssetsImage.terms),
                     BuildItemCard(
-                        text:"FAQ'S",
+                        text:"FAQ'S".tr,
                         onTap: () {
                         },
                         image: AssetsImage.faqs),
-                    // Container(
-                    //   width: 300.w,
-                    //   height: 50.h,
-                    //   decoration: BoxDecoration(
-                    //       border:
-                    //       Border.all(color: ColorManager.colorBlack),
-                    //       borderRadius: BorderRadius.circular(8.r)),
-                    //   child: DropdownButtonHideUnderline(
-                    //     child: DropdownButton2<String>(
-                    //       isExpanded: true,
-                    //       hint: const Text(
-                    //         'Select Item',
-                    //         style: TextStyle(
-                    //           fontSize: 14,
-                    //           color: ColorManager.colorBlack,
-                    //         ),
-                    //       ),
-                    //       items: ProfileCubit.get(context)
-                    //           .list
-                    //           .map(
-                    //               (String item) => DropdownMenuItem<String>(
-                    //             value: item,
-                    //             child: Text(item,
-                    //                 style: TextStyleManager
-                    //                     .textStyle24w300
-                    //                     .copyWith(
-                    //                 )),
-                    //           ))
-                    //           .toList(),
-                    //       value: ProfileCubit.get(context).selectedItem,
-                    //       onChanged: (String? value) {
-                    //         ProfileCubit.get(context).changeLanguage(value);
-                    //       },
-                    //       buttonStyleData: const ButtonStyleData(
-                    //         padding: EdgeInsets.symmetric(
-                    //             horizontal: 30, vertical: 10),
-                    //         height: 40,
-                    //         width: 140,
-                    //       ),
-                    //       menuItemStyleData: const MenuItemStyleData(
-                    //         height: 50,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-
                   ],
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.h),
                   child: const ContactUsCard(),
                 ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                  child: Container(
+                    width: 358.w,
+                    height: ScreenUtil().setHeight(48),
+                    decoration: BoxDecoration(
+                      color: ColorManager.colorWhite,
+                      borderRadius: BorderRadius.circular(8.sp),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.2), // #000000 with 20% opacity
+                          blurRadius: 8,
+                          spreadRadius: 0,
+                        ),
+                      ],
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton2<String>(
+                        isExpanded: true,
+                        hint:  Text(
+                          'Select Item'.tr,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: ColorManager.colorBlack,
+                          ),
+                        ),
+                        items: ProfileCubit.get(context)
+                            .list
+                            .map(
+                                (String item) => DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(item,
+                                  style: TextStyleManager
+                                      .textStyle16w500,
+                              ),
+                            ))
+                            .toList(),
+                        value: ProfileCubit.get(context).selectedItem,
+                        onChanged: (String? value) {
+                          ProfileCubit.get(context).changeLanguage(value);
+                          setState(() {
+                            String x=value!;
+                          ProfileCubit.get(context).selectedItem=value!;
+                          print(ProfileCubit.get(context).selectedItem);
+                        });
+                        },
+                        buttonStyleData: const ButtonStyleData(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          height: 48,
+                          width: 140,
+                        ),
+                        menuItemStyleData: const MenuItemStyleData(
+                          height: 50,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 BuildItemCard(
-                    text: "log out",
+                    text: "log out".tr,
                     onTap: () {
                       ProfileCubit.get(context).logOut();
 

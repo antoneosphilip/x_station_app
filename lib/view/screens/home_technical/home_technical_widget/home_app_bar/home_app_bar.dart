@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:x_station_app/view/screens/notification/notification_screen/notification_screen.dart';
@@ -20,7 +21,7 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding:  EdgeInsets.only(left: 16.w),
+      padding:  EdgeInsets.only(left: 16.w,right: 16.w),
       child: Column(
         children: [
           Row(
@@ -30,7 +31,7 @@ class HomeAppBar extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Hi,${CachingDataManager.instance.getLoginModel().data!.name}",style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700,fontSize: 20),),
+                    Text("Hi,${CachingDataManager.instance.getLoginModel().data!.name}".tr,style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700,fontSize: 20),),
                     SizedBox(height: 28.h,),
                   ],
                 ),
@@ -54,6 +55,7 @@ class HomeAppBar extends StatelessWidget {
             children: [
               Expanded(
                 child: TextFormFieldCustom(
+                  hint: TextManager.findItHere.tr,
                   validate: (value){},
                   suffix: true,
                   suffixIcon: SvgPicture.asset(AssetsImage.search),

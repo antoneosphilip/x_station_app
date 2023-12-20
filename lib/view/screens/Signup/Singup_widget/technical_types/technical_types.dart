@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
@@ -53,11 +54,11 @@ class _TechnicalTypesState extends State<TechnicalTypes> {
                   keyboardType: TextInputType.text,
                   validate: (value) {
                     if (value == null || value.isEmpty) {
-                      return TextManager.nationalId;
+                      return TextManager.nationalId.tr;
                     }
                     return null;
                   },
-                  label: TextManager.nationalId,
+                  label: TextManager.nationalId.tr,
                   suffix: true,
                   suffixIcon: SvgPicture.asset(AssetsImage.user),
                   controller: SignUpCubit.get(context).nationalId,
@@ -78,7 +79,7 @@ class _TechnicalTypesState extends State<TechnicalTypes> {
                     child: DropdownButton2<String>(
                       isExpanded: true,
                       hint:  Text(
-                          TextManager.technicalType,
+                          TextManager.technicalType.tr,
                           style: TextStyleManager.textStyle14w300
                       ),
                       items: CategoryCubit.get(context).categorySelectMenuModel?.data!
@@ -120,7 +121,7 @@ class _TechnicalTypesState extends State<TechnicalTypes> {
                 ):
                       state is CategorySelectMenuErrorState?
         Center(child: Text(state.err)):
-        SizedBox(),
+        const SizedBox(),
                 SizedBox(height: 19.h,),
                 Container(
                   width: double.infinity,
@@ -134,7 +135,7 @@ class _TechnicalTypesState extends State<TechnicalTypes> {
                     child: DropdownButton2<String>(
                       isExpanded: true,
                       hint:  Text(
-                          TextManager.experienceYears,
+                          TextManager.experienceYears.tr,
                           style: TextStyleManager.textStyle14w300
                       ),
                       items: SignUpCubit.get(context).years

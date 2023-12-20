@@ -36,21 +36,21 @@ class ResetPasswordWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
            SizedBox(height: 94.h,),
-            Text(TextManager.resetPassword,style: TextStyleManager.textStyle24w500),
+            Text(TextManager.resetPassword.tr,style: TextStyleManager.textStyle24w500),
             SizedBox(height: 170.h,),
             TextFormFieldCustom(
               controller: ForgetPasswordCubit.get(context).passwordController,
               keyboardType: TextInputType.text,
               validate: (value) {
                 if (value == null || value.isEmpty) {
-                  return TextManager.pleaseEnterPassword;
+                  return TextManager.pleaseEnterPassword.tr;
                 }
                 // else if (!Regexp.isValidPassword(value)) {
                 //   return TextManager.invalidPass;
                 // }
                 return null;
               },
-              label: TextManager.password,
+              label: TextManager.password.tr,
               suffix: true,
               suffixIcon: SvgPicture.asset(AssetsImage.lock),
             ),
@@ -65,14 +65,14 @@ class ResetPasswordWidget extends StatelessWidget {
               keyboardType: TextInputType.text,
               validate: (value) {
                 if (value == null || value.isEmpty) {
-                  return TextManager.pleaseEnterRePassword;
+                  return TextManager.pleaseEnterRePassword.tr;
                 }
                 else if (value.length<6) {
-                  return TextManager.invalidRePass;
+                  return TextManager.invalidRePass.tr;
                 }
                 return null;
               },
-              label: TextManager.rePassword,
+              label: TextManager.rePassword.tr,
               suffix: true,
               suffixIcon: SvgPicture.asset(AssetsImage.lock),
             ),
@@ -85,7 +85,7 @@ class ResetPasswordWidget extends StatelessWidget {
                  }
                  if(state is ResetPasswordErrorState){
                    if(state.err=="Your Request Not Found Try Again Later"){
-                     showFlutterToast(message: "Expired Or Invalid Code", state: ToastState.ERROR);
+                     showFlutterToast(message: "Expired Or Invalid Code".tr, state: ToastState.ERROR);
                    }
                    else{
                      showFlutterToast(message: state.err, state: ToastState.ERROR);

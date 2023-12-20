@@ -66,9 +66,9 @@ class ChangePasswordCard extends StatelessWidget {
                     controller: ProfileCubit.get(context).oldPasswordController,
                     validate: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter a password';
+                        return TextManager.pleaseEnterPassword;
                       } else if (value.length < 6) {
-                        return 'Password must be at least 6 characters long';
+                        return 'Password must be at least 6 characters long'.tr;
                       }
                       //  else if (!Regexp.isValidPassword(value)) {
                       //   return 'Password must contain at least one lowercase letter, one uppercase, and one special character (@, #, ., \$, &, *)';
@@ -88,9 +88,9 @@ class ChangePasswordCard extends StatelessWidget {
                       controller: ProfileCubit.get(context).newPasswordController,
                       validate: (String? value) {
                         if (value == null || value.isEmpty) {
-                          return "Confirm password can't be empty";
+                          return "Confirm password can't be empty".tr;
                         } else if (value.length < 6) {
-                          return 'Password must be at least 6 characters long';
+                          return 'Password must be at least 6 characters long'.tr;
                         }
                         // else if (!Regexp.isValidPassword(value)) {
                         //   return 'Password must contain at least one lowercase letter, one uppercase, and one special character (@, #, ., \$, &, *)';
@@ -113,10 +113,10 @@ class ChangePasswordCard extends StatelessWidget {
                       controller: ProfileCubit.get(context).confirmPasswordController,
                       validate: (String? value) {
                         if (value == null || value.isEmpty) {
-                          return "Confirm password can't be empty";
+                          return "Confirm password can't be empty".tr;
                         }
                         else if (value != ProfileCubit.get(context).newPasswordController.text) {
-                          return 'Password not match';
+                          return 'Password not match'.tr;
                         }
                         return null;
                       },

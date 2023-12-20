@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
@@ -29,7 +30,7 @@ class XStationButtonCustom extends StatelessWidget {
       widget: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-           Text(textButton!,style: const TextStyle(color: Colors.white),),
+           Text(textButton.tr!,style: const TextStyle(color: Colors.white),),
           SizedBox(width: 11.w,),
         ],
       ),

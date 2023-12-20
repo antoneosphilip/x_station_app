@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:x_station_app/view_model/block/search_cubit/search_cubit.dart';
 import 'package:x_station_app/view_model/block/search_cubit/search_states.dart';
 
@@ -33,7 +34,7 @@ class HomeSearchWidget extends StatelessWidget {
             TextFormFieldCustom(
               fillColor: Colors.white,
               boarderColor: ColorManager.colorPrimary,
-              hint: TextManager.findItHere,
+              hint: TextManager.findItHere.tr,
               validate: (value){},
               suffix: true,
               suffixIcon: SvgPicture.asset(AssetsImage.search),
@@ -43,7 +44,6 @@ class HomeSearchWidget extends StatelessWidget {
               },
               onEditingComplete: (){
                 SearchCubit.get(context).getSearch();
-
               },
               onSaved: (vlaue){
                 SearchCubit.get(context).getSearch();

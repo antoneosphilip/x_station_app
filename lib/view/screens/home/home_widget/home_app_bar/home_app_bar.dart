@@ -25,7 +25,7 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding:  EdgeInsets.only(left: 16.w),
+      padding:  EdgeInsets.only(left: 16.w,right: 16.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -37,8 +37,16 @@ class HomeAppBar extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Hi,${CachingDataManager.instance.getLoginModel().data!.name}",style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700),),
-                    Text(TextManager.needSomeHelp,style: TextStyleManager.textStyle14w500,),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Hi, ".tr,style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700),),
+                        Text('${CachingDataManager.instance.getLoginModel().data!.name}',style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700),)
+                      ],
+                    ),
+
+                    Text(TextManager.needSomeHelp.tr,style: TextStyleManager.textStyle14w500,),
                     SizedBox(height: 28.h,),
                   ],
                 ),
@@ -47,7 +55,6 @@ class HomeAppBar extends StatelessWidget {
               InkWell(
                 onTap: (){
                   Get.toNamed(PageName.postScreen);
-
                 },
                 child: Container(
                   width: 30,
@@ -74,14 +81,14 @@ class HomeAppBar extends StatelessWidget {
               Get.to(const HomeSearchScreen());
             },
             child: Padding(
-              padding:  EdgeInsets.only(left: 5.w,right: 17.w),
+              padding:  EdgeInsets.only(left: 5.w,right: 5.w),
               child: Row(
                 children: [
                   Expanded(
                     child: TextFormFieldCustom(
                       fillColor: Colors.white,
                       boarderColor: ColorManager.colorPrimary,
-                      hint: TextManager.findItHere,
+                      hint: TextManager.findItHere.tr,
                       validate: (value){},
                       suffix: true,
                       suffixIcon: InkWell(

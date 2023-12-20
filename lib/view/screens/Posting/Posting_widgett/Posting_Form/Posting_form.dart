@@ -53,27 +53,24 @@ class _PostingFormState extends State<PostingForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                TextManager.typeTitle,
+                TextManager.typeTitle.tr,
                 style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w400),
               ),
               SizedBox(height: 15.h,),
               TextFormFieldCustom(validate: (value){},
-                hint: TextManager.writeTitle,
+                hint: TextManager.writeTitle.tr,
                 controller: PostsCubit.get(context).titleController,
-
               ),
               SizedBox(height: 30.h,),
-
               Text(
-                TextManager.type,
+                TextManager.type.tr,
                 style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w400),
               ),
               SizedBox(height: 22.h,),
               TextFormFieldCustom(validate: (value){},
                 maxLines: 10,
-                hint: TextManager.writeSomeThing,
+                hint: TextManager.writeSomeThing.tr,
                 controller: PostsCubit.get(context).descriptionController,
-
               ),
             ],
           ),
@@ -84,8 +81,6 @@ class _PostingFormState extends State<PostingForm> {
           borderColor: ColorManager.colorXXWhite,
           onPressed: () async {
             PostsCubit.get(context).selectPhoto();
-
-
           }!,
           // onPressed: (){
           //        final A = MaterialPageRoute(builder: (context) =>(verification_screen()));
@@ -95,7 +90,7 @@ class _PostingFormState extends State<PostingForm> {
           widget: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(TextManager.Addattachment!,style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w700),),
+              Text(TextManager.Addattachment!.tr,style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w700),),
               SizedBox(width: 11.w,),
             ],
           ),

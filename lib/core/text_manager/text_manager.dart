@@ -31,27 +31,27 @@ class TextManager {
   static const String continuee = "Continue";
   static const String alreadymember = "Already a member?";
   static const String login = "Log In";
-  static const String almostThere = "Alwos there";
-  static const String pleaseEnter = "Please enter the6-digit code sent to your email ";
-  static const String email= "hemmyhtec@gmail.com ";
+  static const String almostThere = "Almost there";
+  static const String pleaseEnter = "Please enter the 6-digit code sent to your email";
+  static const String email= "hemmyhtec@gmail.com";
   static const String forVerification= " for verification";
 
   static const String didntReceive= "Didn't receive any code?";
   static const String resendAgain= "Resend Again";
-  static const String requestNew= "Request new code in ";
+  static const String requestNew= "Request new code in";
   static const String verify= "Verify";
   static const String checkingBox = "By checking the box you agree to our ";
   static const String terms = "Terms ";
   static const String and = "And ";
   static const String conditions = "Conditions. ";
   static const String client= "Client";
-  static const String technical= "Technical";
+  static const String technical= "Technician";
 
   static const String technicalType= "Technical type";
   static const String experienceYears= "Experience Years";
   static const String resetPassword= "Reset Password";
   static const String forgetPassword2= "Forget Password";
-  static const String dontWory= "Dont Worry! it's happening";
+  static const String dontWory= "Don't Worry! it's happening";
   static const String confirm = "Confirm";
   static const String services = "Services";
   static const String topServices = "Top Services";
@@ -64,7 +64,7 @@ class TextManager {
   static const String category = "Category";
 
   static const String electrician = "Electrician";
-  static const String notification = "Notification";
+  static const String notification = "Notifications";
   static const String message = "message";
   static const String userProfile = "User Profile";
   static const String faveoriteList = "Faveorite List";
@@ -84,14 +84,14 @@ class TextManager {
   static const String Twentyone = "21";
   static const String Hourlyrate = "Hourly rate:";
   static const String Rate = "15.00 \$";
-  static const String details = "details ";
+  static const String details = "details";
   static const String major = "Major:";
   static const String Electrician = "Electrician";
   static const String Address = "Address: ";
   static const String cairo = "Maadi - Cairo - Egypt ";
   static const String Contact = "Contact:";
   static const String phone = "+(20) 0123456789";
-  static const String contractme = "contract me";
+  static const String contractme = "Contact me";
   static const String uploadHere = "Upload here";
   static const String posting = "Posting";
   static const String type = "Type your problem here";

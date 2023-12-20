@@ -39,7 +39,7 @@ class _SinupFormState extends State<SinupForm> {
       children: [
         Expanded(
           child: RadioListTile(
-            title: const Text(TextManager.client),
+            title:  Text(TextManager.client.tr),
             contentPadding: EdgeInsets.zero,
             activeColor: ColorManager.colorPrimary,
             value: TextManager.client,
@@ -53,7 +53,7 @@ class _SinupFormState extends State<SinupForm> {
         ),
         Expanded(
           child: RadioListTile(
-            title: const Text(TextManager.technical),
+            title:  Text(TextManager.technical.tr),
             contentPadding: EdgeInsets.zero,
             activeColor: ColorManager.colorPrimary,
             value: TextManager.technical,

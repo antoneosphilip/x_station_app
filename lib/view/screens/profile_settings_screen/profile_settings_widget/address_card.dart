@@ -80,7 +80,7 @@ class _AddressCardState extends State<AddressCard> {
           SizedBox(
             height: ScreenUtil().setHeight(10),
           ),
-          Container(
+          SizedBox(
             height: 50.h,
             // decoration: BoxDecoration(
             //   color: Colors.white,

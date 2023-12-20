@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../core/color_manager/color_manager.dart';
 import '../../../../../../core/style_font_manager/style_manager.dart';
@@ -35,19 +36,19 @@ class _CheckBoxState extends State<CheckBoxSignup> {
             TextSpan(
                 children: <InlineSpan>[
                   TextSpan(
-                    text: TextManager.checkingBox,
+                    text: TextManager.checkingBox.tr,
                     style: TextStyleManager.textStyle10w400,
                   ),
                   TextSpan(
-                    text: TextManager.terms,
+                    text: TextManager.terms.tr,
                     style: TextStyleManager.textStyle10w400.copyWith(color: ColorManager.colorXPrimary),
                   ),
                   TextSpan(
-                    text: TextManager.and,
+                    text: TextManager.and.tr,
                     style: TextStyleManager.textStyle10w400,
                   ),
                   TextSpan(
-                    text: TextManager.conditions,
+                    text: TextManager.conditions.tr,
                     style: TextStyleManager.textStyle10w400.copyWith(color: ColorManager.colorXPrimary),
                   ),
                 ]

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
 
 import '../../../../core/color_manager/color_manager.dart';
@@ -52,11 +53,11 @@ class BuildItemCard extends StatelessWidget {
                   width: ScreenUtil().setWidth(10),
                 ),
                 Text(
-                  text,
+                  text.tr,
                   style: TextStyleManager.textStyle16w500,
 
                 ),
-                Spacer(),
+                const Spacer(),
                 isProfile? SvgPicture.asset(AssetsImage.arrowRight,color: ColorManager.colorXXGrey,):const SizedBox(),
               ],
             ),

@@ -28,8 +28,8 @@ class ProfileCubit extends Cubit<ProfileStates>
   var confirmPasswordController=TextEditingController();
 
   static ProfileCubit get(context)=>BlocProvider.of<ProfileCubit>(context);
-  final List<String> list = ['🇺🇸 English', '🇱🇧 العربية',];
-  final String selectedItem =
+  final List<String> list = ['🇺🇸 English', '🇪🇬 العربية',];
+   String selectedItem =
       CacheHelper.getDataString(key: 'Language') ?? '🇺🇸 English';
 
 
@@ -118,7 +118,7 @@ class ProfileCubit extends Cubit<ProfileStates>
   void changeLanguage(String? value) {
     Get.updateLocale(Locale(value == '🇺🇸 English'
         ? 'en'
-        : value == '🇱🇧 العربية'
+        : value == '🇪🇬 العربية'
         ? 'ar'
         : 'ar'));
     CacheHelper.put(key: 'Language', value: value);

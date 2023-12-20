@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
@@ -66,7 +67,7 @@ class _VerificationWidgetState extends State<VerificationWidget> {
 
         Padding(padding: EdgeInsets.only(top: 94.h  , left: 21.w , right: 180.w),
           child:
-          Text(TextManager.almostThere,style: TextStyleManager.textStyle24w500),
+          Text(TextManager.almostThere.tr,style: TextStyleManager.textStyle24w500),
         ),
         Padding(padding: EdgeInsets.only(top: 26.h  , left: 22.w , right: 14.w),
           child:
@@ -74,15 +75,15 @@ class _VerificationWidgetState extends State<VerificationWidget> {
               TextSpan(
                   children: <InlineSpan>[
                     TextSpan(
-                      text: TextManager.pleaseEnter,
+                      text: TextManager.pleaseEnter.tr,
                       style: TextStyleManager.textStyle14w300,
                     ),
                     TextSpan(
-                      text: ForgetPasswordCubit.get(context).emailController.text,
+                      text: ForgetPasswordCubit.get(context).emailController.text.tr,
                       style: TextStyleManager.textStyle14w700,
                     ),
                     TextSpan(
-                      text: TextManager.forVerification,
+                      text: TextManager.forVerification.tr,
                       style: TextStyleManager.textStyle14w300,
                     ),
 
@@ -101,20 +102,20 @@ class _VerificationWidgetState extends State<VerificationWidget> {
         Padding(padding: EdgeInsets.only(top: 62.h , left: 57.w , right: 33.w ),
           child:
           resendTime==0? Row(children: [
-            Text(TextManager.didntReceive, style: TextStyleManager.textStyle14w700),
+            Text(TextManager.didntReceive.tr, style: TextStyleManager.textStyle14w700),
             SizedBox(width:11.w),
             InkWell(
                 onTap: (){
                   startTimer();
                   ForgetPasswordCubit.get(context).forgetPassword();
                 },
-                child: Text(TextManager.resendAgain ,style: TextStyleManager.textStyle14w700.copyWith(color: ColorManager.colorPrimary)))
+                child: Text(TextManager.resendAgain.tr ,style: TextStyleManager.textStyle14w700.copyWith(color: ColorManager.colorPrimary)))
           ],):const SizedBox(),
         ),
 
         SizedBox(height: 4.h),
         resendTime!=0?
-        Text('${TextManager.requestNew+resendTime.toString()}s' , style: TextStyleManager.textStyle12w400):
+        Text('${TextManager.requestNew.tr+resendTime.toString()} s'.tr , style: TextStyleManager.textStyle12w400):
         const SizedBox(),
         Padding(
           padding: EdgeInsets.only(top: 257.h, left: 19.w  ,right: 290.w),

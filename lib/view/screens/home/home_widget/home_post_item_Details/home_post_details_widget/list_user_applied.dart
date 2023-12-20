@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
 
 import '../../../../../../core/style_font_manager/style_manager.dart';
@@ -29,8 +30,8 @@ class ListUserApplied extends StatelessWidget {
             children: [
               PostsCubit.get(context).showPostModel!.data!.allApplied!.length>0?
               Padding(
-                padding:  EdgeInsets.only(left: 16.w),
-                child: Text("Applyid",style: TextStyleManager.textStyle20w700,),
+                padding:  EdgeInsets.only(left: 16.w,right: 16.w),
+                child: Text("Applied".tr,style: TextStyleManager.textStyle20w700,),
               ):const SizedBox(),
               ListView.separated(
                 scrollDirection: Axis.vertical,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
@@ -34,9 +35,9 @@ class OnBoardingItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(text1,style: TextStyleManager.textStyle36w700,),
+              Text(text1.tr,style: TextStyleManager.textStyle36w700,),
               SizedBox(height: 5.h,),
-              Text(text2,style: TextStyleManager.textStyle24w300,),
+              Text(text2.tr,style: TextStyleManager.textStyle24w300,),
               SizedBox(height: 58.h,),
               Row(
                 children: [
@@ -50,7 +51,7 @@ class OnBoardingItem extends StatelessWidget {
                         separatorBuilder: (context,index)=>SizedBox(width: 2.w,),
                         itemCount: 3),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   FloatingActionButton(
                     onPressed: (){
                       pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInOutExpo);

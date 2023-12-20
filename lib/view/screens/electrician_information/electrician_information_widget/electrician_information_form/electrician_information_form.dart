@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
@@ -16,12 +17,12 @@ class ElectricianInformationForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 19),
+      padding:  EdgeInsets.only(left: 19.w,right: 19.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            TextManager.details,
+            TextManager.details.tr,
             style: TextStyleManager.textStyle36ow900.copyWith(fontSize: 30.sp),
           ),
           const Divider(
@@ -35,15 +36,17 @@ class ElectricianInformationForm extends StatelessWidget {
           Row(
             children: [
               Text(
-                TextManager.Email,
+                TextManager.Email.tr,
                 style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp),
               ),
               SizedBox(
                 height: 11.h,
               ),
-              Text(
-                email,
-                style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color: ColorManager.colorPrimary),
+              Expanded(
+                child: Text(
+                  email,
+                  style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color: ColorManager.colorPrimary),
+                ),
               ),
             ],
           ),
@@ -54,7 +57,7 @@ class ElectricianInformationForm extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                TextManager.Address,
+                TextManager.Address.tr,
                 style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp),
               ),
               SizedBox(
@@ -74,7 +77,7 @@ class ElectricianInformationForm extends StatelessWidget {
           Row(
             children: [
               Text(
-                TextManager.Contact,
+                TextManager.Contact.tr,
                 style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp),
               ),
               SizedBox(
@@ -111,7 +114,7 @@ class ElectricianInformationForm extends StatelessWidget {
                     color: const Color(0Xff63628C)),
                 child: Center(
                   child: Text(
-                    TextManager.contractme,
+                    TextManager.contractme.tr,
                     style: TextStyleManager.textStyle20600White.copyWith(fontSize: 19.sp),
                   ),
                 ),

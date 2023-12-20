@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
@@ -34,7 +35,7 @@ class _CheckBoxState extends State<CheckBoxWidget> {
             });
           },
         ),
-        Text(TextManager.rememberMe,
+        Text(TextManager.rememberMe.tr,
             style: TextStyleManager.textStyle12w400),
         const Spacer(),
        
@@ -43,7 +44,7 @@ class _CheckBoxState extends State<CheckBoxWidget> {
                   Get.toNamed(PageName.forgetPassword);
                 },
                 child:  Text(
-            TextManager.forgetPassword,
+            TextManager.forgetPassword.tr,
             style: TextStyleManager.textStyle12w400.copyWith(color:ColorManager.colorThird)
         ),
               ),
