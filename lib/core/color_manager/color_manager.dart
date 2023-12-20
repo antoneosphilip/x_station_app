@@ -18,6 +18,7 @@ class   ColorManager
 
   static const Color colorBlack = Color(0xff000000
   );
+
   static const Color colorThird = Color(0xff6C63FF);
 
   static const Color colorXWhite = Color(0xffD9D9D9);
@@ -29,6 +30,9 @@ class   ColorManager
   static const Color colorGrey4 = Color(0xffEDEDED);
 
   static const Color colorScaffold = Color(0xffF4F4F4);
+  static const Color colorLightDark = Color(0xff26282B);
+  static const Color colorDark = Color(0xff222222);
+
 
 
 }

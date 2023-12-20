@@ -115,6 +115,9 @@ class ProfileCubit extends Cubit<ProfileStates>
     );
   }
 
+
+  //////////////change lang////////////
+
   void changeLanguage(String? value) {
     Get.updateLocale(Locale(value == '🇺🇸 English'
         ? 'en'
@@ -123,5 +126,15 @@ class ProfileCubit extends Cubit<ProfileStates>
         : 'ar'));
     CacheHelper.put(key: 'Language', value: value);
     emit(ChangeLanguage());
+  }
+
+
+
+  bool isDark=false;
+  //////////////change mode////////////
+
+  void changeMode() {
+    isDark=!isDark;
+    emit(ChangeMode());
   }
 }

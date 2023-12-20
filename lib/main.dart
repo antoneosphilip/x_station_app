@@ -22,6 +22,7 @@ import 'package:x_station_app/view_model/block/login_cubit/login_cubit.dart';
 import 'package:x_station_app/view_model/block/notification_cubit/notification_cubit.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
+import 'package:x_station_app/view_model/block/profile_cubit/profile_states.dart';
 import 'package:x_station_app/view_model/block/search_cubit/search_cubit.dart';
 import 'package:x_station_app/view_model/block/signup_cubit/signup_cubit.dart';
 import 'package:x_station_app/view_model/block/technical_cubit/technical_cubit.dart';
@@ -99,38 +100,42 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => PostsCubit(sl.get<PostsRepoImpl>())..getPosts()..showPost(id: 1)),
               BlocProvider(create: (context) => GetNotificationCubit(sl.get<GetNotificationRepoImpl>())..getNotification()),
               BlocProvider(create: (context) => SearchCubit(sl.get<SearchRepoImpl>())),
-
             ],
-            child: GetMaterialApp(
-              translations: WorldLanguage(), // your translations
-              locale: LanguageService()
-                  .locale, //
-              useInheritedMediaQuery: true,
-              builder: EasyLoading.init(),
-              debugShowCheckedModeBanner: false,
-              initialRoute:
-              CacheHelper.getDataString(key: 'onBoarding')!=null&&
-                  CacheHelper.getDataString(key: 'token')!=null?
-              PageName.homeLayout:
-              CacheHelper.getDataString(key: 'onBoarding')!=null&&
-                  CacheHelper.getDataString(key: 'token')==null?
-              PageName.login:
-              CacheHelper.getDataString(key: 'onBoarding')==null&&
-                  CacheHelper.getDataString(key: 'token')==null?
-              PageName.splash:PageName.splash,
-              getPages: pages,
+            child: BlocConsumer<ProfileCubit,ProfileStates>(
+              listener: (context,state){},
+              builder: (context,state){
+                return GetMaterialApp(
+                  translations: WorldLanguage(), // your translations
+                  locale: LanguageService()
+                      .locale, //
+                  useInheritedMediaQuery: true,
+                  builder: EasyLoading.init(),
+                  debugShowCheckedModeBanner: false,
+                  initialRoute:
+                  CacheHelper.getDataString(key: 'onBoarding')!=null&&
+                      CacheHelper.getDataString(key: 'token')!=null?
+                  PageName.homeLayout:
+                  CacheHelper.getDataString(key: 'onBoarding')!=null&&
+                      CacheHelper.getDataString(key: 'token')==null?
+                  PageName.login:
+                  CacheHelper.getDataString(key: 'onBoarding')==null&&
+                      CacheHelper.getDataString(key: 'token')==null?
+                  PageName.splash:PageName.splash,
+                  getPages: pages,
 
-              // home:widget,
-              //  AnimatedSplashScreen(
-              //    splash: AssetsImage.onBoardingImage,splashIconSize: 200.sp,
-              //    nextScreen: const OnBoardingScreen(),
-              //    splashTransition: SplashTransition.rotationTransition,
-              //    duration: 3000,
-              //  ),
-              //  home: HomeScreen(),
+                  // home:widget,
+                  //  AnimatedSplashScreen(
+                  //    splash: AssetsImage.onBoardingImage,splashIconSize: 200.sp,
+                  //    nextScreen: const OnBoardingScreen(),
+                  //    splashTransition: SplashTransition.rotationTransition,
+                  //    duration: 3000,
+                  //  ),
+                  //  home: HomeScreen(),
 
-              theme: ThemeApp.light,
+                  theme: ProfileCubit.get(context).isDark?ThemeApp.dark:ThemeApp.light,
 
+                );
+              },
             ),
           );
 

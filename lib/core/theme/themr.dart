@@ -10,7 +10,17 @@ abstract class ThemeApp {
 
     scaffoldBackgroundColor: ColorManager.colorScaffold,
     primaryColor: ColorManager.colorPrimary,
+
     // fontFamily: GoogleFonts.barlowCondensed().fontFamily,
   );
 
+  static ThemeData get dark => ThemeData(
+    // appBarTheme: const AppBarTheme(
+    //     backgroundColor: ColorsManager.whiteXXColor, elevation: 0),
+    // fontFamily: GoogleFonts.aBeeZee().fontFamily,
+
+    scaffoldBackgroundColor: ColorManager.colorDark,
+    primaryColor: ColorManager.colorPrimary,
+    // fontFamily: GoogleFonts.barlowCondensed().fontFamily,
+  );
 }

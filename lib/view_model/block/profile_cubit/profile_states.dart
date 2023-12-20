@@ -65,3 +65,6 @@ class ChangePasswordErrorState extends ProfileStates{
  ChangePasswordErrorState(this.err);
 
 }class ChangeLanguage extends ProfileStates{}
+
+
+class ChangeMode extends ProfileStates{}

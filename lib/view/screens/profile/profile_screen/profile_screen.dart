@@ -99,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Row(
                             children: [
                               SizedBox(width: 16.w,),
-                              Expanded(child: Text(TextManager.faveoriteList.tr,style: TextStyleManager.textStyle14w500.copyWith(fontSize: 18.sp),)),
+                              Expanded(child: Text(TextManager.faveoriteList.tr,style: TextStyleManager.textStyle14w500.copyWith(fontSize: 18.sp,),)),
                               SizedBox(width: 34.w,),
                               Expanded(child: SvgPicture.asset(AssetsImage.faveoriteList)),
                               SizedBox(width: 16.w,)
@@ -191,6 +191,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ),
+                InkWell(
+                    onTap: (){
+                      ProfileCubit.get(context).changeMode();
+                    },
+                    child: Text("dark")),
                 BuildItemCard(
                     text: "log out".tr,
                     onTap: () {
