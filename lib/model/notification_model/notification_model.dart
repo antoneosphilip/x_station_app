@@ -1,5 +1,5 @@
 class NotificationModel {
-  List<Data>? data;
+  List<NotificationModelDta>? data;
   String? message;
   int? code;
   String? type;
@@ -8,9 +8,9 @@ class NotificationModel {
 
   NotificationModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <NotificationModelDta>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new NotificationModelDta.fromJson(v));
       });
     }
     message = json['message'];
@@ -30,7 +30,7 @@ class NotificationModel {
   }
 }
 
-class Data {
+class NotificationModelDta {
   String? id;
   String? type;
   String? notifiableType;
@@ -40,7 +40,7 @@ class Data {
   String? createdAt;
   String? updatedAt;
 
-  Data(
+  NotificationModelDta(
       {this.id,
         this.type,
         this.notifiableType,
@@ -50,7 +50,7 @@ class Data {
         this.createdAt,
         this.updatedAt});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  NotificationModelDta.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     type = json['type'];
     notifiableType = json['notifiable_type'];

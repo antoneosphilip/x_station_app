@@ -10,9 +10,12 @@ import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/core_widget/flutter_toast/flutter_toast.dart';
 import 'package:x_station_app/view/core_widget/tab_bar_widget/tab_bar_widget.dart';
+import 'package:x_station_app/view/notification_module/presentation/manager/notification_cubit/notification_cubit.dart';
 import 'package:x_station_app/view/screens/Applying/Applying_widget/Applying_form/Applying_form.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_states.dart';
+
+import '../../../../../view_model/block/notification_cubit/notification_cubit.dart';
 
 class ApplayWidget extends StatelessWidget {
   final String title;
@@ -66,6 +69,9 @@ class ApplayWidget extends StatelessWidget {
                 onTap: (){
                   PostsCubit.get(context).applyPost(id: id);
                   PostsCubit.get(context).showPost(id: id);
+                  GetNotificationCubit.get(context).getNotification();
+                  GetNotificationCubit.get(context).bindNotification();
+
                 },
                 child: Container(
                   height: 50.h,

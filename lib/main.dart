@@ -1,5 +1,6 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,6 +39,7 @@ import 'package:x_station_app/view_model/repo/technical_repo/technical_repo.dart
 
 
 import 'core/bloc_obsarver/bloc_obsarver.dart';
+import 'core/color_manager/color_manager.dart';
 import 'core/lang/language_service.dart';
 import 'core/lang/translate.dart';
 import 'core/route_manager/page_name.dart';
@@ -51,6 +53,25 @@ void main() async{
   await setup();
   await DioHelper.init();
   await CacheHelper.init();
+  AwesomeNotifications().initialize(
+    // set the icon to null if you want to use the default app icon
+      'resource://drawable/ic_launcher',
+      [
+        NotificationChannel(
+            channelGroupKey: 'basic_channel_group',
+            channelKey: 'basic_channel',
+            channelName: 'Basic notifications',
+            channelDescription: 'Notification channel for basic tests',
+            defaultColor: ColorManager.colorPrimary,
+            ledColor: Colors.white)
+      ],
+      // Channel groups are only visual and are not required
+      channelGroups: [
+        NotificationChannelGroup(
+            channelGroupKey: 'basic_channel_group',
+            channelGroupName: 'Basic group')
+      ],
+      debug: true);
 
 
   Bloc.observer = MyBlocObserver();
@@ -98,7 +119,7 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => CategoryCubit(sl.get<CategoryRepoImpl>())..getCategory()..getCategorySelectMenu()),
               BlocProvider(create: (context) => TechnicalCubit(sl.get<TechnicalRepoImpl>())..getTechnicalList(id: 1)),
               BlocProvider(create: (context) => PostsCubit(sl.get<PostsRepoImpl>())..getPosts()..showPost(id: 1)),
-              BlocProvider(create: (context) => GetNotificationCubit(sl.get<GetNotificationRepoImpl>())..getNotification()),
+              BlocProvider(create: (context) => GetNotificationCubit(sl.get<GetNotificationRepoImpl>())..getNotification()..bindNotification()),
               BlocProvider(create: (context) => SearchCubit(sl.get<SearchRepoImpl>())),
             ],
             child: BlocConsumer<ProfileCubit,ProfileStates>(

@@ -11,6 +11,7 @@ import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/screens/home/home_widget/home_Search/home_Search_Screen/home_Search_Screen.dart';
 import 'package:x_station_app/view/screens/home/home_widget/homebar_shimmer/home_app_bar_shimmer.dart';
+import 'package:x_station_app/view/screens/notification/notification_screen/notification_screen.dart';
 import 'package:x_station_app/view_model/block/category_cubit/category_cubit.dart';
 import 'package:x_station_app/view_model/block/category_cubit/category_states.dart';
 
@@ -18,6 +19,7 @@ import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/route_manager/page_name.dart';
 import '../../../../../utility/database/local/cach_data.dart';
 import '../../../../core_widget/text_form_field/text_form_field_custom.dart';
+import '../../../../notification_module/presentation/notifications_screen/notifications_screen/notifications_screen.dart';
 
 class HomeAppBar extends StatelessWidget {
 
@@ -67,7 +69,11 @@ class HomeAppBar extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 14.w,),
-              SvgPicture.asset(AssetsImage.notification,fit: BoxFit.cover,color: ColorManager.colorBlack,height: 25.h,),
+              InkWell(
+                onTap: (){
+                  Get.to(NotificationScreen());
+                },
+                  child: SvgPicture.asset(AssetsImage.notification,fit: BoxFit.cover,color: ColorManager.colorBlack,height: 25.h,)),
               SizedBox(width: 14.w,),
               const CircleAvatar(
                 radius: 28,
