@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   [
                     Stack(
                       children: [
-                        const AppBarWidget(text: TextManager.userProfile,isArrow: false,),
+                        const AppBarWidget(text: TextManager.userProfile,isArrow: false,isDarkProfile: true,),
                         Center(
                           child: Padding(
                             padding:  EdgeInsets.only(top: 130.h),
@@ -94,12 +94,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 64.h,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16.r),
-                              color: ColorManager.colorLightColorPrimary
+                              color:ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorLightColorPrimary
                           ),
                           child: Row(
                             children: [
                               SizedBox(width: 16.w,),
-                              Expanded(child: Text(TextManager.faveoriteList.tr,style: TextStyleManager.textStyle14w500.copyWith(fontSize: 18.sp,),)),
+                              Expanded(child: Text(TextManager.faveoriteList.tr,style: TextStyleManager.textStyle14w500.copyWith(fontSize: 18.sp,color:
+                              ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack
+                              ),)),
                               SizedBox(width: 34.w,),
                               Expanded(child: SvgPicture.asset(AssetsImage.faveoriteList)),
                               SizedBox(width: 16.w,)
@@ -138,7 +140,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     width: 358.w,
                     height: ScreenUtil().setHeight(48),
                     decoration: BoxDecoration(
-                      color: ColorManager.colorWhite,
+                      color:  ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
                       borderRadius: BorderRadius.circular(8.sp),
                       boxShadow: const [
                         BoxShadow(
@@ -150,13 +152,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton2<String>(
+                        iconStyleData: IconStyleData(iconEnabledColor: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorGrey),
+                        dropdownStyleData: DropdownStyleData(
+                          decoration: BoxDecoration(
+                            color:  ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhiteDarkMode,
+                          )
+                        ),
                         isExpanded: true,
                         hint:  Text(
                           'Select Item'.tr,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: ColorManager.colorBlack,
-                          ),
+                          style: TextStyleManager
+                              .textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,),
                         ),
                         items: ProfileCubit.get(context)
                             .list
@@ -165,7 +171,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               value: item,
                               child: Text(item,
                                   style: TextStyleManager
-                                      .textStyle16w500,
+                                      .textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,),
                               ),
                             ))
                             .toList(),
@@ -187,15 +193,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         menuItemStyleData: const MenuItemStyleData(
                           height: 50,
                         ),
+                        
                       ),
                     ),
                   ),
                 ),
-                InkWell(
-                    onTap: (){
-                      ProfileCubit.get(context).changeMode();
-                    },
-                    child: Text("dark")),
                 BuildItemCard(
                     text: "log out".tr,
                     onTap: () {

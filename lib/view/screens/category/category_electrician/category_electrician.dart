@@ -12,6 +12,8 @@ import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/model/category_model/category_model.dart';
 import 'package:x_station_app/view/screens/electrican_details/electrican_details_screen/electrican_details_screen.dart';
 
+import '../../../../view_model/block/profile_cubit/profile_cubit.dart';
+
 class CustomCategoryItem extends StatelessWidget {
   final String image;
   final String name;
@@ -34,16 +36,19 @@ class CustomCategoryItem extends StatelessWidget {
           Expanded(
             child: Container(
               width: 153.w,
-              color: ColorManager.colorWhite,
-              child: CachedNetworkImage(imageUrl:image,fit: BoxFit.fill,
-                placeholder: (context, url) => const Center(child: CircularProgressIndicator(color: ColorManager.colorPrimary,)),
-                errorWidget: (context, url, error) => const Icon(Icons.error),),
+              color: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
+              child: Padding(
+                padding:  EdgeInsets.only(top: 9.h,bottom: 9.h,right: 21.w,left: 21.w),
+                child: CachedNetworkImage(imageUrl:image,fit: BoxFit.fill,
+                  placeholder: (context, url) => const Center(child: CircularProgressIndicator(color: ColorManager.colorPrimary,)),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),),
+              ),
             ),
           ),
           Expanded(
             child: Text(
               "$name",
-              style: TextStyleManager.textStyle24w300.copyWith(fontWeight: FontWeight.w400),
+              style: TextStyleManager.textStyle24w300.copyWith(fontWeight: FontWeight.w400,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,),
             ),
           )
         ],

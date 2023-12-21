@@ -32,6 +32,7 @@ class   ColorManager
   static const Color colorScaffold = Color(0xffF4F4F4);
   static const Color colorLightDark = Color(0xff26282B);
   static const Color colorDark = Color(0xff222222);
+  static const Color colorWhiteDarkMode = Color(0xffE7E7E7);
 
 
 

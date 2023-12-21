@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
+import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
 
 import '../../../../core/color_manager/color_manager.dart';
 import '../../../../core/style_font_manager/style_manager.dart';
@@ -29,7 +30,7 @@ class BuildItemCard extends StatelessWidget {
           width: 358.w,
           height: ScreenUtil().setHeight(48),
           decoration: BoxDecoration(
-            color: ColorManager.colorWhite,
+            color: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
             borderRadius: BorderRadius.circular(8.sp),
             boxShadow: const [
             BoxShadow(
@@ -47,14 +48,16 @@ class BuildItemCard extends StatelessWidget {
                   image,
                   width: ScreenUtil().setWidth(24),
                   height: ScreenUtil().setHeight(24),
-                  color: ColorManager.colorXXGrey,
+                  color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorXXGrey,
                 ),
                 SizedBox(
                   width: ScreenUtil().setWidth(10),
                 ),
                 Text(
                   text.tr,
-                  style: TextStyleManager.textStyle16w500,
+                  style: TextStyleManager.textStyle16w500.copyWith( color:ProfileCubit.get(context).isDark?
+                  ColorManager.colorWhiteDarkMode:ColorManager.colorBlack
+                  ),
 
                 ),
                 const Spacer(),

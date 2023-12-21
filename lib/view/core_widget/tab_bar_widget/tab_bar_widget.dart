@@ -20,6 +20,7 @@ class AppBarWidget extends StatelessWidget {
   final double? bottomText;
   final bool? isSearch;
   final bool? isArrow;
+  final bool isDarkProfile;
 
   const AppBarWidget(
       {super.key,
@@ -29,7 +30,7 @@ class AppBarWidget extends StatelessWidget {
         this.height = 124,
         this.bottomIcon = 40,
         this.bottomText = 39,
-        this.isSearch = false, this.isArrow=true});
+        this.isSearch = false, this.isArrow=true,  this.isDarkProfile=false});
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +50,34 @@ class AppBarWidget extends StatelessWidget {
             children: [
               const Spacer(),
               Center(
-                child: Text(
-                  text!.tr,
-                  style: TextStyleManager.textStyle24w500.copyWith(fontSize: 22.sp,color: ColorManager.colorWhite),
+                child: Row(
+                  children: [
+                    isDarkProfile?
+                    Padding(
+                      padding:  EdgeInsets.only(right: 40.w),
+                      child: InkWell(
+                        onTap: (){
+                          ProfileCubit.get(context).changeMode();
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ProfileCubit.get(context).isDark?
+                            const Icon(Icons.light_mode,color: Colors.white,size: 30,):
+                            const Icon(Icons.dark_mode,size: 30,color: Colors.white,),
+                            SizedBox(width: 40.w,),
+                          ],
+                        ),
+                      ),
+                    ):const SizedBox(),
+
+                    Text(
+                      text!.tr,
+                      style: TextStyleManager.textStyle24w500.copyWith(fontSize: 22.sp,color: ColorManager.colorWhite),
+                    ),
+                    isDarkProfile? SizedBox(width: 40.w,):const SizedBox(),
+                  ],
                 ),
               ),
               const Spacer(),

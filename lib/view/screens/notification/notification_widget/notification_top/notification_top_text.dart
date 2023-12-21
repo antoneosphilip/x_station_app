@@ -6,6 +6,9 @@ import 'package:x_station_app/core/assets_manager/assets_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 
+import '../../../../../core/color_manager/color_manager.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
+
 class MessageText extends StatelessWidget {
   const MessageText({super.key});
 
@@ -18,12 +21,16 @@ class MessageText extends StatelessWidget {
           children: [
             Text(
               TextManager.message.tr,
-              style: TextStyleManager.textStyle24w300.copyWith(fontWeight: FontWeight.w700),
+              style: TextStyleManager.textStyle24w300.copyWith(fontWeight: FontWeight.w700,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorPrimary,),
             ),
             SizedBox(
               height: 7.h,
             ),
-            SvgPicture.asset((AssetsImage.line),width: 105.w,),
+            SvgPicture.asset(
+              (AssetsImage.line),
+              width: 105.w,
+            color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorPrimary,
+            ),
           ],
         ));
   }
