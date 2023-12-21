@@ -14,6 +14,7 @@ class PageName {
   static const String fullNotifictionScreen= '/FULL_NOTIFICATION';
   static const String applyScreen= '/APLLY_SCREEN';
   static const String favoriteList= '/FAVORITE_LIST';
+  static const String verificationEmail= '/Verification_EMAIL';
 
 
 }

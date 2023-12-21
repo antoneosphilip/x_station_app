@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/color_manager/color_manager.dart';
+import '../../../view_model/block/profile_cubit/profile_cubit.dart';
 
 
 
@@ -172,12 +173,12 @@ class TextFormFieldCustom extends StatelessWidget {
         hintText: hint,
 
         hintStyle: TextStyle(
-          color: ColorManager.colorBlack,
+          color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,
           fontSize: 14.sp,
           fontWeight: FontWeight.w300,
         ),
         labelStyle: TextStyle(
-          color: ColorManager.colorBlack,
+          color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,
           fontSize: 14.sp,
           fontWeight: FontWeight.w300,
         ),

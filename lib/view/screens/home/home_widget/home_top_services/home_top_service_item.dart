@@ -9,6 +9,7 @@ import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import '../home_post_item_Details/home_post_details_Screen/home_post_Details_Screen.dart';
 
 class HomeTopServiceItem extends StatelessWidget {
@@ -32,15 +33,15 @@ class HomeTopServiceItem extends StatelessWidget {
       child: Container(
         width: 390.w,
         decoration: BoxDecoration(
-          boxShadow: const [
+          boxShadow:  [
             BoxShadow(
-              color: Colors.grey,
-              offset: Offset(2.0, 2.0),
+              color:ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorGrey,
+              offset: const Offset(2.0, 2.0),
               blurRadius: 5.0,
             ),
           ],
           borderRadius: BorderRadius.circular(16.r),
-          color: ColorManager.colorWhite,
+          color: ProfileCubit.get(context).isDark?ColorManager. colorLightDark:ColorManager.colorWhite,
         ),
         child: Padding(
           padding: EdgeInsets.only(top: 16.h),
@@ -55,20 +56,20 @@ class HomeTopServiceItem extends StatelessWidget {
                     backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.Z5BlhFYs_ga1fZnBWkcKjQHaHz?rs=1&pid=ImgDetMain")
                   ),
                   SizedBox(width: 7.w,),
-                  Text("${namePerson}",style: TextStyleManager.textStyle14w500),
+                  Text("${namePerson}",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,)),
                 ],
               ),
               SizedBox(height: 16.h,),
              Padding(
                padding:  EdgeInsets.only(left: 16.w,right: 16.w),
-               child: Text(title,style:TextStyleManager.textStyle16w500 ,),
+               child: Text(title,style:TextStyleManager.textStyle16w500.copyWith(color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,) ,),
              ),
              SizedBox(height: 8.h,),
              image !=''?
              CachedNetworkImage(imageUrl: image!,fit: BoxFit.fill,width: 390.w,height: 390.h,):
                  const SizedBox(),
               SizedBox(height: 8.h,),
-              Center(child: Text(description,style: TextStyleManager.textStyle16w500,)),
+              Center(child: Text(description,style: TextStyleManager.textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,),)),
               SizedBox(height: 8.h,),
             ],
           ),

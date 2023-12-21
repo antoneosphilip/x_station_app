@@ -11,6 +11,7 @@ import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/color_manager/color_manager.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core/text_manager/text_manager.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import 'home_services_item.dart';
 
 class HomeServicesWidget extends StatelessWidget {
@@ -27,7 +28,7 @@ class HomeServicesWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(TextManager.category.tr,style: TextStyleManager.textStyle36w700.copyWith(fontSize: 25.sp,fontWeight: FontWeight.w500),),
+            Text(TextManager.category.tr,style: TextStyleManager.textStyle36w700.copyWith(fontSize: 25.sp,fontWeight: FontWeight.w500,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,),),
             SizedBox(height: 8.h,),
             SizedBox(
               height: 140.h,

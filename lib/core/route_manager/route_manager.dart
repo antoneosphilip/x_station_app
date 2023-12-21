@@ -19,6 +19,7 @@ import 'package:x_station_app/view/screens/reset_password/reset_password_screen/
 import 'package:x_station_app/view/screens/splash/splash_screen/splash_screen.dart';
 import 'package:x_station_app/view/screens/verification/verification_screen/verification_screen.dart';
 import 'package:x_station_app/view/screens/verification/verification_widget/verification_widget.dart';
+import 'package:x_station_app/view/screens/verification_email/verification_email_screen/verification_email_screen.dart';
 
 List<GetPage> pages = [
 
@@ -118,6 +119,14 @@ List<GetPage> pages = [
       name: PageName.favoriteList,
       page: () => const FavoriteListScreen(),
       transition: Transition.zoom,
+      transitionDuration: const Duration(
+        milliseconds: 250,
+      )),
+
+  GetPage(
+      name: PageName.verificationEmail,
+      page: () => const VerificationEmailScreen(),
+      transition: Transition.rightToLeft,
       transitionDuration: const Duration(
         milliseconds: 250,
       )),

@@ -7,6 +7,8 @@ import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
+
 class ElectricianInformationForm extends StatelessWidget {
   final String address;
   final String phone;
@@ -23,11 +25,11 @@ class ElectricianInformationForm extends StatelessWidget {
         children: [
           Text(
             TextManager.details.tr,
-            style: TextStyleManager.textStyle36ow900.copyWith(fontSize: 30.sp),
+            style: TextStyleManager.textStyle36ow900.copyWith(fontSize: 30.sp,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),
           ),
-          const Divider(
+           Divider(
             thickness: 3,
-            color: Color(0Xff1F1B93),
+            color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:Color(0Xff1F1B93),
             endIndent: 204,
           ),
           SizedBox(
@@ -37,7 +39,7 @@ class ElectricianInformationForm extends StatelessWidget {
             children: [
               Text(
                 TextManager.Email.tr,
-                style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp),
+                style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),
               ),
               SizedBox(
                 height: 11.h,
@@ -45,7 +47,7 @@ class ElectricianInformationForm extends StatelessWidget {
               Expanded(
                 child: Text(
                   email,
-                  style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color: ColorManager.colorPrimary),
+                  style: TextStyleManager.textStyle20600.copyWith(fontSize: 16.sp,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorPrimary),
                 ),
               ),
             ],
@@ -58,7 +60,7 @@ class ElectricianInformationForm extends StatelessWidget {
             children: [
               Text(
                 TextManager.Address.tr,
-                style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp),
+                style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),
               ),
               SizedBox(
                 height: 11.h,
@@ -66,7 +68,7 @@ class ElectricianInformationForm extends StatelessWidget {
               Expanded(
                 child: Text(
                   address,
-                  style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color: ColorManager.colorPrimary),
+                  style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorPrimary),
                 ),
               ),
             ],
@@ -78,14 +80,14 @@ class ElectricianInformationForm extends StatelessWidget {
             children: [
               Text(
                 TextManager.Contact.tr,
-                style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp),
+                style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),
               ),
               SizedBox(
                 height: 11.h,
               ),
               Text(
                 phone,
-                style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color: ColorManager.colorPrimary),
+                style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorPrimary),
               ),
             ],
           ),

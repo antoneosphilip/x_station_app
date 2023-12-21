@@ -36,6 +36,7 @@ class AssetsImage {
   static const String profile2 = '${_iconsPath}profile2.svg';
   static const String terms = '${_iconsPath}terms.svg';
   static const String faqs = '${_iconsPath}FAQUS.svg';
+  static const String settings = '${_iconsPath}settings.svg';
 
   static const String contuctUs = '${_iconsPath}contuct_us.svg';
 

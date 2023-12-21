@@ -18,6 +18,7 @@ import 'package:x_station_app/view_model/block/category_cubit/category_states.da
 import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/route_manager/page_name.dart';
 import '../../../../../utility/database/local/cach_data.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import '../../../../core_widget/text_form_field/text_form_field_custom.dart';
 import '../../../../notification_module/presentation/notifications_screen/notifications_screen/notifications_screen.dart';
 
@@ -43,12 +44,12 @@ class HomeAppBar extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Hi, ".tr,style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700),),
-                        Text('${CachingDataManager.instance.getLoginModel().data!.name}',style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700),)
+                        Text("Hi, ".tr,style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),),
+                        Text('${CachingDataManager.instance.getLoginModel().data!.name}',style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),)
                       ],
                     ),
 
-                    Text(TextManager.needSomeHelp.tr,style: TextStyleManager.textStyle14w500,),
+                    Text(TextManager.needSomeHelp.tr,style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),),
                     SizedBox(height: 28.h,),
                   ],
                 ),
@@ -61,11 +62,11 @@ class HomeAppBar extends StatelessWidget {
                 child: Container(
                   width: 30,
                   height: 25.h,
-                  decoration: const BoxDecoration(
+                  decoration:  BoxDecoration(
                     shape: BoxShape.circle,
-                    color: ColorManager.colorBlack,
+                    color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,
                   ),
-                  child: const Center(child: Icon(Icons.add,color: Colors.white,)),
+                  child:  Center(child: Icon(Icons.add,color: ProfileCubit.get(context).isDark?ColorManager.colorBlack:ColorManager.colorWhite,)),
                 ),
               ),
               SizedBox(width: 14.w,),
@@ -73,7 +74,7 @@ class HomeAppBar extends StatelessWidget {
                 onTap: (){
                   Get.to(NotificationScreen());
                 },
-                  child: SvgPicture.asset(AssetsImage.notification,fit: BoxFit.cover,color: ColorManager.colorBlack,height: 25.h,)),
+                  child: SvgPicture.asset(AssetsImage.notification,fit: BoxFit.cover,color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,height: 25.h,)),
               SizedBox(width: 14.w,),
               const CircleAvatar(
                 radius: 28,
@@ -92,8 +93,8 @@ class HomeAppBar extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormFieldCustom(
-                      fillColor: Colors.white,
-                      boarderColor: ColorManager.colorPrimary,
+                        fillColor:ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
+                      boarderColor:ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorPrimary,
                       hint: TextManager.findItHere.tr,
                       validate: (value){},
                       suffix: true,

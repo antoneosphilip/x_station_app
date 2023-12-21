@@ -7,6 +7,7 @@ import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/model/category_model/category_model.dart';
 
 import '../../../../../core/assets_manager/assets_manager.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 
 class HomeServicesItem extends StatelessWidget {
   final String image;
@@ -28,7 +29,7 @@ class HomeServicesItem extends StatelessWidget {
             child: Image(image: CachedNetworkImageProvider(image),fit: BoxFit.cover),
           ),
           SizedBox(height: 5.h,),
-          Text(name,style: TextStyleManager.textStyle14w500,)
+          Text(name,style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,),)
         ],
       )
 

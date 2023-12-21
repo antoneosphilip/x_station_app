@@ -8,6 +8,9 @@ import 'package:x_station_app/core/text_manager/text_manager.dart';
 
 import 'package:x_station_app/view/screens/category/category_electrician/category_electrician.dart';
 
+import '../../../../core/color_manager/color_manager.dart';
+import '../../../../view_model/block/profile_cubit/profile_cubit.dart';
+
 class CategoryTopText extends StatelessWidget {
 final String text;
 
@@ -21,10 +24,10 @@ final String text;
         children: [
           Text(
             "${text}",
-            style: TextStyleManager.textStyle24w300.copyWith(fontWeight: FontWeight.w700),
+            style: TextStyleManager.textStyle24w300.copyWith(fontWeight: FontWeight.w700,color: ProfileCubit.get(context).isDark?ColorManager.colorWhite:ColorManager.colorBlack,),
           ),
           const SizedBox(height: 10),
-          SvgPicture.asset(AssetsImage.line,width: 105.w,),
+          SvgPicture.asset(AssetsImage.line,width: 105.w,color: ProfileCubit.get(context).isDark?ColorManager.colorWhite:ColorManager.colorPrimary,),
         ],
       ),
     );

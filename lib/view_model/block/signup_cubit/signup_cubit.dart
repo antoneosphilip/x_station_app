@@ -21,6 +21,7 @@ class SignUpCubit extends Cubit<SignUpStates>
   var rePasswordController=TextEditingController();
   var addressController=TextEditingController();
   var nationalId=TextEditingController();
+  var codeController=TextEditingController();
 
 
   var formKey = GlobalKey<FormState>();
@@ -74,8 +75,7 @@ class SignUpCubit extends Cubit<SignUpStates>
       },
           (r) {
             emit(SignUpSuccessState(r));
-            CachingDataManager.instance.cachLoginInfo(r);
-            CacheHelper.put(key: 'token', value: r.data!.token);
+            sendCode();
           },
     );
   }
@@ -103,10 +103,44 @@ class SignUpCubit extends Cubit<SignUpStates>
       },
           (r) {
         emit(SignUpTechnicalSuccessState(r));
-        CachingDataManager.instance.cachLoginInfo(r);
-        CacheHelper.put(key: 'token', value: r.data!.token);
+        sendCode();
+          },
+    );
+  }
+
+
+
+
+  Future<void> sendCode()async{
+    emit(SendCodeLoadingState());
+    var data=await signUpRepo.sendCode(email: emailController.text);
+    data.fold(
+          (l) {
+        print(l);
+        emit(
+            SendCodeErrorState(l.message));
+      },
+          (r) {
+        emit(SendCodeSuccessState(r));
       },
     );
   }
+
+
+  Future<void> verifyEmail()async{
+    emit(VerifyEmailLoadingState());
+    var data=await signUpRepo.verifyEmail(code: codeController.text);
+    data.fold(
+          (l) {
+        print(l);
+        emit(
+            VerifyEmailErrorState(l.message));
+      },
+          (r) {
+        emit(VerifyEmailSuccessState(r));
+      },
+    );
+  }
+
 
 }

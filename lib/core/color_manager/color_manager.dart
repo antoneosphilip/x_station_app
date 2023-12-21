@@ -33,6 +33,8 @@ class   ColorManager
   static const Color colorLightDark = Color(0xff26282B);
   static const Color colorDark = Color(0xff222222);
   static const Color colorWhiteDarkMode = Color(0xffE7E7E7);
+  static const Color colorGreen = Color(0xff008000);
+  static const Color colorRed = Color(0xffFF0000);
 
 
 

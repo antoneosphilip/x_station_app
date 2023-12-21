@@ -12,6 +12,7 @@ import 'package:x_station_app/view/screens/everent/custom_ratting_bar/custom_rat
 import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/color_manager/color_manager.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 
 class ElectricianDetailsItem extends StatelessWidget {
   final String name;
@@ -50,7 +51,7 @@ class ElectricianDetailsItem extends StatelessWidget {
           height: 100.h,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(40.r),
-              color: ColorManager.colorWhite
+              color: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
           ),
           child: Padding(
             padding:  EdgeInsets.all(5.0.sp),
@@ -78,15 +79,15 @@ class ElectricianDetailsItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("${name}",style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorLightBlack,fontWeight: FontWeight.w400),),
+                    Text("${name}",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorLightBlack,fontWeight: FontWeight.w400),),
                     SizedBox(height: 10.h,),
-                    Text("15 \$",style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorDarkBlue),),
+                    Text("15 \$",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorDarkBlue),),
                     SizedBox(height: 8.h,),
                     Row(
                       children: [
-                         CustomRattingBar(size: 17,initRate: rate),
+                         CustomRattingBar(size: 17,initRate: rate,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorPrimary,),
                         SizedBox(width: 5.w,),
-                        Text("${rate}",style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorLightBlack),),
+                        Text("${rate}",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorLightBlack),),
                       ],
                     ),
                   ],
@@ -94,7 +95,7 @@ class ElectricianDetailsItem extends StatelessWidget {
                 const Spacer(),
                 Padding(
                   padding:  EdgeInsets.only(bottom: 57.14.h),
-                  child: SvgPicture.asset(AssetsImage.heart2,color: ColorManager.colorPrimary,width: 30),
+                  child: SvgPicture.asset(AssetsImage.heart2,color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorPrimary,width: 30),
                 ),
                 SizedBox(width: 10.2.w,)
               ],

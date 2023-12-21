@@ -207,7 +207,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     image: AssetsImage.logOut),
               ],
             ):state is ProfileErrorState?
-                Text(state.err):
+                Center(child: Text(state.err)):
                 const SizedBox();
           },
         ),

@@ -21,7 +21,7 @@ class ElectricianDetailsWidget extends StatelessWidget {
       children: [
          AppBarWidget(text: TextManager.technical.tr,isArrow: false,),
          CategoryTopText(text: '${TextManager.technical.tr} ${name}' ),
-        SizedBox(height: 10.5.h,),
+         SizedBox(height: 10.5.h,),
          ElectricianDetailsList(id: id,),
       ],
     );

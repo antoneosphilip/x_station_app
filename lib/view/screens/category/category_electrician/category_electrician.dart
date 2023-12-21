@@ -37,12 +37,9 @@ class CustomCategoryItem extends StatelessWidget {
             child: Container(
               width: 153.w,
               color: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
-              child: Padding(
-                padding:  EdgeInsets.only(top: 9.h,bottom: 9.h,right: 21.w,left: 21.w),
-                child: CachedNetworkImage(imageUrl:image,fit: BoxFit.fill,
-                  placeholder: (context, url) => const Center(child: CircularProgressIndicator(color: ColorManager.colorPrimary,)),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),),
-              ),
+              child: CachedNetworkImage(imageUrl:image,fit: BoxFit.fill,
+                placeholder: (context, url) => const Center(child: CircularProgressIndicator(color: ColorManager.colorPrimary,)),
+                errorWidget: (context, url, error) => const Icon(Icons.error),),
             ),
           ),
           Expanded(

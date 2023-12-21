@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
+import 'package:x_station_app/view/core_widget/flutter_toast/flutter_toast.dart';
 import 'package:x_station_app/view/screens/home_technical/home_technical_screen/home_technical_screen.dart';
 import 'package:x_station_app/view_model/block/category_cubit/category_cubit.dart';
 import 'package:x_station_app/view_model/block/signup_cubit/signup_cubit.dart';
@@ -49,22 +50,24 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
         listener: (context,state){
          if(widget.value==TextManager.client){
            if(state is SignUpSuccessState) {
-             Get.offAllNamed(PageName.homeLayout);
+             Get.offAllNamed(PageName.verificationEmail);
              customSnackBar(
-                 message: state.loginModel.message.toString(),
+                 message: '${state.loginModel.message.toString()}',
                  snackBarType: SnackBarType.success,
                  context: context);
            }
+
            else if(state is SignUpErrorState){
              customSnackBar(
                  message: state.err,
                  snackBarType: SnackBarType.error,
                  context: context);
            }
+
          }
       else if(widget.value==TextManager.technical){
         if(state is SignUpTechnicalSuccessState) {
-         Get.offAllNamed(PageName.homeLayout);
+          Get.offAllNamed(PageName.verificationEmail);
          customSnackBar(
              message: state.loginModel.message.toString(),
              snackBarType: SnackBarType.success,

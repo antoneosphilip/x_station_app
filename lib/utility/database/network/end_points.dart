@@ -20,14 +20,13 @@ abstract class EndPoint{
     '/technicals/post/${id}/apply';
   }
   static const String notificationEndPoint = '/notifications';
-
   static  String ?showPost(String id) {
    '/posts/${id}' ;
   }
-
   static  String ?search(String id) {
    '/technicals?handle=${id}';
   }
+  static  const String verifyEmail = '/auth/verify_email';
 
 }
 

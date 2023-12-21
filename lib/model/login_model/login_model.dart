@@ -33,7 +33,7 @@ class Data {
   int? id;
   String? name;
   String? email;
-  Null? emailVerifiedAt;
+  String? emailVerifiedAt;
   String? phoneNumber;
   String? address;
   String? type;
