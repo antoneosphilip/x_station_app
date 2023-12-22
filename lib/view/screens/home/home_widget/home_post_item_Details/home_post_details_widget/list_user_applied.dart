@@ -28,7 +28,7 @@ class ListUserApplied extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PostsCubit.get(context).showPostModel!.data!.allApplied!.length>0?
+              PostsCubit.get(context).showPostModel!.data!.allApplied!.isNotEmpty?
               Padding(
                 padding:  EdgeInsets.only(left: 16.w,right: 16.w),
                 child: Text("Applied".tr,style: TextStyleManager.textStyle20w700,),
@@ -47,6 +47,7 @@ class ListUserApplied extends StatelessWidget {
                     postId:PostsCubit.get(context).showPostModel!.data!.id!,
                     isJop: PostsCubit.get(context).showPostModel!.data!.jobTaken!,
                     myPost: PostsCubit.get(context).showPostModel!.data!.myPost!,
+                    status: PostsCubit.get(context).showPostModel!.data!.allApplied![index].status!,
                     // imagePerson:PostsCubit.get(context).getPostModel!.data![index].user!.avatar! ,
                   );
                 },

@@ -120,6 +120,8 @@ class TextManager {
   static const String accept = "Accept";
   static const String available = "available";
   static const String reversedBySomeOne = "Reserved by someone";
+  static const String done = "Done";
+  static const String rating = "Rating";
 
 
 }

@@ -31,7 +31,7 @@ class ElectricianDetailsList extends StatelessWidget {
                   return  ElectricianDetailsItem(
                     // image:TechnicalCubit.get(context).technicalModel!.data![index].user!.avatar! ,
                     name: TechnicalCubit.get(context).technicalModel!.data![index].user!.name! ,
-                    rate: TechnicalCubit.get(context).technicalModel!.data![index]!.averageRating!,
+                    rate: TechnicalCubit.get(context).technicalModel!.data![index].user!.averageRating!,
                     price: TechnicalCubit.get(context).technicalModel!.data![index]!.user!.name!,
                     email: TechnicalCubit.get(context).technicalModel!.data![index]!.user!.email!,
                     phone:  TechnicalCubit.get(context).technicalModel!.data![index]!.user!.phoneNumber!,

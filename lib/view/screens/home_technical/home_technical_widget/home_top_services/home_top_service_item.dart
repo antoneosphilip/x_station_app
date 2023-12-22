@@ -9,6 +9,7 @@ import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/screens/Applying/Applying_screen/Applying_screen.dart';
+import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 
 class HomePostsTechnician extends StatelessWidget {
   final String title;

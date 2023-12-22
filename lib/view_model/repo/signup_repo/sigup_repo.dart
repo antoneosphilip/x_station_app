@@ -38,7 +38,7 @@ abstract class SignUpRepo{
 
 
   Future<Either<Failure,LoginModel>> sendCode({required email});
-  Future<Either<Failure,VerifyEmailModel>> verifyEmail({required code});
+  Future<Either<Failure,VerifyEmailModel>> verifyEmail({required code,required email});
 
 }
 
@@ -136,7 +136,7 @@ class SignUpRepoImpl implements SignUpRepo {
   }
 
   @override
-  Future<Either<Failure, VerifyEmailModel>> verifyEmail({required code}) async {
+  Future<Either<Failure, VerifyEmailModel>> verifyEmail({required code,required email}) async {
     try
     {
       Response response =await DioHelper.postData(

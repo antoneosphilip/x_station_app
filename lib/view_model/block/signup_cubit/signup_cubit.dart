@@ -129,7 +129,7 @@ class SignUpCubit extends Cubit<SignUpStates>
 
   Future<void> verifyEmail()async{
     emit(VerifyEmailLoadingState());
-    var data=await signUpRepo.verifyEmail(code: codeController.text);
+    var data=await signUpRepo.verifyEmail(code: codeController.text,email: emailController.text);
     data.fold(
           (l) {
         print(l);

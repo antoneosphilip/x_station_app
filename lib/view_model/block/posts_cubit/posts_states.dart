@@ -77,3 +77,17 @@ class AcceptPostErrorState extends PostsStates{
 
 }
 class ChangeMode extends PostsStates{}
+
+
+///////////// user rate///////////
+class UserRateLoadingState extends PostsStates{}
+class UserRateSuccessState extends PostsStates{
+ AcceptPostModel acceptPostModel;
+ UserRateSuccessState(this.acceptPostModel);
+}
+class UserRateErrorState extends PostsStates{
+ final String err;
+
+ UserRateErrorState(this.err);
+
+}

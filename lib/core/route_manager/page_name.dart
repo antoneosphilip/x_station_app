@@ -16,5 +16,6 @@ class PageName {
   static const String favoriteList= '/FAVORITE_LIST';
   static const String verificationEmail= '/Verification_EMAIL';
 
+  static const String rateScreen= '/RATE_SCREEN';
 
 }

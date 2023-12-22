@@ -39,6 +39,7 @@ class Data {
   User? user;
   int? isApplied;
   int? jobTaken;
+  List<AllApplied>? allApplied;
 
   Data(
       {this.id,
@@ -48,7 +49,8 @@ class Data {
         this.myPost,
         this.user,
         this.isApplied,
-        this.jobTaken});
+        this.jobTaken,
+        this.allApplied});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -58,7 +60,13 @@ class Data {
     myPost = json['my_post'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
     isApplied = json['is_applied'];
-    jobTaken = json['jobTaken'];
+    jobTaken = json['job_taken'];
+    if (json['all_applied'] != null) {
+      allApplied = <AllApplied>[];
+      json['all_applied'].forEach((v) {
+        allApplied!.add(new AllApplied.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -72,7 +80,10 @@ class Data {
       data['user'] = this.user!.toJson();
     }
     data['is_applied'] = this.isApplied;
-    data['jobTaken'] = this.jobTaken;
+    data['job_taken'] = this.jobTaken;
+    if (this.allApplied != null) {
+      data['all_applied'] = this.allApplied!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
@@ -95,6 +106,22 @@ class User {
     data['id'] = this.id;
     data['name'] = this.name;
     data['avatar'] = this.avatar;
+    return data;
+  }
+}
+
+class AllApplied {
+  int? id;
+
+  AllApplied({this.id});
+
+  AllApplied.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     return data;
   }
 }

@@ -18,6 +18,7 @@ abstract class PostsRepo{
   Future<Either<Failure,ShowPostModel>> showPost({required id});
   Future<Either<Failure,AcceptPostModel>> acceptPost({required userId,required postId,required status});
 
+  Future<Either<Failure,AcceptPostModel>> userRate({required userId,required rate});
 
 }
 
@@ -98,6 +99,29 @@ class PostsRepoImpl implements PostsRepo {
           'post_id':postId,
           'user_id':userId,
           'status':status,
+        },
+      );
+      return Right(AcceptPostModel.fromJson(response.data));
+    }
+    on DioException catch (e) {
+      return Left(ServerFailure.fromDioError(e));
+    }
+    catch (e) {
+      return Left(FailureLocal(message: e.toString()));
+    }
+  }
+
+
+  @override
+  Future<Either<Failure,AcceptPostModel>> userRate({required userId,required rate})
+  async {
+    try {
+      Response response =
+      await DioHelper.postData(
+        url: EndPoint.rate,
+        data: {
+          'user_id':userId,
+          'rate':rate,
         },
       );
       return Right(AcceptPostModel.fromJson(response.data));

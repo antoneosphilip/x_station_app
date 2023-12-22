@@ -32,21 +32,18 @@ class TechnicalListModel {
 
 class Data {
   int? id;
-  int? averageRating;
   User? user;
 
-  Data({this.id, this.averageRating, this.user});
+  Data({this.id, this.user});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    averageRating = json['average_rating'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['average_rating'] = this.averageRating;
     if (this.user != null) {
       data['user'] = this.user!.toJson();
     }
@@ -61,6 +58,7 @@ class User {
   String? phoneNumber;
   String? address;
   Null? avatar;
+  int? averageRating;
 
   User(
       {this.id,
@@ -68,7 +66,8 @@ class User {
         this.email,
         this.phoneNumber,
         this.address,
-        this.avatar});
+        this.avatar,
+        this.averageRating});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -77,6 +76,7 @@ class User {
     phoneNumber = json['phone_number'];
     address = json['address'];
     avatar = json['avatar'];
+    averageRating = json['average_rating'];
   }
 
   Map<String, dynamic> toJson() {
@@ -87,6 +87,7 @@ class User {
     data['phone_number'] = this.phoneNumber;
     data['address'] = this.address;
     data['avatar'] = this.avatar;
+    data['average_rating'] = this.averageRating;
     return data;
   }
 }

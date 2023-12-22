@@ -15,6 +15,7 @@ import 'package:x_station_app/view/screens/home_layout/home_layout.dart';
 import 'package:x_station_app/view/screens/login/login_screen/login_screen.dart';
 import 'package:x_station_app/view/screens/login/login_widget/login_form/login_form.dart';
 import 'package:x_station_app/view/screens/onboarding/onboarding_screen/onboarding_screen.dart';
+import 'package:x_station_app/view/screens/rate_screen/rate_screen/retae_screen.dart';
 import 'package:x_station_app/view/screens/reset_password/reset_password_screen/reset_password_screen.dart';
 import 'package:x_station_app/view/screens/splash/splash_screen/splash_screen.dart';
 import 'package:x_station_app/view/screens/verification/verification_screen/verification_screen.dart';
@@ -130,4 +131,13 @@ List<GetPage> pages = [
       transitionDuration: const Duration(
         milliseconds: 250,
       )),
+
+
+  // GetPage(
+  //     name: PageName.rateScreen,
+  //     page: () =>  RateScreen(),
+  //     transition: Transition.zoom,
+  //     transitionDuration: const Duration(
+  //       milliseconds: 250,
+  //     )),
 ];

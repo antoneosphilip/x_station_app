@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -36,22 +37,33 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    ProfileCubit.get(context).getProfileData();
     return Scaffold(
       body: SingleChildScrollView(
         physics:  const BouncingScrollPhysics(),
         child: BlocConsumer<ProfileCubit,ProfileStates>(
           listener: (context,state){
-            if(state is LogOutSuccessState){
-              CacheHelper.removeData(key: 'token');
+            if(state is LogOutLoadingState){
+              EasyLoading.show(
+                status: 'loading....',
+                maskType: EasyLoadingMaskType.black,
+              );
+
+            }
+            else if(state is LogOutSuccessState){
+
+              EasyLoading.dismiss();
               Get.offAllNamed(PageName.login);
               customSnackBar(
                   message: state.logOutModel.message.toString(),
                   snackBarType: SnackBarType.success,
                   context: context);
-              LoginCubit.get(context).loginModel=null;
-
+              CacheHelper.removeData(key: 'token');
             }
+            else
             if(state is LogOutErrorState){
+              EasyLoading.dismiss();
+
               customSnackBar(
                   message: state.err.toString(),
                   snackBarType: SnackBarType.error,

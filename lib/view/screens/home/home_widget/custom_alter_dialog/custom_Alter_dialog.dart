@@ -34,6 +34,8 @@ void AlterDialog(BuildContext context,userId,postId){
               await EasyLoading.dismiss();
               showFlutterToast(message: state.acceptPostModel.message, state: ToastState.SUCCESS);
               Get.back();
+              PostsCubit.get(context).showPost(id: postId);
+
             }
             else if(state is AcceptPostErrorState){
               await EasyLoading.dismiss();
@@ -93,8 +95,10 @@ void AlterDialog(BuildContext context,userId,postId){
                     height: 65.h,
                     radius: 60,
                     colors: ColorManager.colorWhite,
-
                     borderColor: ColorManager.colorRed,
+                    onPressed: (){
+                      PostsCubit.get(context).acceptPost(userId: userId, postId: postId, status: 'rejected');
+                    },
                     widget: Center(
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -120,6 +124,9 @@ void AlterDialog(BuildContext context,userId,postId){
                     radius: 60,
                     colors: ColorManager.colorWhite,
                     borderColor: ColorManager.colorPrimary,
+                    onPressed: (){
+                      Get.back();
+                    },
                     widget: Center(
                       child: Text(TextManager.cancel,style: TextStyleManager.textStyle20w700.copyWith(color: ColorManager.colorPrimary),),
                     ),

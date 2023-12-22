@@ -12,6 +12,7 @@ class AssetsImage {
   static const String signupImagePart2 = '${_imagesPath}signupimagepart2.png';
   static const String testHome = '${_imagesPath}test_home.png';
   static const String electrican = '${_imagesPath}carpenter 1.png';
+  static const String settingsImage = '${_imagesPath}settings 1.png';
 
 
   // icons
@@ -52,6 +53,7 @@ class AssetsImage {
   static const String upload = '${_iconsPath}upload.svg';
   static const String location = '${_iconsPath}location';
   static const String notification = '${_iconsPath}notification.svg';
+  static const String setting2 = '${_iconsPath}settings3.svg';
 
 
   // svg

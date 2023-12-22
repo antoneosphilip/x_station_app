@@ -35,9 +35,10 @@ class LoginCubit extends Cubit<LoginStates>
             LoginErrorState(l.message));
       },
           (r) {
-            CacheHelper.put(key: 'token', value: r.data!.token);
-            CachingDataManager.instance.cachLoginInfo(r);
+
         emit(LoginSuccessState(r));
+        CacheHelper.put(key: 'token', value: r.data!.token);
+        CachingDataManager.instance.cachLoginInfo(r);
             loginModel=r;
       },
     );

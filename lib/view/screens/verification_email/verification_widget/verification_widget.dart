@@ -141,7 +141,7 @@ class _VerificationEmailWidgetState extends State<VerificationEmailWidget> {
                 InkWell(
                     onTap: (){
                       startTimer();
-                      ForgetPasswordCubit.get(context).forgetPassword();
+                      SignUpCubit.get(context).sendCode();
                     },
                     child: Text(TextManager.resendAgain.tr ,style: TextStyleManager.textStyle14w700.copyWith(color: ColorManager.colorPrimary)))
               ],):const SizedBox(),

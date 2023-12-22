@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
+import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/screens/home/home_widget/posting_shimmer/posting_shimmer.dart';
@@ -76,7 +77,8 @@ class HomePostDetailsWidget extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(width: 7.w,),
-                              Text("${PostsCubit.get(context).showPostModel!.data!.user!.name!}",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,)),
+                              Text(PostsCubit.get(context).showPostModel!.data!.user!.name!,style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,)),
+                              SizedBox(width: 130.w,),
                             ],
                           ),
                           SizedBox(height: 16.h,),

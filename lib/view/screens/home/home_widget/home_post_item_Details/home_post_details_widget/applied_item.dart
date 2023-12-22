@@ -9,8 +9,10 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/core_widget/xstation_button_custom/x_station_button_custom.dart';
+import 'package:x_station_app/view/screens/rate_screen/rate_screen/retae_screen.dart';
 
 import '../../../../../../core/assets_manager/assets_manager.dart';
+import '../../../../../../core/route_manager/page_name.dart';
 import '../../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core_widget/elevated_button/elevated_button_custom.dart';
 import '../../../../electrician_information/electrician_information_screen/electrician_information_Screen.dart';
@@ -25,8 +27,10 @@ class AppliedItem extends StatelessWidget {
   final int postId;
   final bool myPost;
   final int isJop;
+  final String status;
 
-  const AppliedItem({super.key, required this.namePerson, required this.emailPerson, required this.address, required this.phone, required this.userId, required this.postId, required this.myPost, required this.isJop});
+
+  const AppliedItem({super.key, required this.namePerson, required this.emailPerson, required this.address, required this.phone, required this.userId, required this.postId, required this.myPost, required this.isJop, required this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,7 @@ class AppliedItem extends StatelessWidget {
           width: 358.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(color: Colors.grey),
+            border: Border.all(color:status=="accepted"? ColorManager.colorGreen:ColorManager.colorGrey),
             color: Colors.white,
           ),
           child: Row(
@@ -70,17 +74,36 @@ class AppliedItem extends StatelessWidget {
                       children: [
                         Text("${namePerson}",style: TextStyleManager.textStyle14w500),
                       myPost?  Padding(
-                          padding:  EdgeInsets.only(left: 100.w),
+                          padding:  EdgeInsets.only(left: 150.w),
                           child: InkWell(
                               onTap: (){
                                 AlterDialog(context,userId,postId);
                               },
-                              child: const Icon(Icons.settings)),
+                              child:  Column(
+                                children: [
+                                  Image.asset(AssetsImage.settingsImage,width: 20,height: 20,),
+                                ],
+                              )),
                         ):const SizedBox(),
                       ],
                     ),
                     SizedBox(height: 4.h,),
-                    Text("${emailPerson}",style: TextStyleManager.textStyle14w500),
+                    Row(
+                      children: [
+                        Text("${emailPerson}",style: TextStyleManager.textStyle14w500),
+                        myPost&& status=='accepted'?InkWell(
+                          onTap: (){
+                            Get.to(RateScreen( userID: userId,),);
+
+                          },
+                          child: const Padding(
+                            padding:  EdgeInsets.only(left: 20),
+                            child: Text("done"),
+                          ),
+                        ):const SizedBox(),
+
+                      ],
+                    ),
 
                   ],
                 ),

@@ -32,6 +32,7 @@ class Data {
   String? image;
   bool? myPost;
   User? user;
+  int? isApplied;
   int? jobTaken;
   List<AllApplied>? allApplied;
 
@@ -42,6 +43,7 @@ class Data {
         this.image,
         this.myPost,
         this.user,
+        this.isApplied,
         this.jobTaken,
         this.allApplied});
 
@@ -52,7 +54,8 @@ class Data {
     image = json['image']??'';
     myPost = json['my_post'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
-    jobTaken = json['jobTaken'];
+    isApplied = json['is_applied'];
+    jobTaken = json['job_taken'];
     if (json['all_applied'] != null) {
       allApplied = <AllApplied>[];
       json['all_applied'].forEach((v) {
@@ -71,7 +74,8 @@ class Data {
     if (this.user != null) {
       data['user'] = this.user!.toJson();
     }
-    data['jobTaken'] = this.jobTaken;
+    data['is_applied'] = this.isApplied;
+    data['job_taken'] = this.jobTaken;
     if (this.allApplied != null) {
       data['all_applied'] = this.allApplied!.map((v) => v.toJson()).toList();
     }
@@ -82,14 +86,14 @@ class Data {
 class User {
   int? id;
   String? name;
-  Null? avatar;
+  String? avatar;
 
   User({this.id, this.name, this.avatar});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    avatar = json['avatar'];
+    avatar = json['avatar']??'';
   }
 
   Map<String, dynamic> toJson() {
@@ -103,11 +107,13 @@ class User {
 
 class AllApplied {
   UserApplied? user;
+  String? status;
 
-  AllApplied({this.user});
+  AllApplied({this.user, this.status});
 
   AllApplied.fromJson(Map<String, dynamic> json) {
     user = json['user'] != null ? new UserApplied.fromJson(json['user']) : null;
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
@@ -115,6 +121,7 @@ class AllApplied {
     if (this.user != null) {
       data['user'] = this.user!.toJson();
     }
+    data['status'] = this.status;
     return data;
   }
 }
@@ -126,6 +133,7 @@ class UserApplied {
   String? phoneNumber;
   String? address;
   Null? avatar;
+  num? averageRating;
 
   UserApplied(
       {this.id,
@@ -133,7 +141,8 @@ class UserApplied {
         this.email,
         this.phoneNumber,
         this.address,
-        this.avatar});
+        this.avatar,
+        this.averageRating});
 
   UserApplied.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -142,6 +151,7 @@ class UserApplied {
     phoneNumber = json['phone_number'];
     address = json['address'];
     avatar = json['avatar'];
+    averageRating = json['average_rating'];
   }
 
   Map<String, dynamic> toJson() {
@@ -152,6 +162,7 @@ class UserApplied {
     data['phone_number'] = this.phoneNumber;
     data['address'] = this.address;
     data['avatar'] = this.avatar;
+    data['average_rating'] = this.averageRating;
     return data;
   }
 }

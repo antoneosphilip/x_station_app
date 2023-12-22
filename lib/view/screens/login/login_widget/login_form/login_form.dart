@@ -8,6 +8,7 @@ import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_cubit.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_states.dart';
+import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/color_manager/color_manager.dart';
 import '../../../../../core/regexp.dart';
@@ -41,6 +42,7 @@ class LoginForm extends StatelessWidget {
                   message: state.loginModel.message.toString(),
                   snackBarType: SnackBarType.success,
                   context: context);
+              PostsCubit.get(context).getPosts();
             }
             else if(state is LoginErrorState){
               customSnackBar(

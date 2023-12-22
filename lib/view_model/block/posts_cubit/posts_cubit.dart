@@ -184,4 +184,23 @@ Map<int,bool> isApply={};
       },
     );
   }
+
+
+
+  /////////////////user Rate///////////////
+  Future<void> userRate({required userId,required rate})async{
+    emit(UserRateLoadingState());
+    var data=await postsRepo.userRate(userId: userId,rate: rate);
+    data.fold(
+          (l) {
+        emit(
+            UserRateErrorState(l.message));
+      },
+          (r) {
+        emit(UserRateSuccessState(r));
+        acceptPostModel=r;
+
+      },
+    );
+  }
 }
