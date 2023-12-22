@@ -1,3 +1,4 @@
+import 'package:x_station_app/model/accept_post_model/accept_post_model.dart';
 import 'package:x_station_app/model/apply_post_model/apply_post_model.dart';
 import 'package:x_station_app/model/create_post_model/create_post_model.dart';
 import 'package:x_station_app/model/get_post_model/get_post_model.dart';
@@ -60,6 +61,19 @@ class ShowPostsErrorState extends PostsStates{
  final String err;
 
  ShowPostsErrorState(this.err);
+
+}
+
+/////////////////accept post//////////
+class AcceptPostLoadingState extends PostsStates{}
+class AcceptPostSuccessState extends PostsStates{
+ AcceptPostModel acceptPostModel;
+ AcceptPostSuccessState(this.acceptPostModel);
+}
+class AcceptPostErrorState extends PostsStates{
+ final String err;
+
+ AcceptPostErrorState(this.err);
 
 }
 class ChangeMode extends PostsStates{}

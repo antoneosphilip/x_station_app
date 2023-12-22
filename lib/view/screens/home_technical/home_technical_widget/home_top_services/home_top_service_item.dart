@@ -17,16 +17,17 @@ class HomePostsTechnician extends StatelessWidget {
   final String namePerson;
   final int id;
   final int isApplied;
+  final int isJob;
 
   HomePostsTechnician({
 
-    required this.title, required this.description, required this.image, required this.namePerson, required this.id, required this.isApplied});
+    required this.title, required this.description, required this.image, required this.namePerson, required this.id, required this.isApplied, required this.isJob});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.to( ApplyScreen(description: description,title: title,id: id,isApplied:isApplied),
+        Get.to( ApplyScreen(description: description,title: title,id: id,isApplied:isApplied,isJob:isJob),
           duration: const Duration(
           milliseconds: 250,
         ),
@@ -61,6 +62,21 @@ class HomePostsTechnician extends StatelessWidget {
                   ),
                   SizedBox(width: 7.w,),
                   Text("${namePerson}",style: TextStyleManager.textStyle14w500,),
+                  const Spacer(),
+                  isJob==0?
+                  Row(
+                    children: [
+                      Text(TextManager.available,style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorGreen),),
+                      SizedBox(width: 5.w,),
+                      const Icon(Icons.check,color: ColorManager.colorGreen,),
+                    ],
+                  ):
+                   Row(
+                    children: [
+                      Text(TextManager.reversedBySomeOne,style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorRed),),
+                    ],
+                  ),
+                  SizedBox(width: 15.w,)
                 ],
               ),
               SizedBox(height: 16.h,),

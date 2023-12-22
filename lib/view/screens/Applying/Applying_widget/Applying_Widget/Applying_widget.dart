@@ -10,20 +10,23 @@ import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/core_widget/flutter_toast/flutter_toast.dart';
 import 'package:x_station_app/view/core_widget/tab_bar_widget/tab_bar_widget.dart';
+import 'package:x_station_app/view/core_widget/xstation_button_custom/x_station_button_custom.dart';
 import 'package:x_station_app/view/notification_module/presentation/manager/notification_cubit/notification_cubit.dart';
 import 'package:x_station_app/view/screens/Applying/Applying_widget/Applying_form/Applying_form.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_states.dart';
 
 import '../../../../../view_model/block/notification_cubit/notification_cubit.dart';
+import '../../../../core_widget/elevated_button/elevated_button_custom.dart';
 
 class ApplayWidget extends StatelessWidget {
   final String title;
   final String description;
   final int id;
   final int isApplied;
+  final int isJob;
 
-  const ApplayWidget({super.key, required this.title, required this.description, required this.id, required this.isApplied});
+  const ApplayWidget({super.key, required this.title, required this.description, required this.id, required this.isApplied, required this.isJob});
 
 
   @override
@@ -65,25 +68,36 @@ class ApplayWidget extends StatelessWidget {
           builder: (context,state){
             return Padding(
               padding: const EdgeInsets.only(left: 197),
-              child: InkWell(
-                onTap: (){
+              child: isJob==0?ElevatedButtonCustom(
+                height: 50,
+                width: 150,
+               radius: 40,
+                borderColor: PostsCubit.get(context).isApply![id]!?ColorManager.colorPrimary:Colors.red,
+                colors: PostsCubit.get(context).isApply![id]!?ColorManager.colorPrimary:Colors.red,
+                onPressed: () {
                   PostsCubit.get(context).applyPost(id: id);
-                  PostsCubit.get(context).showPost(id: id);
                   GetNotificationCubit.get(context).getNotification();
                   GetNotificationCubit.get(context).bindNotification();
 
                 },
-                child: Container(
-                  height: 50.h,
-                  width: 150.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color:PostsCubit.get(context).isApply![id]!?ColorManager.colorPrimary:Colors.red),
-                  child: Center(
-                    child: Text(
-                      PostsCubit.get(context).isApply![id]!?TextManager.Applynow.tr:TextManager.cancel.tr,
-                      style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w600,color: Colors.white),
-                    ),
+                widget: Center(
+                  child: Text(
+                    PostsCubit.get(context).isApply![id]!?TextManager.Applynow.tr:TextManager.cancel.tr,
+                    style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w600,color: Colors.white),
+                  ),
+                ),
+              ):
+              Container(
+                height: 50.h,
+                width: 150.w,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    color:ColorManager.colorGrey
+                ),
+                child: Center(
+                  child: Text(
+                    TextManager.Applynow,
+                    style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w600,color: Colors.white),
                   ),
                 ),
               ),

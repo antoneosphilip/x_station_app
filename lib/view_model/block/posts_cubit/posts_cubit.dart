@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
+import 'package:x_station_app/model/accept_post_model/accept_post_model.dart';
 import 'package:x_station_app/model/apply_post_model/apply_post_model.dart';
 import 'package:x_station_app/model/get_post_model/get_post_model.dart';
 import 'package:x_station_app/model/show_post_model/show_post_model.dart';
@@ -29,6 +30,8 @@ class PostsCubit extends Cubit<PostsStates>
   var formKey = GlobalKey<FormState>();
   ApplyPostModel? applyPostModel;
   ShowPostModel? showPostModel;
+  AcceptPostModel? acceptPostModel;
+
 
   ////////////////////////////SelectPhoto////////////////////////////
   io.File? fileImage;
@@ -127,37 +130,14 @@ Map<int,bool> isApply={};
           (r) {
         emit(ApplyPostsSuccessState(r));
         applyPostModel=r;
+        getPosts();
 
-      },
+
+          },
     );
   }
-  Color? color;
-void changeColor({required message}){
-    if(message=='Applied Successfully'){
-      color=Colors.red;
-      emit(ChangeColor());
-    }
-    else{
-      color=ColorManager.colorPrimary;
-      emit(ChangeColor());
 
-    }
-}
-
-  String? text;
-  void changeText({required message}){
-    if(message=='Applied Successfully'){
-      text=TextManager.cancel;
-      emit(ChangeText());
-    }
-    else{
-      text=TextManager.Applynow;
-      emit(ChangeText());
-
-    }
-  }
-
-
+/////////////////show post///////////////
   Future<void> showPost({required id})async{
     emit(ShowPostsLoadingState());
     var data=await postsRepo.showPost(id: id);
@@ -173,6 +153,7 @@ void changeColor({required message}){
       },
     );
   }
+
   Map<String,bool>? x;
   void changeMode({String? message}){
     if(message=='Applied Successfully'){
@@ -185,5 +166,22 @@ void changeColor({required message}){
     print("sssssssssssssssss");
     print(x);
     emit(ChangeMode());
+  }
+
+  /////////////////accept post///////////////
+  Future<void> acceptPost({required userId,required postId,required status})async{
+    emit(AcceptPostLoadingState());
+    var data=await postsRepo.acceptPost(userId: userId,postId: postId,status: status);
+    data.fold(
+          (l) {
+        emit(
+            AcceptPostErrorState(l.message));
+      },
+          (r) {
+        emit(AcceptPostSuccessState(r));
+        acceptPostModel=r;
+
+      },
+    );
   }
 }

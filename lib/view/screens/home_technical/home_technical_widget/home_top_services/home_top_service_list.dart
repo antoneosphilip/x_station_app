@@ -43,7 +43,8 @@ class HomePostsListTechnican extends StatelessWidget {
                     image: PostsCubit.get(context).getPostModel!.data![index].image! ,
                     namePerson: PostsCubit.get(context).getPostModel!.data![index].user!.name!,
                     id:PostsCubit.get(context).getPostModel!.data![index].id! ,
-                    isApplied:PostsCubit.get(context).getPostModel!.data![index].isApplied! ,
+                    isApplied:PostsCubit.get(context).getPostModel!.data![index].isApplied!,
+                    isJob: PostsCubit.get(context).getPostModel!.data![index].jobTaken! ,
                     // imagePerson:PostsCubit.get(context).getPostModel!.data![index].user!.avatar! ,
                   );
                 },

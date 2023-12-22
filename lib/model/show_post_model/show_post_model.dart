@@ -30,8 +30,9 @@ class Data {
   String? title;
   String? description;
   String? image;
+  bool? myPost;
   User? user;
-  int? isApplied;
+  int? jobTaken;
   List<AllApplied>? allApplied;
 
   Data(
@@ -39,8 +40,9 @@ class Data {
         this.title,
         this.description,
         this.image,
+        this.myPost,
         this.user,
-        this.isApplied,
+        this.jobTaken,
         this.allApplied});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -48,8 +50,9 @@ class Data {
     title = json['title'];
     description = json['description'];
     image = json['image']??'';
+    myPost = json['my_post'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
-    isApplied = json['is_applied'];
+    jobTaken = json['jobTaken'];
     if (json['all_applied'] != null) {
       allApplied = <AllApplied>[];
       json['all_applied'].forEach((v) {
@@ -64,10 +67,11 @@ class Data {
     data['title'] = this.title;
     data['description'] = this.description;
     data['image'] = this.image;
+    data['my_post'] = this.myPost;
     if (this.user != null) {
       data['user'] = this.user!.toJson();
     }
-    data['is_applied'] = this.isApplied;
+    data['jobTaken'] = this.jobTaken;
     if (this.allApplied != null) {
       data['all_applied'] = this.allApplied!.map((v) => v.toJson()).toList();
     }

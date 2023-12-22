@@ -35,24 +35,30 @@ class Data {
   String? title;
   String? description;
   String? image;
+  bool? myPost;
   User? user;
   int? isApplied;
+  int? jobTaken;
 
   Data(
       {this.id,
         this.title,
         this.description,
         this.image,
+        this.myPost,
         this.user,
-        this.isApplied});
+        this.isApplied,
+        this.jobTaken});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     description = json['description'];
     image = json['image']??'';
+    myPost = json['my_post'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
     isApplied = json['is_applied'];
+    jobTaken = json['jobTaken'];
   }
 
   Map<String, dynamic> toJson() {
@@ -61,10 +67,12 @@ class Data {
     data['title'] = this.title;
     data['description'] = this.description;
     data['image'] = this.image;
+    data['my_post'] = this.myPost;
     if (this.user != null) {
       data['user'] = this.user!.toJson();
     }
     data['is_applied'] = this.isApplied;
+    data['jobTaken'] = this.jobTaken;
     return data;
   }
 }
@@ -72,14 +80,14 @@ class Data {
 class User {
   int? id;
   String? name;
-  Null? avatar;
+  String? avatar;
 
   User({this.id, this.name, this.avatar});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    avatar = json['avatar'];
+    avatar = json['avatar']??'';
   }
 
   Map<String, dynamic> toJson() {

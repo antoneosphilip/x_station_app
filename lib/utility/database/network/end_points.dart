@@ -27,6 +27,7 @@ abstract class EndPoint{
    '/technicals?handle=${id}';
   }
   static  const String verifyEmail = '/auth/verify_email';
+  static  const String acceptPostEndPoint = '/technicals/update_applicant_status';
 
 }
 

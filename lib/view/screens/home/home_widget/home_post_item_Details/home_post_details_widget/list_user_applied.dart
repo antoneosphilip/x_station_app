@@ -43,6 +43,10 @@ class ListUserApplied extends StatelessWidget {
                     emailPerson: PostsCubit.get(context).showPostModel!.data!.allApplied![index].user!.email!,
                     address: PostsCubit.get(context).showPostModel!.data!.allApplied![index].user!.address!,
                     phone: PostsCubit.get(context).showPostModel!.data!.allApplied![index].user!.phoneNumber!,
+                    userId:PostsCubit.get(context).showPostModel!.data!.allApplied![index].user!.id!,
+                    postId:PostsCubit.get(context).showPostModel!.data!.id!,
+                    isJop: PostsCubit.get(context).showPostModel!.data!.jobTaken!,
+                    myPost: PostsCubit.get(context).showPostModel!.data!.myPost!,
                     // imagePerson:PostsCubit.get(context).getPostModel!.data![index].user!.avatar! ,
                   );
                 },

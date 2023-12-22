@@ -14,14 +14,19 @@ import '../../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core_widget/elevated_button/elevated_button_custom.dart';
 import '../../../../electrician_information/electrician_information_screen/electrician_information_Screen.dart';
+import '../../custom_alter_dialog/custom_Alter_dialog.dart';
 
 class AppliedItem extends StatelessWidget {
   final String namePerson;
   final String emailPerson;
   final String address;
   final String phone;
+  final int userId;
+  final int postId;
+  final bool myPost;
+  final int isJop;
 
-  const AppliedItem({super.key, required this.namePerson, required this.emailPerson, required this.address, required this.phone});
+  const AppliedItem({super.key, required this.namePerson, required this.emailPerson, required this.address, required this.phone, required this.userId, required this.postId, required this.myPost, required this.isJop});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +66,19 @@ class AppliedItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("${namePerson}",style: TextStyleManager.textStyle14w500),
+                    Row(
+                      children: [
+                        Text("${namePerson}",style: TextStyleManager.textStyle14w500),
+                      myPost?  Padding(
+                          padding:  EdgeInsets.only(left: 100.w),
+                          child: InkWell(
+                              onTap: (){
+                                AlterDialog(context,userId,postId);
+                              },
+                              child: const Icon(Icons.settings)),
+                        ):const SizedBox(),
+                      ],
+                    ),
                     SizedBox(height: 4.h,),
                     Text("${emailPerson}",style: TextStyleManager.textStyle14w500),
 

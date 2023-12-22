@@ -118,6 +118,8 @@ class TextManager {
   static const String cancel = "Cancel";
   static const String options = "Options";
   static const String accept = "Accept";
+  static const String available = "available";
+  static const String reversedBySomeOne = "Reserved by someone";
 
 
 }

@@ -4,6 +4,7 @@ import 'package:x_station_app/core/errors/faliuar.dart';
 import 'package:x_station_app/model/get_post_model/get_post_model.dart';
 import 'package:x_station_app/utility/database/network/dio-helper.dart';
 
+import '../../../model/accept_post_model/accept_post_model.dart';
 import '../../../model/apply_post_model/apply_post_model.dart';
 import '../../../model/create_post_model/create_post_model.dart';
 import '../../../model/login_model/login_model.dart';
@@ -15,6 +16,8 @@ abstract class PostsRepo{
   Future<Either<Failure,GetPostModel>> getPost();
   Future<Either<Failure,ApplyPostModel>> applyPost({required id});
   Future<Either<Failure,ShowPostModel>> showPost({required id});
+  Future<Either<Failure,AcceptPostModel>> acceptPost({required userId,required postId,required status});
+
 
 }
 
@@ -82,5 +85,30 @@ class PostsRepoImpl implements PostsRepo {
       return Left(FailureLocal(message: e.toString()));
     }
   }
+
+
+  @override
+  Future<Either<Failure,AcceptPostModel>> acceptPost({required userId,required postId,required status})
+  async {
+    try {
+      Response response =
+      await DioHelper.postData(
+        url: EndPoint.acceptPostEndPoint,
+        data: {
+          'post_id':postId,
+          'user_id':userId,
+          'status':status,
+        },
+      );
+      return Right(AcceptPostModel.fromJson(response.data));
+    }
+    on DioException catch (e) {
+      return Left(ServerFailure.fromDioError(e));
+    }
+    catch (e) {
+      return Left(FailureLocal(message: e.toString()));
+    }
+  }
+
 }
 

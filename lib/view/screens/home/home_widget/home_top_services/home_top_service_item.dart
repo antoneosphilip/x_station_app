@@ -57,6 +57,7 @@ class HomeTopServiceItem extends StatelessWidget {
                   ),
                   SizedBox(width: 7.w,),
                   Text("${namePerson}",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,)),
+
                 ],
               ),
               SizedBox(height: 16.h,),
