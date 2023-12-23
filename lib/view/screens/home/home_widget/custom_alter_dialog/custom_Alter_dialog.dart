@@ -21,6 +21,7 @@ import '../../../../core_widget/elevated_button/elevated_button_custom.dart';
 void AlterDialog(BuildContext context,userId,postId){
   showDialog(context: context, builder: (context){
     return AlertDialog(
+      backgroundColor: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
       actions: [
         BlocConsumer<PostsCubit,PostsStates>(
           listener: (context,state) async {
@@ -47,7 +48,7 @@ void AlterDialog(BuildContext context,userId,postId){
               width: 300.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24.r),
-                color: Colors.white,
+                color: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +58,14 @@ void AlterDialog(BuildContext context,userId,postId){
                   Row(
                     children: [
                       SizedBox(width: 100.w,),
-                      Text(TextManager.options,style: TextStyleManager.textStyle20w700.copyWith(fontSize: 22.sp),),
+                      Row(
+                        children: [
+                          Text(TextManager.options,style: TextStyleManager.textStyle20w700.copyWith(fontSize: 22.sp,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,),),
+                          SizedBox(width: 5.w,),
+                          Image.asset(AssetsImage.settingsImage,width: 20,height: 20,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack ,),
+
+                        ],
+                      ),
                       SvgPicture.asset(AssetsImage.settings),
                     ],
                   ),

@@ -58,7 +58,7 @@ class User {
   String? phoneNumber;
   String? address;
   Null? avatar;
-  int? averageRating;
+  num? averageRating;
 
   User(
       {this.id,

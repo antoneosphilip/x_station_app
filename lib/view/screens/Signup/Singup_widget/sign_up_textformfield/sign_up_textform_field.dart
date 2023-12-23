@@ -20,6 +20,7 @@ import '../../../../../core/route_manager/page_name.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core/text_manager/text_manager.dart';
 import '../../../../../view_model/block/login_cubit/login_states.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import '../../../../core_widget/custom_top_snack/custom_top_snack.dart';
 import '../../../../core_widget/snack_bar_custom/snack_bar_custom.dart';
 import '../../../../core_widget/text_form_field/text_form_field_custom.dart';
@@ -116,7 +117,9 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
                 },
                 label: TextManager.validemail.tr,
                 suffix: true,
-                suffixIcon: SvgPicture.asset(AssetsImage.email),
+                suffixIcon: SvgPicture.asset(AssetsImage.email,color:
+                ProfileCubit.get(context).isDark?ColorManager.colorWhite:ColorManager.colorSecondary
+                  ,),
                 controller: SignUpCubit.get(context).emailController,
 
               ),

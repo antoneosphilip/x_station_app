@@ -8,6 +8,9 @@ import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/core_widget/text_form_field/text_form_field_custom.dart';
 import 'package:x_station_app/view/screens/Signup/Singup_widget/signup_form/Signup_form.dart';
 
+import '../../../../../core/color_manager/color_manager.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
+
 class SignupWidget extends StatelessWidget {
   const SignupWidget({super.key});
 
@@ -35,12 +38,12 @@ class SignupWidget extends StatelessWidget {
                 padding:  const EdgeInsets.only(bottom: 25),
                 child: Text(
                   TextManager.getstarted.tr,
-                  style: TextStyleManager.textStyle36w500,
+                  style: TextStyleManager.textStyle36w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary),
                 ),
               ),
               Text(
                 TextManager.creataccount.tr,
-                style: TextStyleManager.textStyle14w300,
+                style: TextStyleManager.textStyle14w300.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary),
               ),
             ],
           ),

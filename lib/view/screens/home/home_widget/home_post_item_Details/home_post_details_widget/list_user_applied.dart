@@ -48,6 +48,7 @@ class ListUserApplied extends StatelessWidget {
                     isJop: PostsCubit.get(context).showPostModel!.data!.jobTaken!,
                     myPost: PostsCubit.get(context).showPostModel!.data!.myPost!,
                     status: PostsCubit.get(context).showPostModel!.data!.allApplied![index].status!,
+                    rate: PostsCubit.get(context).showPostModel!.data!.allApplied![index].user!.averageRating!,
                     // imagePerson:PostsCubit.get(context).getPostModel!.data![index].user!.avatar! ,
                   );
                 },

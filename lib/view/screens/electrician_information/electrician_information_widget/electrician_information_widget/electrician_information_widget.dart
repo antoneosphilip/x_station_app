@@ -11,7 +11,7 @@ import '../electrician_information_form/upload.dart';
 
 class ElectricianInformationWidget extends StatelessWidget {
   final  String name;
-  final  int rate;
+  final  num rate;
   final  String price;
   final  String email;
   final  String phone;

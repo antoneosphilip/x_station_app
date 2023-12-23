@@ -26,7 +26,6 @@ class PinPutWidget extends StatelessWidget {
           controller: ForgetPasswordCubit.get(context).pinController,
           length: 4,
           errorTextStyle: const TextStyle(color: Colors.red),
-
         ),
       ),
     );

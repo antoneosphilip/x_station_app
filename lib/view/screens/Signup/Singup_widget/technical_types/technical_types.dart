@@ -15,6 +15,7 @@ import 'package:x_station_app/view_model/block/signup_cubit/signup_cubit.dart';
 import '../../../../../core/color_manager/color_manager.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core/text_manager/text_manager.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import '../../../../core_widget/text_form_field/text_form_field_custom.dart';
 
 class TechnicalTypes extends StatefulWidget {
@@ -48,132 +49,158 @@ class _TechnicalTypesState extends State<TechnicalTypes> {
       listener: (context,state){},
       builder: (context,state){
         return state is CategorySelectMenuLoadingState?const CustomCircleLoading():
-            Column(
-              children: [
-                TextFormFieldCustom(
-                  keyboardType: TextInputType.text,
-                  validate: (value) {
-                    if (value == null || value.isEmpty) {
-                      return TextManager.nationalId.tr;
-                    }
-                    return null;
-                  },
-                  label: TextManager.nationalId.tr,
-                  suffix: true,
-                  suffixIcon: SvgPicture.asset(AssetsImage.user),
-                  controller: SignUpCubit.get(context).nationalId,
+        Column(
+          children: [
+            TextFormFieldCustom(
+              keyboardType: TextInputType.text,
+              validate: (value) {
+                if (value == null || value.isEmpty) {
+                  return TextManager.nationalId.tr;
+                }
+                return null;
+              },
+              label: TextManager.nationalId.tr,
+              suffix: true,
+              suffixIcon: SvgPicture.asset(AssetsImage.user),
+              controller: SignUpCubit.get(context).nationalId,
 
+            ),
+            SizedBox(height: 19.h,),
+            (CategoryCubit.get(context).categorySelectMenuModel!=null)?
+            Container(
+                width: double.infinity,
+                height: 60.h,
+                decoration: BoxDecoration(
+                    color: ColorManager.colorGrey.withOpacity(.20),
+                    border: Border.all(color: ColorManager.colorGrey.withOpacity(.20)),
+                    borderRadius: BorderRadius.circular(10.r)
                 ),
-                SizedBox(height: 19.h,),
-                (CategoryCubit.get(context).categorySelectMenuModel!=null)?
-                Container(
-                  width: double.infinity,
-                  height: 60.h,
-                  decoration: BoxDecoration(
-                      color: ColorManager.colorGrey.withOpacity(.20),
-                      border: Border.all(color: ColorManager.colorGrey.withOpacity(.20)),
-                      borderRadius: BorderRadius.circular(10.r)
-                  ),
-                  child:
-                  DropdownButtonHideUnderline(
-                    child: DropdownButton2<String>(
-                      isExpanded: true,
-                      hint:  Text(
-                          TextManager.technicalType.tr,
-                          style: TextStyleManager.textStyle14w300
-                      ),
-                      items: CategoryCubit.get(context).categorySelectMenuModel?.data!
-                          .map<DropdownMenuItem<String>>(
-                            (dynamic item) => DropdownMenuItem<String>(
-                              onTap: (){
-                                setState(() {
-                                  SignUpCubit.get(context).technicalTypeSelectedId=item.id;
+                child:
+                DropdownButtonHideUnderline(
+                  child: DropdownButton2<String>(
+                    iconStyleData: IconStyleData(iconEnabledColor: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorGrey),
+                    dropdownStyleData: DropdownStyleData(
+                        decoration: BoxDecoration(
+                          color:  ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhiteDarkMode,
+                        )
+                    ),
+                    isExpanded: true,
+                    hint:  Text(
+                        TextManager.technicalType.tr,
+                        style: TextStyleManager.textStyle14w300.copyWith(
+                            color:
+                            ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary
 
-                                });
-                              },
-                          value: item.name.toString(),// Assuming 'name' is a string property in your Data class
-                          child: Text(
-                            item.name.toString(), // Assuming 'name' is a string property in your Data class
-                            style: TextStyleManager.textStyle14w300,
+                        )
+                    ),
+                    items: CategoryCubit.get(context).categorySelectMenuModel?.data!
+                        .map<DropdownMenuItem<String>>(
+                          (dynamic item) => DropdownMenuItem<String>(
+                        onTap: (){
+                          setState(() {
+                            SignUpCubit.get(context).technicalTypeSelectedId=item.id;
+                          });
+                        },
+                        value: item.name.toString(),// Assuming 'name' is a string property in your Data class
+                        child: Text(
+                          item.name.toString(), // Assuming 'name' is a string property in your Data class
+                          style: TextStyleManager.textStyle14w300.copyWith(color:
+                          ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary
                           ),
                         ),
-                      )
-                          .toList(),
-                      value: SignUpCubit.get(context).technicalTypeSelected,
-                      onChanged: (String? value) {
-                        setState(() {
-                          SignUpCubit.get(context).technicalTypeSelected=value!;
-                          print(value);
-                        });
-                      },
-                      buttonStyleData: const ButtonStyleData(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 10),
-                        height: 40,
-                        width: 140,
                       ),
-                      menuItemStyleData: const MenuItemStyleData(
-                        height: 40,
-
-                      ),
+                    )
+                        .toList(),
+                    value: SignUpCubit.get(context).technicalTypeSelected,
+                    onChanged: (String? value) {
+                      setState(() {
+                        SignUpCubit.get(context).technicalTypeSelected=value!;
+                        print(value);
+                      });
+                    },
+                    buttonStyleData: const ButtonStyleData(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 10),
+                      height: 40,
+                      width: 140,
                     ),
-                  )
-                ):
-                      state is CategorySelectMenuErrorState?
-        Center(child: Text(state.err)):
-        const SizedBox(),
-                SizedBox(height: 19.h,),
-                Container(
-                  width: double.infinity,
-                  height: 60.h,
-                  decoration: BoxDecoration(
-                      color: ColorManager.colorGrey.withOpacity(.20),
-                      border: Border.all(color: ColorManager.colorGrey.withOpacity(.20)),
-                      borderRadius: BorderRadius.circular(10.r)
+                    menuItemStyleData: const MenuItemStyleData(
+                      height: 40,
+
+                    ),
                   ),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton2<String>(
-                      isExpanded: true,
-                      hint:  Text(
-                          TextManager.experienceYears.tr,
-                          style: TextStyleManager.textStyle14w300
-                      ),
-                      items: SignUpCubit.get(context).years
-                          .map(
-                              (String item) => DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(item,
-                                style: TextStyleManager
-                                    .textStyle14w300
-                            ),
-                          ))
-                          .toList(),
-                      value:  SignUpCubit.get(context).technicalExperienceYears,
-                      onChanged: (String? value) {
-                        setState(() {
-                          SignUpCubit.get(context).technicalExperienceYears=value;
-                          SignUpCubit.get(context).technicalExperienceYears=value;
+                )
+            ):
+            state is CategorySelectMenuErrorState?
+            Center(child: Text(state.err)):
+            const SizedBox(),
+            SizedBox(height: 19.h,),
+            Container(
+              width: double.infinity,
+              height: 60.h,
+              decoration: BoxDecoration(
+                  color: ColorManager.colorGrey.withOpacity(.20),
+                  border: Border.all(color: ColorManager.colorGrey.withOpacity(.20)),
+                  borderRadius: BorderRadius.circular(10.r)
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton2<String>(
+                  iconStyleData: IconStyleData(iconEnabledColor: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorGrey),
+                  dropdownStyleData: DropdownStyleData(
+                      decoration: BoxDecoration(
+                        color:  ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhiteDarkMode,
+                      )
+                  ),
+                  isExpanded: true,
+                  hint:  Text(
+                      TextManager.experienceYears.tr,
+                      style: TextStyleManager.textStyle14w300.copyWith(
+                          color:
+                          ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary
 
-                        });
-                        print(SignUpCubit.get(context).technicalExperienceYears);
-                      },
+                      )
+                  ),
+                  items: SignUpCubit.get(context).years
+                      .map(
+                          (String item) => DropdownMenuItem<String>(
+                        value: item,
+                        child: Text(item,
+                            style: TextStyleManager
+                                .textStyle14w300.copyWith(
+                                color:
+                                ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary
 
-                      buttonStyleData: const ButtonStyleData(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 10),
-                        height: 40,
-                        width: 140,
-                      ),
-                      menuItemStyleData: const MenuItemStyleData(
-                        height: 40,
+                            )
+                        ),
+                      ))
+                      .toList(),
+                  value:  SignUpCubit.get(context).technicalExperienceYears,
+                  onChanged: (String? value) {
+                    setState(() {
+                      SignUpCubit.get(context).technicalExperienceYears=value;
+                      // SignUpCubit.get(context).technicalExperienceYears=value;
 
-                      ),
-                    ),
+                    });
+                    print(SignUpCubit.get(context).technicalExperienceYears);
+                  },
+
+                  buttonStyleData:  const ButtonStyleData(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 10),
+                    height: 40,
+                    width: 140,
+                  ),
+                  menuItemStyleData:  const MenuItemStyleData(
+                    height: 40,
+
+
                   ),
                 ),
+              ),
+            ),
 
-              ],
-            );
+          ],
+        );
       },
     );
   }

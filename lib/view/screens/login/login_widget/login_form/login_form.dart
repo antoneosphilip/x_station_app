@@ -15,6 +15,7 @@ import '../../../../../core/regexp.dart';
 import '../../../../../core/service_locator/service_locator.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core/text_manager/text_manager.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import '../../../../../view_model/repo/login_repo/login_repo.dart';
 import '../../../../core_widget/custom_circle_loading/custom_circle_loading.dart';
 import '../../../../core_widget/custom_top_snack/custom_top_snack.dart';
@@ -120,7 +121,7 @@ class LoginForm extends StatelessWidget {
                     Text(
                       TextManager.newMember.tr,
                       style: TextStyleManager.textStyle12w400
-                          .copyWith(fontWeight: FontWeight.w500),
+                          .copyWith(fontWeight: FontWeight.w500,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary),
                     ),
                     SizedBox(
                       width: 3.w,

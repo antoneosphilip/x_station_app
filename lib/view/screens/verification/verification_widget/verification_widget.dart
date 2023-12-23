@@ -22,6 +22,8 @@ import 'package:x_station_app/view/core_widget/xstation_button_custom/x_station_
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_states.dart';
 
+import '../../../../view_model/block/profile_cubit/profile_cubit.dart';
+
 
 class VerificationWidget extends StatefulWidget {
 
@@ -67,7 +69,10 @@ class _VerificationWidgetState extends State<VerificationWidget> {
 
         Padding(padding: EdgeInsets.only(top: 94.h  , left: 21.w , right: 180.w),
           child:
-          Text(TextManager.almostThere.tr,style: TextStyleManager.textStyle24w500),
+          Text(TextManager.almostThere.tr,style: TextStyleManager.textStyle24w500.copyWith(
+            color:    ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary
+
+          )),
         ),
         Padding(padding: EdgeInsets.only(top: 26.h  , left: 22.w , right: 14.w),
           child:
@@ -76,15 +81,26 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                   children: <InlineSpan>[
                     TextSpan(
                       text: TextManager.pleaseEnter.tr,
-                      style: TextStyleManager.textStyle14w300,
+                      style: TextStyleManager.textStyle14w300.copyWith(
+                        color:
+                        ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary
+
+                        ),
                     ),
                     TextSpan(
                       text: ForgetPasswordCubit.get(context).emailController.text.tr,
-                      style: TextStyleManager.textStyle14w700,
+                      style: TextStyleManager.textStyle14w700.copyWith(
+                        color:
+                        ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary
+    ),
                     ),
                     TextSpan(
                       text: TextManager.forVerification.tr,
-                      style: TextStyleManager.textStyle14w300,
+                      style: TextStyleManager.textStyle14w300.copyWith(
+                        color:
+                        ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary
+
+    ),
                     ),
 
                   ]
@@ -102,7 +118,10 @@ class _VerificationWidgetState extends State<VerificationWidget> {
         Padding(padding: EdgeInsets.only(top: 62.h , left: 57.w , right: 33.w ),
           child:
           resendTime==0? Row(children: [
-            Text(TextManager.didntReceive.tr, style: TextStyleManager.textStyle14w700),
+            Text(TextManager.didntReceive.tr, style: TextStyleManager.textStyle14w700.copyWith(
+              color:    ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary
+
+          )),
             SizedBox(width:11.w),
             InkWell(
                 onTap: (){

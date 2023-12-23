@@ -4,7 +4,7 @@ import '../electrician_information_widget/electrician_information_widget/electri
 
 class ElectricianInformationScreen extends StatelessWidget {
   final  String name;
-  final  int rate;
+  final  num rate;
   final  String price;
   final  String email;
   final  String phone;

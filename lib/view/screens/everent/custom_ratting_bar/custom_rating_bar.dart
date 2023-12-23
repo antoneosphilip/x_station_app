@@ -19,7 +19,7 @@ class CustomRattingBar extends StatelessWidget {
   final double height;
   final double size;
   final Function? onRatingUpdate;
-  final int initRate;
+  final num initRate;
   final bool ignoreGesture;
   final Color color;
 

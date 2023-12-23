@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
 
 import '../../../../core/assets_manager/assets_manager.dart';
 import '../../../../core/color_manager/color_manager.dart';
@@ -25,7 +26,7 @@ class ProfileShimmer extends StatelessWidget {
     return SizedBox(
         child: Shimmer.fromColors(
           baseColor:ColorShimmer.baseColor,
-          highlightColor: ColorShimmer.highlightColor,
+          highlightColor: ProfileCubit.get(context).isDark?ColorManager.colorDark:ColorShimmer.highlightColor,
           child:   Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children:

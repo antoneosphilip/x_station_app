@@ -16,6 +16,7 @@ import '../../../../core/assets_manager/assets_manager.dart';
 import '../../../../core/regexp.dart';
 import '../../../../core/style_font_manager/style_manager.dart';
 import '../../../../core/text_manager/text_manager.dart';
+import '../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import '../../../core_widget/text_form_field/text_form_field_custom.dart';
 import '../../../core_widget/xstation_button_custom/x_station_button_custom.dart';
 
@@ -36,7 +37,10 @@ class ResetPasswordWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
            SizedBox(height: 94.h,),
-            Text(TextManager.resetPassword.tr,style: TextStyleManager.textStyle24w500),
+            Text(TextManager.resetPassword.tr,style: TextStyleManager.textStyle24w500.copyWith(
+                color:    ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary
+
+            )),
             SizedBox(height: 170.h,),
             TextFormFieldCustom(
               controller: ForgetPasswordCubit.get(context).passwordController,

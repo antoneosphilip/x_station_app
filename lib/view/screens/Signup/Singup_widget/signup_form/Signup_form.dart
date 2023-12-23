@@ -17,6 +17,7 @@ import 'package:x_station_app/view/screens/login/login_widget/check_box/check_bo
 import 'package:x_station_app/view_model/block/home_layout_cubit/home_layoout_cubit.dart';
 
 import '../../../../../core/service_locator/service_locator.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import '../../../../../view_model/block/signup_cubit/signup_cubit.dart';
 import '../../../../../view_model/repo/signup_repo/sigup_repo.dart';
 import '../sign_up_textformfield/sign_up_textform_field.dart';
@@ -39,7 +40,8 @@ class _SinupFormState extends State<SinupForm> {
       children: [
         Expanded(
           child: RadioListTile(
-            title:  Text(TextManager.client.tr),
+            title:  Text(TextManager.client.tr,style: TextStyle(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary),),
+
             contentPadding: EdgeInsets.zero,
             activeColor: ColorManager.colorPrimary,
             value: TextManager.client,
@@ -53,7 +55,7 @@ class _SinupFormState extends State<SinupForm> {
         ),
         Expanded(
           child: RadioListTile(
-            title:  Text(TextManager.technical.tr),
+            title:  Text(TextManager.technical.tr,style: TextStyle(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary),),
             contentPadding: EdgeInsets.zero,
             activeColor: ColorManager.colorPrimary,
             value: TextManager.technical,

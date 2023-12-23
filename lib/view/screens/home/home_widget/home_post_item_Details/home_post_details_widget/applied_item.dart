@@ -10,6 +10,7 @@ import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/core_widget/xstation_button_custom/x_station_button_custom.dart';
 import 'package:x_station_app/view/screens/rate_screen/rate_screen/retae_screen.dart';
+import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
 
 import '../../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../../core/route_manager/page_name.dart';
@@ -28,9 +29,10 @@ class AppliedItem extends StatelessWidget {
   final bool myPost;
   final int isJop;
   final String status;
+  final num rate;
 
 
-  const AppliedItem({super.key, required this.namePerson, required this.emailPerson, required this.address, required this.phone, required this.userId, required this.postId, required this.myPost, required this.isJop, required this.status});
+  const AppliedItem({super.key, required this.namePerson, required this.emailPerson, required this.address, required this.phone, required this.userId, required this.postId, required this.myPost, required this.isJop, required this.status, required this.rate});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class AppliedItem extends StatelessWidget {
           phone: phone,
           email: emailPerson,
           price: '30 \$',
-          rate: 4,
+          rate: rate,
         ));
       },
       child: Padding(
@@ -52,7 +54,7 @@ class AppliedItem extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
             border: Border.all(color:status=="accepted"? ColorManager.colorGreen:ColorManager.colorGrey),
-            color: Colors.white,
+            color: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:Colors.white,
           ),
           child: Row(
             children: [
@@ -72,7 +74,7 @@ class AppliedItem extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text("${namePerson}",style: TextStyleManager.textStyle14w500),
+                        Text("${namePerson}",style: TextStyleManager.textStyle14w500.copyWith(color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary, )),
                       myPost?  Padding(
                           padding:  EdgeInsets.only(left: 150.w),
                           child: InkWell(
@@ -81,7 +83,7 @@ class AppliedItem extends StatelessWidget {
                               },
                               child:  Column(
                                 children: [
-                                  Image.asset(AssetsImage.settingsImage,width: 20,height: 20,),
+                                  Image.asset(AssetsImage.settingsImage,width: 20,height: 20,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack ,),
                                 ],
                               )),
                         ):const SizedBox(),
@@ -90,15 +92,15 @@ class AppliedItem extends StatelessWidget {
                     SizedBox(height: 4.h,),
                     Row(
                       children: [
-                        Text("${emailPerson}",style: TextStyleManager.textStyle14w500),
+                        Text("${emailPerson}",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary, )),
                         myPost&& status=='accepted'?InkWell(
                           onTap: (){
                             Get.to(RateScreen( userID: userId,),);
 
                           },
-                          child: const Padding(
-                            padding:  EdgeInsets.only(left: 20),
-                            child: Text("done"),
+                          child:  Padding(
+                            padding:  EdgeInsets.only(left: 25.w),
+                            child: Text("done",style: TextStyle(color: ColorManager.colorGreen),),
                           ),
                         ):const SizedBox(),
 

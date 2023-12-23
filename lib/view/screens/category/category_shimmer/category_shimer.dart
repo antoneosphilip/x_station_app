@@ -11,6 +11,7 @@ import '../../../../core/color_manager/color_manager.dart';
 import '../../../../core/color_shimmer/color_shimmer.dart';
 import '../../../../core/style_font_manager/style_manager.dart';
 import '../../../../core/text_manager/text_manager.dart';
+import '../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import '../../../core_widget/tab_bar_widget/tab_bar_widget.dart';
 import '../category_electrician/category_electrician.dart';
 class CategoryShimmer extends StatelessWidget {
@@ -21,7 +22,7 @@ class CategoryShimmer extends StatelessWidget {
     return SizedBox(
         child: Shimmer.fromColors(
             baseColor:ColorShimmer.baseColor,
-            highlightColor: ColorShimmer.highlightColor,
+          highlightColor: ProfileCubit.get(context).isDark?ColorManager.colorDark:ColorShimmer.highlightColor,
             child:  GridView.builder(
                 physics: const BouncingScrollPhysics(),
                 gridDelegate:  SliverGridDelegateWithMaxCrossAxisExtent(

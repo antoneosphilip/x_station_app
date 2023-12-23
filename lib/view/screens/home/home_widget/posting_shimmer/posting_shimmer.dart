@@ -11,6 +11,7 @@ import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/color_shimmer/color_shimmer.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core/text_manager/text_manager.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import '../../../home/home_widget/home_top_services/home_top_service_item.dart';
 
 class PostingShimmer extends StatelessWidget {
@@ -22,7 +23,7 @@ class PostingShimmer extends StatelessWidget {
     return SizedBox(
         child: Shimmer.fromColors(
           baseColor:ColorShimmer.baseColor,
-          highlightColor: ColorShimmer.highlightColor,
+          highlightColor: ProfileCubit.get(context).isDark?ColorManager.colorDark:ColorShimmer.highlightColor,
           child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

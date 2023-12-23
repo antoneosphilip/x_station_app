@@ -13,6 +13,7 @@ import '../../../../../core/route_manager/page_name.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core/text_manager/text_manager.dart';
 import '../../../../../utility/database/local/cach_data.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import '../../../../core_widget/text_form_field/text_form_field_custom.dart';
 import '../../../home/home_widget/home_top_services/home_top_service_item.dart';
 
@@ -24,7 +25,7 @@ class HomeAppBarShimmer extends StatelessWidget {
     return SizedBox(
         child: Shimmer.fromColors(
           baseColor:ColorShimmer.baseColor,
-          highlightColor: ColorShimmer.highlightColor,
+          highlightColor: ProfileCubit.get(context).isDark?ColorManager.colorDark:ColorShimmer.highlightColor,
           child: Padding(
             padding:  EdgeInsets.only(left: 16.w),
             child: Column(

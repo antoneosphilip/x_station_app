@@ -10,7 +10,7 @@ import 'package:x_station_app/view/screens/everent/custom_ratting_bar/custom_rat
 
 class Upload extends StatelessWidget {
 final  String name;
-final  int rate;
+final  num rate;
 final  String price;
 
   const Upload({super.key, required this.name, required this.rate, required this.price});

@@ -16,7 +16,7 @@ import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 
 class ElectricianDetailsItem extends StatelessWidget {
   final String name;
-  final int rate;
+  final num rate;
   final String image;
   final String price;
   final  String email;
