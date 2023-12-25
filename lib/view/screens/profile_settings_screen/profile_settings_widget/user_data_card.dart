@@ -19,7 +19,7 @@ class UserDataCard extends StatelessWidget {
   Widget build(BuildContext context) {
 
    ProfileCubit.get(context). nameController.text=ProfileCubit.get(context).profileModel!.data!.name!;
-   ProfileCubit.get(context). emailController.text=ProfileCubit.get(context).profileModel!.data!.email!;
+    ProfileCubit.get(context). emailController.text=ProfileCubit.get(context).profileModel!.data!.email!;
     ProfileCubit.get(context).phoneController.text=ProfileCubit.get(context).profileModel!.data!.phoneNumber!;
     ProfileCubit.get(context).addressController.text=ProfileCubit.get(context).profileModel!.data!.address!;
 

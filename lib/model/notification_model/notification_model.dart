@@ -1,5 +1,5 @@
 class NotificationModel {
-  List<NotificationModelDta>? data;
+  List<Data>? data;
   String? message;
   int? code;
   String? type;
@@ -8,9 +8,9 @@ class NotificationModel {
 
   NotificationModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <NotificationModelDta>[];
+      data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new NotificationModelDta.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
     message = json['message'];
@@ -30,17 +30,17 @@ class NotificationModel {
   }
 }
 
-class NotificationModelDta {
+class Data {
   String? id;
   String? type;
   String? notifiableType;
   int? notifiableId;
-  DataMessage? data;
+  NotificationModelData? data;
   Null? readAt;
   String? createdAt;
   String? updatedAt;
 
-  NotificationModelDta(
+  Data(
       {this.id,
         this.type,
         this.notifiableType,
@@ -50,12 +50,12 @@ class NotificationModelDta {
         this.createdAt,
         this.updatedAt});
 
-  NotificationModelDta.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     type = json['type'];
     notifiableType = json['notifiable_type'];
     notifiableId = json['notifiable_id'];
-    data = json['data'] != null ? new DataMessage.fromJson(json['data']) : null;
+    data = json['data'] != null ? new NotificationModelData.fromJson(json['data']) : null;
     readAt = json['read_at'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -77,14 +77,14 @@ class NotificationModelDta {
   }
 }
 
-class DataMessage {
+class NotificationModelData {
   String? message;
   String? notificationType;
-  String? modelId;
+  int? modelId;
 
-  DataMessage({this.message, this.notificationType, this.modelId});
-  int get modelIdAsInt => int.tryParse(modelId ?? '') ?? 0;
-  DataMessage.fromJson(Map<String, dynamic> json) {
+  NotificationModelData({this.message, this.notificationType, this.modelId});
+
+  NotificationModelData.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     notificationType = json['notificationType'];
     modelId = json['modelId'];

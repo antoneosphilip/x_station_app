@@ -14,7 +14,7 @@ import '../../../utility/database/network/end_points.dart';
 
 abstract class ProfileRepo{
   Future<Either<Failure,ProfileModel>> getProfileData();
-  Future<Either<Failure,UpdateProfileModel>> updateProfileData( name, address, phone, email);
+  Future<Either<Failure,UpdateProfileModel>> updateProfileData(dynamic data);
   Future<Either<Failure,LogOutModel>> logOut();
   Future<Either<Failure,ChangePasswordModel>> changePassword(oldPassword,newPassword,confirmPassword);
 
@@ -43,19 +43,13 @@ class ProfileRepoImpl implements ProfileRepo {
 
 /////////////update profile data//////////////
   @override
-  Future<Either<Failure,UpdateProfileModel>> updateProfileData( name, address, phone, email)
+  Future<Either<Failure,UpdateProfileModel>> updateProfileData(dynamic data)
   async {
     try {
       Response response =
-      await DioHelper.postData(url: EndPoint.profileEndPoint,
-          token: CachingDataManager.instance.getLoginModel().data!.token,
-        data: {
-        'name':name,
-          'address':address,
-          'phone_number':phone,
-          'email':email,
-        }
-
+      await DioHelper.postData(
+        url: EndPoint.profileEndPoint,
+        data: data,
       );
       return Right(UpdateProfileModel.fromJson(response.data));
     }

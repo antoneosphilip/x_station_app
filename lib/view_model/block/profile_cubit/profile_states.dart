@@ -68,3 +68,4 @@ class ChangePasswordErrorState extends ProfileStates{
 
 
 class ChangeMode extends ProfileStates{}
+class UploadImage extends ProfileStates{}

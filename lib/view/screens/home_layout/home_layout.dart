@@ -70,6 +70,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                 [
                   SvgPicture.asset(AssetsImage.home,color: ColorManager.colorWhite,),
                   SvgPicture.asset(AssetsImage.chat,color: ColorManager.colorWhite,),
+                  SvgPicture.asset(AssetsImage.chat,color: ColorManager.colorWhite,),
                   SvgPicture.asset(AssetsImage.profile,color: ColorManager.colorWhite,),
                 ],
                 animationCurve: Curves.easeInOut,

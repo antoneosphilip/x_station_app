@@ -54,6 +54,7 @@ class AssetsImage {
   static const String location = '${_iconsPath}location';
   static const String notification = '${_iconsPath}notification.svg';
   static const String setting2 = '${_iconsPath}settings3.svg';
+  static const String orderList = '${_iconsPath}checkList.svg';
 
 
   // svg

@@ -53,7 +53,7 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
            if(state is SignUpSuccessState) {
              Get.offAllNamed(PageName.verificationEmail);
              customSnackBar(
-                 message: '${state.loginModel.message.toString()}',
+                 message: state.loginModel.message.toString(),
                  snackBarType: SnackBarType.success,
                  context: context);
            }

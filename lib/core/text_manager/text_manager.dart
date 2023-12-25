@@ -122,6 +122,7 @@ class TextManager {
   static const String reversedBySomeOne = "Reserved by someone";
   static const String done = "Done";
   static const String rating = "Rating";
+  static const String orderList = "Order List";
 
 
 }

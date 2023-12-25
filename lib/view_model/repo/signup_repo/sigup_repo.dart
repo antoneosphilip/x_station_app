@@ -143,6 +143,7 @@ class SignUpRepoImpl implements SignUpRepo {
           url: EndPoint.verifyEmail,
           data: {
             "code":code,
+            "email":email,
           },
       );
       return Right(VerifyEmailModel.fromJson(response.data));

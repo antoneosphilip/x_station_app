@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,8 +86,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Center(
                           child: Padding(
                             padding:  EdgeInsets.only(top: 130.h),
-                            child: const CircleAvatar(
-                              backgroundImage: NetworkImage('https://th.bing.com/th/id/OIP.SzixlF6Io24jCN67HHZulAHaLH?rs=1&pid=ImgDetMain'),
+                            child:  CircleAvatar(
+                              backgroundImage: CachedNetworkImageProvider(ProfileCubit.get(context).profileModel!.data!.avatar!),
                               radius: 70,
                             ),
                           ),

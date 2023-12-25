@@ -29,6 +29,8 @@ abstract class EndPoint{
   static  const String verifyEmail = '/auth/verify_email';
   static  const String acceptPostEndPoint = '/technicals/update_applicant_status';
   static  const String rate = '/users/rate';
+  static const String allAccepted = '/technicals/all_accepted';
+
 
 }
 

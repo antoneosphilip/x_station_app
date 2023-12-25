@@ -70,23 +70,32 @@ class AppBarWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ):const SizedBox(),
+                    ):
+                    const SizedBox(),
 
+                    isArrow==true?
+                    InkWell(
+                        onTap: (){
+                          Get.back();
+                        },
+                        child: SvgPicture.asset(AssetsImage.arrowLeft,color: ColorManager.colorWhite,))
+                        :const SizedBox(),
+                    isArrow==false?
+                    SizedBox(width: 10.w,):
+                    SizedBox(width: 80.w,),
                     Text(
                       text!.tr,
                       style: TextStyleManager.textStyle24w500.copyWith(fontSize: 22.sp,color: ColorManager.colorWhite),
                     ),
+                    isArrow==false?
+                    SizedBox(width: 10.w,):
+                    SizedBox(width: 80.w,),
                     isDarkProfile? SizedBox(width: 40.w,):const SizedBox(),
                   ],
                 ),
               ),
               const Spacer(),
-              isArrow==true?
-              InkWell(
-                  onTap: (){
-                    Get.back();
-                  },
-                  child: SvgPicture.asset(AssetsImage.arrowLeft,color: ColorManager.colorWhite,)):const SizedBox(),
+
               SizedBox(width: 20.w,)
 
             ],

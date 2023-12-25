@@ -50,10 +50,10 @@ class GetNotificationCubit extends Cubit<GetNotificationStates>
             (event) {
           print("Illuminate\Notifications\Events\BroadcastNotificationCreated");
           print(event!.data);
-          NotificationModelDta data =
-          NotificationModelDta.fromJson(jsonDecode(event!.data!));
+          NotificationModelData data =
+          NotificationModelData.fromJson(jsonDecode(event!.data!));
 
-          if (data.data!.notificationType == "message_sent") {
+          if (data!.notificationType == "message_sent") {
             AwesomeNotifications().createNotification(
                 content: NotificationContent(
                   id: math.Random().nextInt(100),
@@ -65,7 +65,7 @@ class GetNotificationCubit extends Cubit<GetNotificationStates>
             if (notificationModel == null) {
               getNotification();
             } else {
-              notificationModel!.data!.insert(0, data);
+              notificationModel!.data!.insert(0, noteModel.Data());
             }
           }
         });

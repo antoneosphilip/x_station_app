@@ -1,8 +1,11 @@
+import 'dart:io' as io;
+import 'package:dio/dio.dart' as di;
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:x_station_app/model/profile_model/profile_model.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_states.dart';
 import 'package:x_station_app/view_model/block/profile_cubit/profile_states.dart';
@@ -56,7 +59,17 @@ class ProfileCubit extends Cubit<ProfileStates>
   ////////////// update profile data////////////
   Future<void> updateProfileData()async{
     emit(UpdateProfileLoadingState());
-    var data=await profileRepo.updateProfileData( nameController.text, addressController.text,  phoneController.text,  emailController.text);
+    di.FormData formData=di.FormData.fromMap({
+      'name':nameController.text,
+      'address':addressController.text,
+      'phone_number':phoneController.text,
+      'email':emailController.text,
+    });
+    if(fileImage!=null)
+    {
+      formData.files.add(MapEntry("avatar", await di.MultipartFile.fromFile(fileImage!.path,filename:fileImage!.path.split('/').last)));
+    }
+    var data=await profileRepo.updateProfileData(formData);
     data.fold(
           (l) {
         print(l);
@@ -137,4 +150,28 @@ class ProfileCubit extends Cubit<ProfileStates>
     isDark=!isDark;
     emit(ChangeMode());
   }
+
+  ////////////////////////////SelectPhoto////////////////////////////
+  io.File? fileImage;
+  final ImagePicker picker = ImagePicker();
+  Future selectPhoto()
+  async
+  {
+    XFile?  image = await picker.pickImage(source: ImageSource.gallery);
+    if(image!=null)
+    {
+      fileImage = io.File(image.path);
+      emit(UploadImage());
+    }
+  }
+
+/////////////////////////cancelImage//////////////////////////////
+
+  void cancelImg()
+  {
+    fileImage = null ;
+    emit(UploadImage());
+  }
+
+
 }

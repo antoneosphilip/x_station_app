@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
+import 'package:x_station_app/view/screens/everent/custom_ratting_bar/custom_rating_bar.dart';
 import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
 import 'package:x_station_app/view_model/block/profile_cubit/profile_states.dart';
 
@@ -10,6 +11,7 @@ import '../../../../core/color_manager/color_manager.dart';
 import '../../../../core/route_manager/page_name.dart';
 import '../../../../core/style_font_manager/style_manager.dart';
 import '../../../../core/text_manager/text_manager.dart';
+import '../../../../utility/database/local/cach_data.dart';
 import '../../../core_widget/custom_top_snack/custom_top_snack.dart';
 import '../../../core_widget/snack_bar_custom/snack_bar_custom.dart';
 
@@ -85,8 +87,13 @@ class UserData extends StatelessWidget {
               Text(
                 "${ProfileCubit.get(context).profileModel?.data?.email}",
                 style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),
-
               ),
+              CachingDataManager.instance.getLoginModel().data!.type=='customer'?
+                  const SizedBox():
+              Padding(
+                padding:  EdgeInsets.only(top: 15.h),
+                child: CustomRattingBar(initRate: ProfileCubit.get(context).profileModel!.data!.averageRating!,color: ColorManager.colorGold,size: 20,),
+              )
             ]);
       },
     );
