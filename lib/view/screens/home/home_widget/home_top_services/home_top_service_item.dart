@@ -18,17 +18,18 @@ class HomeTopServiceItem extends StatelessWidget {
   final String? image;
   final String namePerson;
   final int id;
+  final String imagePerson;
 
   HomeTopServiceItem({
 
-   required this.title, required this.description, required this.image, required this.namePerson, required this.id});
+   required this.title, required this.description, required this.image, required this.namePerson, required this.id, required this.imagePerson});
 
   @override
   Widget build(BuildContext context) {
 
     return InkWell(
       onTap: (){
-        Get.to( HomePostDetailsScreen(id: id,));
+        Get.to( HomePostDetailsScreen(id: id,imagePerson:imagePerson));
       },
       child: Container(
         width: 390.w,
@@ -51,9 +52,9 @@ class HomeTopServiceItem extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(width: 16.w,),
-                  const CircleAvatar(
+                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.Z5BlhFYs_ga1fZnBWkcKjQHaHz?rs=1&pid=ImgDetMain")
+                    backgroundImage: NetworkImage(imagePerson!)
                   ),
                   SizedBox(width: 7.w,),
                   Text(namePerson,style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,)),

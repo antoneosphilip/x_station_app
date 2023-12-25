@@ -143,14 +143,22 @@ class ProfileCubit extends Cubit<ProfileStates>
 
 
 
-  bool isDark=false;
   //////////////change mode////////////
 
-  void changeMode() {
-    isDark=!isDark;
-    emit(ChangeMode());
-  }
+  bool isDark=false;
 
+  void ChangeAppMode({bool? FromShared}) {
+    if (FromShared != null) {
+      isDark = FromShared;
+    } else {
+      isDark = !isDark;
+      CacheHelper.put(key: "isDark", value: isDark).then((value) => {
+        emit(ChangeMode()),
+      });
+    }
+
+    print(isDark);
+  }
   ////////////////////////////SelectPhoto////////////////////////////
   io.File? fileImage;
   final ImagePicker picker = ImagePicker();

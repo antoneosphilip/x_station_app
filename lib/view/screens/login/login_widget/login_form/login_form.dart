@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
+import 'package:x_station_app/view/notification_module/presentation/manager/notification_cubit/notification_cubit.dart';
 import 'package:x_station_app/view_model/block/category_cubit/category_cubit.dart';
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_cubit.dart';
@@ -46,6 +47,7 @@ class LoginForm extends StatelessWidget {
                   context: context);
               PostsCubit.get(context).getPosts();
               CategoryCubit.get(context).getCategory();
+              NotificationCubit.get(context).getNotification();
 
             }
             else if(state is LoginErrorState){

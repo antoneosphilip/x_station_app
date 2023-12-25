@@ -31,11 +31,15 @@ class ChangePasswordCard extends StatelessWidget {
           // height: ScreenUtil().setHeight(60),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.sp),
-            color: ColorManager.colorWhite,
-            boxShadow: const [
+            color: ProfileCubit.get(context).isDark?
+            ColorManager.colorLightDark:
+            ColorManager.colorWhite,
+            boxShadow:  [
               BoxShadow(
                   blurRadius: 2,
-                  color: ColorManager.colorGrey,
+                  color: ProfileCubit.get(context).isDark?
+                  ColorManager.colorLightDark:
+                  ColorManager.colorGrey,
                   offset: Offset(0, 0),
                   spreadRadius: 1)
             ],
@@ -43,18 +47,24 @@ class ChangePasswordCard extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(40.sp),
             child: ExpansionTile(
-              backgroundColor: ColorManager.colorWhite,
+              backgroundColor: ProfileCubit.get(context).isDark?
+              ColorManager.colorLightDark:
+              ColorManager.colorWhite,
               expandedAlignment: Alignment.centerLeft,
               iconColor: ColorManager.colorPrimary,
               childrenPadding:
               EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
               collapsedIconColor: ColorManager.colorPrimary,
-              collapsedBackgroundColor: ColorManager.colorWhite,
+              collapsedBackgroundColor: ProfileCubit.get(context).isDark?
+              ColorManager.colorLightDark:
+              ColorManager.colorWhite,
               title: Row(
                 children: [
                   Text(
                     TextManager.changePassword.tr,
-                    style: TextStyleManager.textStyle16w500,
+                    style: TextStyleManager.textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?
+                    ColorManager.colorWhiteDarkMode:
+                    ColorManager.colorBlack,),
                   ),
                 ],
               ),

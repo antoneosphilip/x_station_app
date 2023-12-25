@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/view/core_widget/flutter_toast/flutter_toast.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_states.dart';
@@ -17,8 +18,9 @@ import '../../../../../core/color_manager/color_manager.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core/text_manager/text_manager.dart';
 import '../../../../core_widget/elevated_button/elevated_button_custom.dart';
+import '../../../rate_screen/rate_screen/retae_screen.dart';
 
-void AlterDialog(BuildContext context,userId,postId){
+void AlterDialog(BuildContext context,userId,postId,myPost,statue){
   showDialog(context: context, builder: (context){
     return AlertDialog(
       backgroundColor: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
@@ -97,6 +99,36 @@ void AlterDialog(BuildContext context,userId,postId){
                       ),
                     ),
                   ),
+                  myPost && statue=='accepted'?
+                  Padding(
+                    padding:  EdgeInsets.only(top: 22.h),
+                    child: ElevatedButtonCustom(
+                      width: 170.w,
+                      height: 65.h,
+                      radius: 60,
+                      colors: ColorManager.colorGreen,
+                      onPressed: (){
+                        Get.to(RateScreen( userID: userId,));
+                      },
+                      widget: Center(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(TextManager.jobDone,style: TextStyleManager.textStyle20w700.copyWith(color: Colors.white),),
+                            SizedBox(width: 3.w,),
+                            Container(
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                              ),
+                              child: const Icon(CupertinoIcons.checkmark_alt,color: ColorManager.colorGreen,),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ):const SizedBox(),
                   SizedBox(height: 22.h,),
                   ElevatedButtonCustom(
                     width: 170.w,

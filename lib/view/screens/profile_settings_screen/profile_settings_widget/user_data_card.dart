@@ -31,12 +31,16 @@ class UserDataCard extends StatelessWidget {
       // height: ScreenUtil().setHeight(60),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.sp),
-        color: ColorManager.colorWhite,
-        boxShadow: const [
+        color:ProfileCubit.get(context).isDark?
+        ColorManager.colorLightDark:
+        ColorManager.colorWhite,
+        boxShadow:  [
           BoxShadow(
               blurRadius: 2,
-              color: ColorManager.colorGrey,
-              offset: Offset(0, 0),
+              color:ProfileCubit.get(context).isDark?
+              ColorManager.colorDark:
+               ColorManager.colorGrey,
+              offset: const Offset(0, 0),
               spreadRadius: 1)
         ],
       ),

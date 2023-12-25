@@ -35,7 +35,7 @@ class ApplayWidget extends StatelessWidget {
     return Column(
       children: [
         AppBarWidget(text: TextManager.apply.tr,),
-         ApplyForm(description: description,title: title),
+        ApplyForm(description: description,title: title),
         SizedBox(
           height: 58.h,
         ),

@@ -16,8 +16,9 @@ class NotificationItem extends StatelessWidget {
   final String message;
   final String date;
   final int id;
+  final String imagePerson;
 
-  const NotificationItem({super.key, required this.message, required this.date, required this.id});
+  const NotificationItem({super.key, required this.message, required this.date, required this.id, required this.imagePerson});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class NotificationItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: InkWell(
           onTap: () {
-            Get.to(HomePostDetailsScreen(id: id));
+            Get.to(HomePostDetailsScreen(id: id,imagePerson: imagePerson,));
           },
           child: Container(
             width: 360.w,

@@ -11,6 +11,8 @@ import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/screens/Applying/Applying_screen/Applying_screen.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
+
 class HomePostsTechnician extends StatelessWidget {
   final String title;
   final String description;
@@ -19,10 +21,11 @@ class HomePostsTechnician extends StatelessWidget {
   final int id;
   final int isApplied;
   final int isJob;
+  final String? imagePerson;
 
   HomePostsTechnician({
 
-    required this.title, required this.description, required this.image, required this.namePerson, required this.id, required this.isApplied, required this.isJob});
+    required this.title, required this.description, required this.image, required this.namePerson, required this.id, required this.isApplied, required this.isJob, this.imagePerson});
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +42,15 @@ class HomePostsTechnician extends StatelessWidget {
 
         width: 390.w,
         decoration: BoxDecoration(
-          boxShadow: const [
+          boxShadow:  [
             BoxShadow(
-              color: Colors.grey,
-              offset: Offset(2.0, 2.0),
+              color:ProfileCubit.get(context).isDark?ColorManager.colorLightDark: Colors.grey,
+              offset: const Offset(2.0, 2.0),
               blurRadius: 5.0,
             ),
           ],
             borderRadius: BorderRadius.circular(16.r),
-            color: ColorManager.colorWhite,
+            color: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
         ),
         child: Padding(
           padding: EdgeInsets.only(top: 16.h),
@@ -57,12 +60,12 @@ class HomePostsTechnician extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(width: 16.w,),
-                  const CircleAvatar(
+                   CircleAvatar(
                       radius: 30,
-                      backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.Z5BlhFYs_ga1fZnBWkcKjQHaHz?rs=1&pid=ImgDetMain")
+                      backgroundImage: NetworkImage(imagePerson!)
                   ),
                   SizedBox(width: 7.w,),
-                  Text("${namePerson}",style: TextStyleManager.textStyle14w500,),
+                  Text("${namePerson}",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),),
                   const Spacer(),
                   isJob==0?
                   Row(
@@ -83,7 +86,7 @@ class HomePostsTechnician extends StatelessWidget {
               SizedBox(height: 16.h,),
               Padding(
                 padding:  EdgeInsets.only(left: 16.w,right: 16.w),
-                child: Text(title,style:TextStyleManager.textStyle16w500 ,),
+                child: Text(title,style:TextStyleManager.textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack) ,),
               ),
               SizedBox(height: 8.h,),
               image!=''?
@@ -92,7 +95,7 @@ class HomePostsTechnician extends StatelessWidget {
               SizedBox(height: 8.h,),
               Padding(
                 padding:  EdgeInsets.all(16.0.sp),
-                child: Center(child: Text(description,style: TextStyleManager.textStyle16w500,)),
+                child: Center(child: Text(description,style: TextStyleManager.textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),)),
               ),
             ],
           ),

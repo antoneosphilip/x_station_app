@@ -30,9 +30,10 @@ class AppliedItem extends StatelessWidget {
   final int isJop;
   final String status;
   final num rate;
+  final String imagePerson;
 
 
-  const AppliedItem({super.key, required this.namePerson, required this.emailPerson, required this.address, required this.phone, required this.userId, required this.postId, required this.myPost, required this.isJop, required this.status, required this.rate});
+  const AppliedItem({super.key, required this.namePerson, required this.emailPerson, required this.address, required this.phone, required this.userId, required this.postId, required this.myPost, required this.isJop, required this.status, required this.rate, required this.imagePerson});
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +51,10 @@ class AppliedItem extends StatelessWidget {
       child: Padding(
         padding:  EdgeInsets.only(left: 16.w,right: 16.w),
         child: Container(
-          width: 358.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(color:status=="accepted"? ColorManager.colorGreen:ColorManager.colorGrey),
+            border: Border.all(color:status=="accepted"?
+            ColorManager.colorGreen:ColorManager.colorGrey),
             color: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:Colors.white,
           ),
           child: Row(
@@ -61,9 +62,9 @@ class AppliedItem extends StatelessWidget {
               SizedBox(width: 16.w,),
               Padding(
                 padding:  EdgeInsets.only(top: 12.h,bottom: 12.h),
-                child: const CircleAvatar(
+                child:  CircleAvatar(
                     radius: 30,
-                    backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.Z5BlhFYs_ga1fZnBWkcKjQHaHz?rs=1&pid=ImgDetMain")
+                    backgroundImage: NetworkImage("${imagePerson}")
                 ),
               ),
               SizedBox(width: 7.w,),
@@ -74,38 +75,19 @@ class AppliedItem extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text("${namePerson}",style: TextStyleManager.textStyle14w500.copyWith(color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary, )),
-                      myPost?  Padding(
-                          padding:  EdgeInsets.only(left: 150.w),
-                          child: InkWell(
-                              onTap: (){
-                                AlterDialog(context,userId,postId);
-                              },
-                              child:  Column(
-                                children: [
-                                  Image.asset(AssetsImage.settingsImage,width: 20,height: 20,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack ,),
-                                ],
-                              )),
-                        ):const SizedBox(),
+                        SizedBox(
+                            width: 200.w,
+                            child: Text(namePerson,style: TextStyleManager.textStyle14w500.copyWith(color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary, )),
+                        ),
+                      myPost?  InkWell(
+                          onTap: (){
+                            AlterDialog(context,userId,postId,myPost,status);
+                          },
+                          child:  Image.asset(AssetsImage.settingsImage,width: 20,height: 20,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack ,)):const SizedBox(),
                       ],
                     ),
                     SizedBox(height: 4.h,),
-                    Row(
-                      children: [
-                        Text("${emailPerson}",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary, )),
-                        myPost&& status=='accepted'?InkWell(
-                          onTap: (){
-                            Get.to(RateScreen( userID: userId,),);
-
-                          },
-                          child:  Padding(
-                            padding:  EdgeInsets.only(left: 25.w),
-                            child: Text("done",style: TextStyle(color: ColorManager.colorGreen),),
-                          ),
-                        ):const SizedBox(),
-
-                      ],
-                    ),
+                    Text("${emailPerson}",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary, )),
 
                   ],
                 ),

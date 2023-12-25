@@ -23,8 +23,9 @@ import 'list_user_applied.dart';
 
 class HomePostDetailsWidget extends StatelessWidget {
   final int id;
+  final String imagePerson;
 
-  const HomePostDetailsWidget({super.key, required this.id});
+  const HomePostDetailsWidget({super.key, required this.id, required this.imagePerson});
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +71,9 @@ class HomePostDetailsWidget extends StatelessWidget {
                                 children: [
                                   SvgPicture.asset(AssetsImage.arrowLeft),
                                   SizedBox(width: 10.w,),
-                                  const CircleAvatar(
+                                   CircleAvatar(
                                       radius: 30,
-                                      backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.Z5BlhFYs_ga1fZnBWkcKjQHaHz?rs=1&pid=ImgDetMain")
+                                      backgroundImage: NetworkImage(imagePerson)
                                   ),
                                 ],
                               ),
@@ -84,7 +85,7 @@ class HomePostDetailsWidget extends StatelessWidget {
                           SizedBox(height: 16.h,),
                           Padding(
                             padding:  EdgeInsets.only(left: 16.w,right: 16.w),
-                            child: Text('${PostsCubit.get(context).showPostModel!.data!.title!}',style:TextStyleManager.textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,) ,),
+                            child: Text(PostsCubit.get(context).showPostModel!.data!.title!,style:TextStyleManager.textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,) ,),
                           ),
                           SizedBox(height: 8.h,),
                           PostsCubit.get(context).showPostModel!.data!.image !=''?

@@ -5,6 +5,7 @@ import 'package:get/get_utils/get_utils.dart';
 import '../../../../core/color_manager/color_manager.dart';
 import '../../../../core/style_font_manager/style_manager.dart';
 import '../../../../core/text_manager/text_manager.dart';
+import '../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import 'change_password_card.dart';
 import 'delete_account_card.dart';
 import 'user_data_card.dart';
@@ -21,7 +22,9 @@ class AccountDataCard extends StatelessWidget {
         children: [
           Text(
             TextManager.account.tr,
-            style: TextStyleManager.textStyle20w700.copyWith(color: ColorManager.colorXXGrey),
+            style: TextStyleManager.textStyle20w700.copyWith(color: ProfileCubit.get(context).isDark?
+            ColorManager.colorWhiteDarkMode:
+            ColorManager.colorXXGrey),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.h),

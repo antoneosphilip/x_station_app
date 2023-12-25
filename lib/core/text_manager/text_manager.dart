@@ -123,6 +123,7 @@ class TextManager {
   static const String done = "Done";
   static const String rating = "Rating";
   static const String orderList = "Order List";
+  static const String jobDone = "Job done";
 
 
 }

@@ -16,7 +16,6 @@ class CustomBottomSheetButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: ColorManager.colorWhite,
       child: Padding(
         padding: EdgeInsets.all(15.sp),
         child: ElevatedButtonCustom(

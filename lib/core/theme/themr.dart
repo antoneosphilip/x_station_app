@@ -10,6 +10,7 @@ abstract class ThemeApp {
 
     scaffoldBackgroundColor: ColorManager.colorScaffold,
     primaryColor: ColorManager.colorPrimary,
+    bottomSheetTheme: const BottomSheetThemeData(backgroundColor: ColorManager.colorWhite)
 
     // fontFamily: GoogleFonts.barlowCondensed().fontFamily,
   );
@@ -21,6 +22,8 @@ abstract class ThemeApp {
 
     scaffoldBackgroundColor: ColorManager.colorDark,
     primaryColor: ColorManager.colorPrimary,
+      bottomSheetTheme: const BottomSheetThemeData(backgroundColor: ColorManager.colorDark,)
+
     // fontFamily: GoogleFonts.barlowCondensed().fontFamily,
   );
 }

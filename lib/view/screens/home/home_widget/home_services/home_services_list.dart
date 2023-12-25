@@ -38,7 +38,7 @@ class HomeServicesWidget extends StatelessWidget {
                   itemBuilder: (context,index){
                     return   HomeServicesItem(
                         image: CategoryCubit.get(context).categoryModel!.data![index].image!,
-                      name:  CategoryCubit.get(context).categoryModel!.data![index].name!,
+                        name:  CategoryCubit.get(context).categoryModel!.data![index].name!,
                     );
                   },
                   separatorBuilder: (context,index){

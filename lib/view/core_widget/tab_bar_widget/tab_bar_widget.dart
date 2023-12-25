@@ -57,7 +57,7 @@ class AppBarWidget extends StatelessWidget {
                       padding:  EdgeInsets.only(right: 40.w),
                       child: InkWell(
                         onTap: (){
-                          ProfileCubit.get(context).changeMode();
+                          ProfileCubit.get(context).ChangeAppMode();
                         },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,14 +82,14 @@ class AppBarWidget extends StatelessWidget {
                         :const SizedBox(),
                     isArrow==false?
                     SizedBox(width: 10.w,):
-                    SizedBox(width: 80.w,),
+                    SizedBox(width: 60.w,),
                     Text(
                       text!.tr,
                       style: TextStyleManager.textStyle24w500.copyWith(fontSize: 22.sp,color: ColorManager.colorWhite),
                     ),
                     isArrow==false?
                     SizedBox(width: 10.w,):
-                    SizedBox(width: 80.w,),
+                    SizedBox(width: 60.w,),
                     isDarkProfile? SizedBox(width: 40.w,):const SizedBox(),
                   ],
                 ),

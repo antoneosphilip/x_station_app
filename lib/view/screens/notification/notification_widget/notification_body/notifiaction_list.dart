@@ -29,6 +29,7 @@ class NotificationList extends StatelessWidget {
                message: GetNotificationCubit.get(context).notificationModel!.data![index].data!.message!,
                date:  GetNotificationCubit.get(context).notificationModel!.data![index].createdAt!,
                id: GetNotificationCubit.get(context).notificationModel!.data![index].notifiableId!,
+               imagePerson: ''
              );
            },
            separatorBuilder: (context, index) {

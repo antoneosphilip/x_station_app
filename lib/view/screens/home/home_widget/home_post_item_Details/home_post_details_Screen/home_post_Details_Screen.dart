@@ -4,14 +4,16 @@ import 'package:x_station_app/view/screens/home/home_widget/home_post_item_Detai
 
 class HomePostDetailsScreen extends StatelessWidget {
   final int id;
-  const HomePostDetailsScreen({super.key, required this.id});
+  final String imagePerson;
+
+  const HomePostDetailsScreen({super.key, required this.id, required this.imagePerson,});
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        child: HomePostDetailsWidget(id: id,),
+        child: HomePostDetailsWidget(id: id,imagePerson: imagePerson,),
       ),
     );
   }

@@ -55,6 +55,8 @@ void main() async{
   await setup();
   await DioHelper.init();
   await CacheHelper.init();
+  bool? isDark = CacheHelper.getDataBool(key: 'isDark') ?? false;
+
   AwesomeNotifications().initialize(
     // set the icon to null if you want to use the default app icon
       'resource://drawable/ic_launcher',
@@ -79,7 +81,7 @@ void main() async{
   Bloc.observer = MyBlocObserver();
 
   runApp(
-      const MyApp()
+       MyApp(isDark:isDark)
     // DevicePreview(
     //   enabled: !kReleaseMode,
     //   builder: (context) =>  , // Wrap your app
@@ -102,7 +104,8 @@ void configLoading() {
     ..dismissOnTap = false;
 }
 class MyApp extends StatelessWidget {
-  const MyApp({super.key,});
+  final bool isDark;
+  const MyApp({super.key, required this.isDark,});
   static final GlobalKey<NavigatorState> navigatorKey =
   GlobalKey<NavigatorState>();
   @override
@@ -117,7 +120,7 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => HomeLayoutCubit(),),
               BlocProvider(create: (context) => ForgetPasswordCubit(sl.get<ForgetPasswordRepoImpl>())),
               BlocProvider(create: (context) => SignUpCubit(sl.get<SignUpRepoImpl>())),
-              BlocProvider(create: (context) => ProfileCubit(sl.get<ProfileRepoImpl>())..getProfileData()),
+              BlocProvider(create: (context) => ProfileCubit(sl.get<ProfileRepoImpl>())..getProfileData()..ChangeAppMode(FromShared: isDark)),
               BlocProvider(create: (context) => CategoryCubit(sl.get<CategoryRepoImpl>())..getCategory()..getCategorySelectMenu()),
               BlocProvider(create: (context) => TechnicalCubit(sl.get<TechnicalRepoImpl>())..getTechnicalList(id: 1)),
               BlocProvider(create: (context) => PostsCubit(sl.get<PostsRepoImpl>())..getPosts()..showPost(id: 1)),

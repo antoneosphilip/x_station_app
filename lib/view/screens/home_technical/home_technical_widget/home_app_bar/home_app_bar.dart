@@ -13,6 +13,7 @@ import '../../../../../core/color_manager/color_manager.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
 import '../../../../../core/text_manager/text_manager.dart';
 import '../../../../../utility/database/local/cach_data.dart';
+import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 import '../../../../core_widget/text_form_field/text_form_field_custom.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -31,8 +32,16 @@ class HomeAppBar extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Hi,${CachingDataManager.instance.getLoginModel().data!.name}".tr,style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700,fontSize: 20),),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Hi, ".tr,style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),),
+                        Text('${CachingDataManager.instance.getLoginModel().data!.name}',style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),)
+                      ],
+                    ),
                     SizedBox(height: 28.h,),
+
                   ],
                 ),
               ),
@@ -41,7 +50,7 @@ class HomeAppBar extends StatelessWidget {
               InkWell(
                   onTap: (){
                   },
-                  child: SvgPicture.asset(AssetsImage.notification,fit: BoxFit.cover,color: ColorManager.colorBlack,height: 25.h,)),
+                  child: SvgPicture.asset(AssetsImage.notification,fit: BoxFit.cover,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,height: 25.h,)),
               SizedBox(width: 14.w,),
               const CircleAvatar(
                 radius: 28,

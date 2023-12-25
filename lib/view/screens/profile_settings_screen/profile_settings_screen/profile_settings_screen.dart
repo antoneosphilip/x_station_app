@@ -98,7 +98,8 @@ class ProfileSettingsScreen extends StatelessWidget {
                                         borderRadius:
                                         BorderRadius.circular(16.r),
                                         color:
-                                        ColorManager.colorWhite),
+                                        ColorManager.colorWhite
+                                    ),
                                     child: InkWell(
                                       onTap: (){
                                         ProfileCubit.get(context).selectPhoto();
