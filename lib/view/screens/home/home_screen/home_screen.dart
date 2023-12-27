@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: () {
         return PostsCubit.get(context).getPosts();
+
       },
       child: const Scaffold(
         body: SingleChildScrollView(

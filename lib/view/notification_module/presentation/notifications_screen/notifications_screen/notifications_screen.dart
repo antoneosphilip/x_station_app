@@ -7,7 +7,7 @@
 // import '../../../../../core/color_manager/color_manager.dart';
 // import '../../../../../core/text_manager/text_manager.dart';
 // import '../../../../core_widget/tab_bar_widget/tab_bar_widget.dart';
-// import '../../manager/notification_cubit/notification_cubit.dart';
+// import '../../manager/notification_cubit/notification_technician_cubit.dart';
 // import '../notifications_widget/notifications_card.dart';
 //
 // class NotificationsScreen extends StatefulWidget {

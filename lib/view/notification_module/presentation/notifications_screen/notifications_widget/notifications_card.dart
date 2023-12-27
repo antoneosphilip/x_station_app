@@ -9,7 +9,7 @@
 // import 'package:x_station_app/view_model/block/home_layout_cubit/home_layoout_cubit.dart';
 //
 // import '../../../../../core/color_manager/color_manager.dart';
-// import '../../../../../model/notification_model/notification_model.dart';
+// import '../../../../../model/notification_model/notification_Technician_model.dart';
 //
 //
 // class NotificationsCard extends StatelessWidget {

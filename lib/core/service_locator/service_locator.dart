@@ -14,6 +14,7 @@ import 'package:x_station_app/view_model/repo/signup_repo/sigup_repo.dart';
 import 'package:x_station_app/view_model/repo/technical_repo/technical_repo.dart';
 
 import '../../view_model/repo/login_repo/login_repo.dart';
+import '../../view_model/repo/notification_Technician_repo/notification_Technician_repo.dart';
 import '../../view_model/repo/notification_repo/notification_repo.dart';
 
 final sl = GetIt.instance;
@@ -30,6 +31,7 @@ Future<void> setup() async {
   sl.registerLazySingleton<GetNotificationRepoImpl>(() => GetNotificationRepoImpl());
   sl.registerLazySingleton<SearchRepoImpl>(() => SearchRepoImpl());
   sl.registerLazySingleton<OrderListRepoImpl>(() => OrderListRepoImpl());
+  sl.registerLazySingleton<GetNotificationTechnicianRepoImpl>(() => GetNotificationTechnicianRepoImpl());
 
 
 

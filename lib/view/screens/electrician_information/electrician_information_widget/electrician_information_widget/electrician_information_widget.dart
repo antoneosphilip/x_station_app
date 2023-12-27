@@ -16,8 +16,10 @@ class ElectricianInformationWidget extends StatelessWidget {
   final  String email;
   final  String phone;
   final  String address;
+  final bool isTech;
+  final  String image;
 
-  const ElectricianInformationWidget({super.key, required this.name, required this.rate, required this.price, required this.email, required this.phone, required this.address});
+  const ElectricianInformationWidget({super.key, required this.name, required this.rate, required this.price, required this.email, required this.phone, required this.address,  this.isTech=true, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -54,20 +56,22 @@ class ElectricianInformationWidget extends StatelessWidget {
                       },
                     ),
                     const Spacer(),
-                    Padding(
+                    isTech?  Padding(
                       padding:  EdgeInsets.only(right: 21.w, top: 27.h,left: 21.w),
                       child: SvgPicture.asset(
                         AssetsImage.heart2,
                         width: 43.w,
                         height: 36.h,
                       ),
-                    ),
+                    ):const SizedBox(),
                   ],
                 ),
                  Upload(
                    rate: rate,
                    name: name,
                     price: price,
+                   isTech: isTech,
+                   image: image,
                  )
               ],
             ),
@@ -80,6 +84,7 @@ class ElectricianInformationWidget extends StatelessWidget {
            address: address,
          phone: phone,
            email: email,
+           isTech: isTech,
          ),
       ],
     );

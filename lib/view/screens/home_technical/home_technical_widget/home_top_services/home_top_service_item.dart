@@ -1,19 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
-import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/screens/Applying/Applying_screen/Applying_screen.dart';
+import 'package:x_station_app/view/screens/electrician_information/electrician_information_screen/electrician_information_Screen.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
+import 'package:x_station_app/view_model/block/posts_cubit/posts_states.dart';
 
 import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 
-class HomePostsTechnician extends StatelessWidget {
+class HomePostsTechnician extends StatefulWidget {
   final String title;
   final String description;
   final String? image;
@@ -28,15 +30,26 @@ class HomePostsTechnician extends StatelessWidget {
     required this.title, required this.description, required this.image, required this.namePerson, required this.id, required this.isApplied, required this.isJob, this.imagePerson});
 
   @override
+  State<HomePostsTechnician> createState() => _HomePostsTechnicianState();
+}
+
+class _HomePostsTechnicianState extends State<HomePostsTechnician> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    PostsCubit.get(context).showPost(id: widget.id);
+
+  }
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.to( ApplyScreen(description: description,title: title,id: id,isApplied:isApplied,isJob:isJob),
+        Get.to( ApplyScreen(description: widget.description,title: widget.title,id: widget.id,isApplied:widget.isApplied,isJob:widget.isJob),
           duration: const Duration(
           milliseconds: 250,
         ),
-          transition:Transition.zoom
-            ,);
+            );
       },
       child: Container(
 
@@ -60,14 +73,32 @@ class HomePostsTechnician extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(width: 16.w,),
-                   CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage(imagePerson!)
-                  ),
+                   InkWell(
+                     onTap: (){
+                       Get.to(ElectricianInformationScreen(
+                         name: PostsCubit.get(context).showPostModel!.data!.user!.name!,
+                         image:PostsCubit.get(context).showPostModel!.data!.user!.avatar!,
+                         rate: PostsCubit.get(context).showPostModel!.data!.user!.averageRating!,
+                         price: '15',
+                         email: PostsCubit.get(context).showPostModel!.data!.user!.email!,
+                         phone: PostsCubit.get(context).showPostModel!.data!.user!.phoneNumber!,
+                         address: PostsCubit.get(context).showPostModel!.data!.user!.address!,
+                         isTech: false,
+                       ));
+                     },
+                     child: Row(
+                       children: [
+                         CircleAvatar(
+                             radius: 30,
+                             backgroundImage: NetworkImage(widget.imagePerson!)
+                         ),
                   SizedBox(width: 7.w,),
-                  Text("${namePerson}",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),),
+                  Text("${widget.namePerson}",style: TextStyleManager.textStyle14w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),),
+                       ],
+                     ),
+                   ),
                   const Spacer(),
-                  isJob==0?
+                  widget.isJob==0?
                   Row(
                     children: [
                       Text(TextManager.available,style: TextStyleManager.textStyle14w500.copyWith(color: ColorManager.colorGreen),),
@@ -86,16 +117,16 @@ class HomePostsTechnician extends StatelessWidget {
               SizedBox(height: 16.h,),
               Padding(
                 padding:  EdgeInsets.only(left: 16.w,right: 16.w),
-                child: Text(title,style:TextStyleManager.textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack) ,),
+                child: Text(widget.title,style:TextStyleManager.textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack) ,),
               ),
               SizedBox(height: 8.h,),
-              image!=''?
-              CachedNetworkImage(imageUrl: image!,fit: BoxFit.fill,width: 390.w,height: 390.h,):
+              widget.image!=''?
+              CachedNetworkImage(imageUrl: widget.image!,fit: BoxFit.fill,width: 390.w,height: 390.h,):
                   const SizedBox(),
               SizedBox(height: 8.h,),
               Padding(
                 padding:  EdgeInsets.all(16.0.sp),
-                child: Center(child: Text(description,style: TextStyleManager.textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),)),
+                child: Center(child: Text(widget.description,style: TextStyleManager.textStyle16w500.copyWith(color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),)),
               ),
             ],
           ),

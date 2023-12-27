@@ -124,6 +124,8 @@ class TextManager {
   static const String rating = "Rating";
   static const String orderList = "Order List";
   static const String jobDone = "Job done";
+  static const String call = "Call : ";
+  static const String callMe = "Call Me";
 
 
 }

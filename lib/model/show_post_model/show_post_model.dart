@@ -86,21 +86,40 @@ class Data {
 class User {
   int? id;
   String? name;
+  String? email;
+  String? phoneNumber;
+  String? address;
   String? avatar;
+  num? averageRating;
 
-  User({this.id, this.name, this.avatar});
+  User(
+      {this.id,
+        this.name,
+        this.email,
+        this.phoneNumber,
+        this.address,
+        this.avatar,
+        this.averageRating});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    email = json['email'];
+    phoneNumber = json['phone_number'];
+    address = json['address'];
     avatar = json['avatar']??'';
+    averageRating = json['average_rating'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
+    data['email'] = this.email;
+    data['phone_number'] = this.phoneNumber;
+    data['address'] = this.address;
     data['avatar'] = this.avatar;
+    data['average_rating'] = this.averageRating;
     return data;
   }
 }
@@ -133,7 +152,7 @@ class UserApplied {
   String? phoneNumber;
   String? address;
   Null? avatar;
-  num? averageRating;
+  int? averageRating;
 
   UserApplied(
       {this.id,

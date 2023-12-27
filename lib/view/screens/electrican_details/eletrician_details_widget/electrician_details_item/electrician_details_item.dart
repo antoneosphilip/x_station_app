@@ -37,6 +37,7 @@ class ElectricianDetailsItem extends StatelessWidget {
           rate: rate,
           name: name,
           price: price,
+          image: image,
         ),
           duration: const Duration(
           milliseconds: 250,

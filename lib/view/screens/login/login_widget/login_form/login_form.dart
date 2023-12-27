@@ -48,7 +48,6 @@ class LoginForm extends StatelessWidget {
               PostsCubit.get(context).getPosts();
               CategoryCubit.get(context).getCategory();
               NotificationCubit.get(context).getNotification();
-
             }
             else if(state is LoginErrorState){
               customSnackBar(

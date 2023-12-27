@@ -44,8 +44,9 @@ class HomeAppBar extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Hi, ".tr,style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),),
-                        Text('${CachingDataManager.instance.getLoginModel().data!.name}',style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),)
+                        Text("Hi, ".tr,style: TextStyleManager.textStyle24w500.copyWith(
+                            fontWeight: FontWeight.w700,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),),
+                        Text('${CachingDataManager.instance.getLoginModel().data!.name}',style: TextStyleManager.textStyle24w500.copyWith(fontWeight: FontWeight.w700,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,fontSize: 20.sp),)
                       ],
                     ),
 

@@ -69,7 +69,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                 items:
                 [
                   SvgPicture.asset(AssetsImage.home,color: ColorManager.colorWhite,),
-                  SvgPicture.asset(AssetsImage.chat,color: ColorManager.colorWhite,),
+                  SvgPicture.asset(AssetsImage.orderList,color: ColorManager.colorWhite,),
                   SvgPicture.asset(AssetsImage.chat,color: ColorManager.colorWhite,),
                   SvgPicture.asset(AssetsImage.profile,color: ColorManager.colorWhite,),
                 ],

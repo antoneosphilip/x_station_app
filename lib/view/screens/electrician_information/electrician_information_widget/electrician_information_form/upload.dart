@@ -12,8 +12,10 @@ class Upload extends StatelessWidget {
 final  String name;
 final  num rate;
 final  String price;
+final bool isTech;
+final  String image;
 
-  const Upload({super.key, required this.name, required this.rate, required this.price});
+  const Upload({super.key, required this.name, required this.rate, required this.price,  this.isTech=true, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ final  String price;
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(40.r),
               color: ColorManager.colorXWhite,
-              image: const DecorationImage(image: NetworkImage('https://i.stack.imgur.com/l60Hf.png'),fit: BoxFit.cover)
+              image:  DecorationImage(image: NetworkImage(image!),fit: BoxFit.cover)
             ),
             width: 140.994.w,
               height: 190.633.h,
@@ -47,14 +49,14 @@ final  String price;
               SizedBox(
                 height: 20.h,
               ),
-              Text(
-                TextManager.Rate.tr,
+              isTech?  Text(
+             '$price \$',
                 style: TextStyleManager.textStyle20600White.copyWith(fontSize: 19.sp),
-              ),
+              ):const SizedBox(),
                SizedBox(height: 20.h,),
-               Row(
+              isTech? Row(
                 children: [
-                    CustomRattingBar(color: ColorManager.colorWhite,size: 17,initRate: rate),
+                  CustomRattingBar(color: ColorManager.colorWhite,size: 17,initRate: rate),
                   SizedBox(width: 16.w,),
                    Text(
                     '${rate}',
@@ -64,7 +66,7 @@ final  String price;
                         fontWeight: FontWeight.bold),
                   ),
                 ],
-              )
+              ):const SizedBox(),
             ],
           ),
         )

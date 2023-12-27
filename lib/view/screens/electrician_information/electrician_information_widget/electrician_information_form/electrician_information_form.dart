@@ -13,8 +13,9 @@ class ElectricianInformationForm extends StatelessWidget {
   final String address;
   final String phone;
   final String email;
+  final bool isTech;
 
-  const ElectricianInformationForm({super.key, required this.address, required this.phone, required this.email});
+  const ElectricianInformationForm({super.key, required this.address, required this.phone, required this.email,  this.isTech=true});
 
   @override
   Widget build(BuildContext context) {
@@ -78,10 +79,14 @@ class ElectricianInformationForm extends StatelessWidget {
           ),
           Row(
             children: [
-              Text(
+              isTech?Text(
                 TextManager.Contact.tr,
                 style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),
-              ),
+              ):
+      Text(
+      TextManager.call.tr,
+      style: TextStyleManager.textStyle20600.copyWith(fontSize: 19.sp,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack),
+    ),
               SizedBox(
                 height: 11.h,
               ),
@@ -115,8 +120,12 @@ class ElectricianInformationForm extends StatelessWidget {
                     borderRadius: BorderRadius.circular(40),
                     color: const Color(0Xff63628C)),
                 child: Center(
-                  child: Text(
+                  child:isTech? Text(
                     TextManager.contractme.tr,
+                    style: TextStyleManager.textStyle20600White.copyWith(fontSize: 19.sp),
+                  ):
+                  Text(
+                    TextManager.callMe.tr,
                     style: TextStyleManager.textStyle20600White.copyWith(fontSize: 19.sp),
                   ),
                 ),

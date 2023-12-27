@@ -9,8 +9,10 @@ class ElectricianInformationScreen extends StatelessWidget {
   final  String email;
   final  String phone;
   final  String address;
+  final bool isTech;
+  final  String image;
 
-  const ElectricianInformationScreen({super.key, required this.name, required this.rate, required this.price, required this.email, required this.phone, required this.address});
+  const ElectricianInformationScreen({super.key, required this.name, required this.rate, required this.price, required this.email, required this.phone, required this.address,  this.isTech=true, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,9 @@ class ElectricianInformationScreen extends StatelessWidget {
         phone: phone,
         email: email,
         address: address,
+        isTech: isTech,
+        image: image,
+
       ),
     ));
   }

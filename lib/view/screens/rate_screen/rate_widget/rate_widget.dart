@@ -6,6 +6,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:x_station_app/core/assets_manager/assets_manager.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
@@ -15,6 +17,8 @@ import 'package:x_station_app/view/core_widget/flutter_toast/flutter_toast.dart'
 import 'package:x_station_app/view/screens/everent/custom_ratting_bar/custom_rating_bar.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_states.dart';
+
+import '../../../../view_model/block/profile_cubit/profile_cubit.dart';
 
 class RateWidget extends StatelessWidget {
   final int userID;
@@ -36,8 +40,12 @@ class RateWidget extends StatelessWidget {
             child: SvgPicture.asset(AssetsImage.arrowLeft),
           ),
           SizedBox(height: 37.h,),
-          Text(TextManager.rating,style: TextStyleManager.textStyle36w700,),
-          SvgPicture.asset(AssetsImage.line,width: 100.w,),
+          Text(TextManager.rating,style: TextStyleManager.textStyle36w700.copyWith(color: ProfileCubit.get(context).isDark?
+          ColorManager.colorWhiteDarkMode:
+          ColorManager.colorSecondary,),),
+          SvgPicture.asset(AssetsImage.line,width: 100.w,color: ProfileCubit.get(context).isDark?
+          ColorManager.colorWhiteDarkMode:
+          ColorManager.colorPrimary,),
           SizedBox(height: 80.h,),
           Center(
         child: RatingBar.builder(
@@ -78,6 +86,9 @@ class RateWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: ElevatedButtonCustom(
+                    onPressed: (){
+                      Get.back();
+                    },
                     width: 148.w,
                     height: 70.h,
                     radius: 60,

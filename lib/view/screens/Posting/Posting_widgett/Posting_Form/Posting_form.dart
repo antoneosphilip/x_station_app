@@ -16,6 +16,7 @@ import 'package:x_station_app/view/core_widget/text_form_field/text_form_field_c
 import 'package:x_station_app/view/core_widget/xstation_button_custom/x_station_button_custom.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_states.dart';
+import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
 
 import '../../../../../core/color_manager/color_manager.dart';
 import '../Posting_widget/show_image_Widget.dart';
@@ -54,7 +55,11 @@ class _PostingFormState extends State<PostingForm> {
             children: [
               Text(
                 TextManager.typeTitle.tr,
-                style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w400),
+                style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w400,
+                    color: ProfileCubit.get(context).isDark?
+                        ColorManager.colorWhiteDarkMode:
+                        ColorManager.colorBlack,
+                ),
               ),
               SizedBox(height: 15.h,),
               TextFormFieldCustom(validate: (value){},
@@ -64,7 +69,12 @@ class _PostingFormState extends State<PostingForm> {
               SizedBox(height: 30.h,),
               Text(
                 TextManager.type.tr,
-                style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w400),
+                style: TextStyleManager.textStyle20600.copyWith(fontWeight: FontWeight.w400,
+                  color: ProfileCubit.get(context).isDark?
+                  ColorManager.colorWhiteDarkMode:
+                  ColorManager.colorBlack,
+
+                ),
               ),
               SizedBox(height: 22.h,),
               TextFormFieldCustom(validate: (value){},

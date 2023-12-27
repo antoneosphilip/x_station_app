@@ -40,6 +40,7 @@ class AppliedItem extends StatelessWidget {
     return InkWell(
       onTap: (){
         Get.to(ElectricianInformationScreen(
+          image: imagePerson,
           name: namePerson,
           address: address,
           phone: phone,

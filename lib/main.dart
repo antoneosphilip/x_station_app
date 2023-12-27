@@ -21,6 +21,7 @@ import 'package:x_station_app/view_model/block/forget_password_cubit/forget_pass
 import 'package:x_station_app/view_model/block/home_layout_cubit/home_layoout_cubit.dart';
 import 'package:x_station_app/view_model/block/login_cubit/login_cubit.dart';
 import 'package:x_station_app/view_model/block/notification_cubit/notification_cubit.dart';
+import 'package:x_station_app/view_model/block/notification_technician_cubit/notification_technician_cubit.dart';
 import 'package:x_station_app/view_model/block/order_list_cubit/order_list_cubit.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 import 'package:x_station_app/view_model/block/profile_cubit/profile_cubit.dart';
@@ -31,6 +32,7 @@ import 'package:x_station_app/view_model/block/technical_cubit/technical_cubit.d
 import 'package:x_station_app/view_model/repo/category_repo/category_repo.dart';
 import 'package:x_station_app/view_model/repo/forget_password_repo/forget_password_repo.dart';
 import 'package:x_station_app/view_model/repo/login_repo/login_repo.dart';
+import 'package:x_station_app/view_model/repo/notification_Technician_repo/notification_Technician_repo.dart';
 import 'package:x_station_app/view_model/repo/notification_repo/notification_repo.dart';
 import 'package:x_station_app/view_model/repo/order_list_repo/order_list_repo.dart';
 import 'package:x_station_app/view_model/repo/posts_repo/post_Repo.dart';
@@ -127,6 +129,7 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => GetNotificationCubit(sl.get<GetNotificationRepoImpl>())..getNotification()..bindNotification()),
               BlocProvider(create: (context) => SearchCubit(sl.get<SearchRepoImpl>())),
               BlocProvider(create: (context) => OrderListCubit(sl.get<OrderListRepoImpl>())..getOrderList()),
+              BlocProvider(create: (context) => GetNotificationTechnicianCubit(sl.get<GetNotificationTechnicianRepoImpl>())..getNotification()..bindNotification()),
 
             ],
             child: BlocConsumer<ProfileCubit,ProfileStates>(

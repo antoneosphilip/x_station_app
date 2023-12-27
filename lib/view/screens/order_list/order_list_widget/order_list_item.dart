@@ -11,6 +11,9 @@ import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/screens/Applying/Applying_screen/Applying_screen.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 
+import '../../../../view_model/block/profile_cubit/profile_cubit.dart';
+import '../../electrician_information/electrician_information_screen/electrician_information_Screen.dart';
+
 class OrderListItem extends StatelessWidget {
   final String title;
   final String description;
@@ -39,37 +42,62 @@ class OrderListItem extends StatelessWidget {
 
         width: 390.w,
         decoration: BoxDecoration(
-          boxShadow: const [
+          boxShadow:  [
             BoxShadow(
-              color: Colors.grey,
-              offset: Offset(2.0, 2.0),
+              color:  ProfileCubit.get(context).isDark?
+              ColorManager.colorLightDark:
+              Colors.grey,
+              offset: const Offset(2.0, 2.0),
               blurRadius: 5.0,
             ),
           ],
           borderRadius: BorderRadius.circular(16.r),
-          color: ColorManager.colorWhite,
+          color: ProfileCubit.get(context).isDark?
+          ColorManager.colorLightDark:
+          ColorManager.colorWhite,
         ),
         child: Padding(
           padding: EdgeInsets.only(top: 16.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  SizedBox(width: 16.w,),
-                  const CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.Z5BlhFYs_ga1fZnBWkcKjQHaHz?rs=1&pid=ImgDetMain")
-                  ),
-                  SizedBox(width: 7.w,),
-                  Text("${namePerson}",style: TextStyleManager.textStyle14w500,),
-                  SizedBox(width: 15.w,)
-                ],
+              InkWell(
+                onTap: (){
+                  Get.to(ElectricianInformationScreen(
+                    name: PostsCubit.get(context).showPostModel!.data!.user!.name!,
+                    rate: PostsCubit.get(context).showPostModel!.data!.user!.averageRating!,
+                    price: '15',
+                    email: PostsCubit.get(context).showPostModel!.data!.user!.email!,
+                    phone: PostsCubit.get(context).showPostModel!.data!.user!.phoneNumber!,
+                    address: PostsCubit.get(context).showPostModel!.data!.user!.address!,
+                    isTech: false,
+                    image: PostsCubit.get(context).showPostModel!.data!.user!.avatar!,
+                  ));
+                },
+                child: Row(
+                  children: [
+                    SizedBox(width: 16.w,),
+                    const CircleAvatar(
+                        radius: 30,
+                        backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.Z5BlhFYs_ga1fZnBWkcKjQHaHz?rs=1&pid=ImgDetMain")
+                    ),
+                    SizedBox(width: 7.w,),
+                    Text("${namePerson}",style: TextStyleManager.textStyle14w500.copyWith(color:
+                    ProfileCubit.get(context).isDark?
+                    ColorManager.colorWhiteDarkMode:
+                    ColorManager.colorSecondary,),),
+                    SizedBox(width: 15.w,)
+                  ],
+                ),
               ),
               SizedBox(height: 16.h,),
               Padding(
                 padding:  EdgeInsets.only(left: 16.w,right: 16.w),
-                child: Text(title,style:TextStyleManager.textStyle16w500 ,),
+                child: Text(title,style:TextStyleManager.textStyle16w500.copyWith(color:
+                ProfileCubit.get(context).isDark?
+                ColorManager.colorWhiteDarkMode:
+                ColorManager.colorSecondary
+                ) ,),
               ),
               SizedBox(height: 8.h,),
               image!=''?
@@ -78,7 +106,11 @@ class OrderListItem extends StatelessWidget {
               SizedBox(height: 8.h,),
               Padding(
                 padding:  EdgeInsets.all(16.0.sp),
-                child: Center(child: Text(description,style: TextStyleManager.textStyle16w500,)),
+                child: Center(child: Text(description,style: TextStyleManager.textStyle16w500.copyWith(
+                  color:  ProfileCubit.get(context).isDark?
+                  ColorManager.colorWhiteDarkMode:
+                  ColorManager.colorSecondary
+                ),)),
               ),
             ],
           ),

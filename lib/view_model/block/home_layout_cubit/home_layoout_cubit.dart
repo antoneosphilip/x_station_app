@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:x_station_app/view/screens/home_technical/home_technical_screen/home_technical_screen.dart';
 import 'package:x_station_app/view/screens/login/login_screen/login_screen.dart';
+import 'package:x_station_app/view/screens/notification_technican/notification_technician_screen/notification_technician_screen.dart';
 import 'package:x_station_app/view/screens/order_list/order_list_screen/order_list_screen.dart';
 import 'package:x_station_app/view/screens/profile/profile_screen/profile_screen.dart';
 
@@ -26,7 +27,7 @@ class HomeLayoutCubit extends Cubit<HomeLayoutStates> {
     return[
       CachingDataManager.instance.getLoginModel().data?.type=='customer'?const HomeScreen():const HomeTechnicalScreen(),
       CachingDataManager.instance.getLoginModel().data?.type=='customer'?const CategoryScreen():const OrderListScreen(),
-       const NotificationScreen(),
+      CachingDataManager.instance.getLoginModel().data?.type=='customer'? const NotificationScreen():const NotificationTechnicianScreen(),
        const ProfileScreen(),
     ];
   }
