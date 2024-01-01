@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:x_station_app/core/color_manager/color_manager.dart';
@@ -11,8 +12,11 @@ import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/screens/Applying/Applying_screen/Applying_screen.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 
+import '../../../../core/assets_manager/assets_manager.dart';
 import '../../../../view_model/block/profile_cubit/profile_cubit.dart';
+import '../../../core_widget/elevated_button/elevated_button_custom.dart';
 import '../../electrician_information/electrician_information_screen/electrician_information_Screen.dart';
+import '../../rate_screen/rate_screen/retae_screen.dart';
 
 class OrderListItem extends StatelessWidget {
   final String title;
@@ -63,6 +67,7 @@ class OrderListItem extends StatelessWidget {
             children: [
               InkWell(
                 onTap: (){
+                  PostsCubit.get(context).showPost(id: id);
                   Get.to(ElectricianInformationScreen(
                     name: PostsCubit.get(context).showPostModel!.data!.user!.name!,
                     rate: PostsCubit.get(context).showPostModel!.data!.user!.averageRating!,
@@ -77,16 +82,88 @@ class OrderListItem extends StatelessWidget {
                 child: Row(
                   children: [
                     SizedBox(width: 16.w,),
-                    const CircleAvatar(
+                     CircleAvatar(
                         radius: 30,
-                        backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.Z5BlhFYs_ga1fZnBWkcKjQHaHz?rs=1&pid=ImgDetMain")
+                        backgroundImage: NetworkImage(image!)
                     ),
                     SizedBox(width: 7.w,),
-                    Text("${namePerson}",style: TextStyleManager.textStyle14w500.copyWith(color:
+                    Text(namePerson,style: TextStyleManager.textStyle14w500.copyWith(color:
                     ProfileCubit.get(context).isDark?
                     ColorManager.colorWhiteDarkMode:
                     ColorManager.colorSecondary,),),
-                    SizedBox(width: 15.w,)
+                    const Spacer(),
+                    InkWell(
+                        onTap: (){
+                          showDialog(context: context, builder: (context){
+                            return AlertDialog(
+                              backgroundColor: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
+                              actions: [
+                              Container(
+                              width: 300.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(24.r),
+                                color: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(height: 30.h,),
+                                  Row(
+                                    children: [
+                                      SizedBox(width: 100.w,),
+                                      Row(
+                                        children: [
+                                          Text(TextManager.options,style: TextStyleManager.textStyle20w700.copyWith(fontSize: 22.sp,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorSecondary,),),
+                                          SizedBox(width: 5.w,),
+                                          Image.asset(AssetsImage.settingsImage,width: 20,height: 20,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack ,),
+                                        ],
+                                      ),
+                                      SvgPicture.asset(AssetsImage.settings),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding:  EdgeInsets.only(top: 22.h),
+                                    child: ElevatedButtonCustom(
+                                      width: 170.w,
+                                      height: 65.h,
+                                      radius: 60,
+                                      colors: ColorManager.colorGreen,
+                                      onPressed: (){
+                                        Get.to(RateScreen( userID:
+                                        PostsCubit.get(context).showPostModel!.data!.user!.id!,
+                                          ));
+                                      },
+                                      widget: Center(
+                                        child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text(TextManager.jobDone,style: TextStyleManager.textStyle20w700.copyWith(color: Colors.white),),
+                                            SizedBox(width: 3.w,),
+                                            Container(
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white,
+                                              ),
+                                              child: const Icon(CupertinoIcons.checkmark_alt,color: ColorManager.colorGreen,),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 30.h,)
+                                ],
+                              ),
+                            ),
+                              ],
+                            );
+                          }
+                          );
+                        },
+                        child: Image.asset(AssetsImage.settingsImage,width: 20,height: 20,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack ,)),
+                    SizedBox(width: 30.w,),
                   ],
                 ),
               ),

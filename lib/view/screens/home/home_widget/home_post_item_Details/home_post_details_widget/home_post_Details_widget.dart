@@ -99,8 +99,6 @@ class HomePostDetailsWidget extends StatelessWidget {
                       state is ShowPostsErrorState?
                       Text(state.err):
                       const PostingShimmer(isText: false,);
-
-
                     },
                   ),
                 ),

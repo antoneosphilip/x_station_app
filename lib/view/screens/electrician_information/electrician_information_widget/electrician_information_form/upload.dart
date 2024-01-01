@@ -54,19 +54,19 @@ final  String image;
                 style: TextStyleManager.textStyle20600White.copyWith(fontSize: 19.sp),
               ):const SizedBox(),
                SizedBox(height: 20.h,),
-              isTech? Row(
+            Row(
                 children: [
                   CustomRattingBar(color: ColorManager.colorWhite,size: 17,initRate: rate),
                   SizedBox(width: 16.w,),
                    Text(
-                    '${rate}',
+                    '$rate',
                     style:  TextStyle(
                         fontSize: 19.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
                 ],
-              ):const SizedBox(),
+              )
             ],
           ),
         )

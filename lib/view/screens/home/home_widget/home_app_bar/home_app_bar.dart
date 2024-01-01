@@ -23,8 +23,6 @@ import '../../../../core_widget/text_form_field/text_form_field_custom.dart';
 import '../../../../notification_module/presentation/notifications_screen/notifications_screen/notifications_screen.dart';
 
 class HomeAppBar extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return  Padding(
@@ -73,7 +71,7 @@ class HomeAppBar extends StatelessWidget {
               SizedBox(width: 14.w,),
               InkWell(
                 onTap: (){
-                  Get.to(NotificationScreen());
+                  Get.to(const NotificationScreen());
                 },
                   child: SvgPicture.asset(AssetsImage.notification,fit: BoxFit.cover,color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,height: 25.h,)),
               SizedBox(width: 14.w,),

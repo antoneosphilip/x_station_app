@@ -14,6 +14,7 @@ import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/core/text_manager/text_manager.dart';
 import 'package:x_station_app/view/core_widget/elevated_button/elevated_button_custom.dart';
 import 'package:x_station_app/view/core_widget/flutter_toast/flutter_toast.dart';
+import 'package:x_station_app/view/core_widget/text_form_field/text_form_field_custom.dart';
 import 'package:x_station_app/view/screens/everent/custom_ratting_bar/custom_rating_bar.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_cubit.dart';
 import 'package:x_station_app/view_model/block/posts_cubit/posts_states.dart';
@@ -29,7 +30,7 @@ class RateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     double rate=1;
     return  Padding(
-      padding:  EdgeInsets.only(left: 19.w),
+      padding:  EdgeInsets.only(left: 19.w,right: 19.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -79,7 +80,15 @@ class RateWidget extends StatelessWidget {
           itemSize: 40.sp,
         ),
       ),
-          SizedBox(height: 150.h,),
+          SizedBox(height: 50.h,),
+          TextFormFieldCustom(
+            validate: (value){},
+            maxLines: 10,
+            hint: "Review",
+            controller: PostsCubit.get(context).reviewController,
+          ),
+          SizedBox(height: 50.h,),
+
           Padding(
             padding:  const EdgeInsets.symmetric(horizontal: 21),
             child: Row(
@@ -111,6 +120,7 @@ class RateWidget extends StatelessWidget {
                         EasyLoading.dismiss();
                         showFlutterToast(message: state.acceptPostModel.message,
                             state: ToastState.SUCCESS);
+                        PostsCubit.get(context).reviewController.text='';
                       }
                       else if(state is UserRateErrorState){
                         EasyLoading.dismiss();

@@ -27,6 +27,8 @@ class PostsCubit extends Cubit<PostsStates>
   static PostsCubit get(context)=>BlocProvider.of<PostsCubit>(context);
   var titleController=TextEditingController();
   var descriptionController=TextEditingController();
+  var reviewController=TextEditingController();
+
   var formKey = GlobalKey<FormState>();
   ApplyPostModel? applyPostModel;
   ShowPostModel? showPostModel;

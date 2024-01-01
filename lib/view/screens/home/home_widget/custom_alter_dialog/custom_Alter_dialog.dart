@@ -178,5 +178,6 @@ void AlterDialog(BuildContext context,userId,postId,myPost,statue){
         ),
       ],
     );
-  });
+  }
+  );
 }
