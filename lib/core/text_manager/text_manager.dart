@@ -127,5 +127,6 @@ class TextManager {
   static const String call = "Call : ";
   static const String callMe = "Call Me";
 
+  static const String price = "Price";
 
 }

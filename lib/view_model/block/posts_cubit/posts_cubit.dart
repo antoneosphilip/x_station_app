@@ -105,7 +105,6 @@ Map<int,bool> isApply={};
               isApply?.addAll({
                 element.id!:element.isApplied==0?true:false,
               });
-
             });
             print("modelll");
             print(isApply);

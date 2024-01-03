@@ -69,6 +69,7 @@ class HomeSearchWidget extends StatelessWidget {
                       rate: 3,
                       email: SearchCubit.get(context).searchModel!.data![index].email!,
                       image: SearchCubit.get(context).searchModel!.data![index].avatar!,
+                      id: SearchCubit.get(context).searchModel!.data![index].id!,
 
                     );
                   },

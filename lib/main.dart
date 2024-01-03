@@ -16,6 +16,7 @@ import 'package:x_station_app/view/screens/home_layout/home_layout.dart';
 import 'package:x_station_app/view/screens/login/login_screen/login_screen.dart';
 import 'package:x_station_app/view/screens/onboarding/onboarding_screen/onboarding_screen.dart';
 import 'package:x_station_app/view/screens/splash/splash_screen/splash_screen.dart';
+import 'package:x_station_app/view_model/block/add_faveorite_cubit/add_faveorite_cubit.dart';
 import 'package:x_station_app/view_model/block/category_cubit/category_cubit.dart';
 import 'package:x_station_app/view_model/block/forget_password_cubit/forget_password_cubit.dart';
 import 'package:x_station_app/view_model/block/home_layout_cubit/home_layoout_cubit.dart';
@@ -29,6 +30,7 @@ import 'package:x_station_app/view_model/block/profile_cubit/profile_states.dart
 import 'package:x_station_app/view_model/block/search_cubit/search_cubit.dart';
 import 'package:x_station_app/view_model/block/signup_cubit/signup_cubit.dart';
 import 'package:x_station_app/view_model/block/technical_cubit/technical_cubit.dart';
+import 'package:x_station_app/view_model/repo/add_faveorite_repo/add_favorite_repo.dart';
 import 'package:x_station_app/view_model/repo/category_repo/category_repo.dart';
 import 'package:x_station_app/view_model/repo/forget_password_repo/forget_password_repo.dart';
 import 'package:x_station_app/view_model/repo/login_repo/login_repo.dart';
@@ -130,6 +132,7 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => SearchCubit(sl.get<SearchRepoImpl>())),
               BlocProvider(create: (context) => OrderListCubit(sl.get<OrderListRepoImpl>())..getOrderList()),
               BlocProvider(create: (context) => GetNotificationTechnicianCubit(sl.get<GetNotificationTechnicianRepoImpl>())..getNotification()..bindNotification()),
+              BlocProvider(create: (context) => AddFavoriteCubit(sl.get<AddFavoriteRepoImpl>()..getFavorite())),
 
             ],
             child: BlocConsumer<ProfileCubit,ProfileStates>(

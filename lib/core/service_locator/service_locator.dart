@@ -3,7 +3,9 @@
 
 
 import 'package:get_it/get_it.dart';
+import 'package:x_station_app/view_model/block/add_faveorite_cubit/add_faveorite_cubit.dart';
 import 'package:x_station_app/view_model/block/technical_cubit/technical_cubit.dart';
+import 'package:x_station_app/view_model/repo/add_faveorite_repo/add_favorite_repo.dart';
 import 'package:x_station_app/view_model/repo/category_repo/category_repo.dart';
 import 'package:x_station_app/view_model/repo/forget_password_repo/forget_password_repo.dart';
 import 'package:x_station_app/view_model/repo/order_list_repo/order_list_repo.dart';
@@ -33,6 +35,7 @@ Future<void> setup() async {
   sl.registerLazySingleton<OrderListRepoImpl>(() => OrderListRepoImpl());
   sl.registerLazySingleton<GetNotificationTechnicianRepoImpl>(() => GetNotificationTechnicianRepoImpl());
 
+  sl.registerLazySingleton<AddFavoriteRepoImpl>(() => AddFavoriteRepoImpl());
 
 
   // cubit

@@ -66,6 +66,22 @@ class _TechnicalTypesState extends State<TechnicalTypes> {
 
             ),
             SizedBox(height: 19.h,),
+            TextFormFieldCustom(
+              keyboardType: TextInputType.text,
+              validate: (value) {
+                if (value == null || value.isEmpty) {
+                  return TextManager.price.tr;
+                }
+                return null;
+              },
+              label: TextManager.price.tr,
+              suffix: true,
+              suffixIcon: SvgPicture.asset(AssetsImage.user),
+              controller: SignUpCubit.get(context).priceController,
+
+            ),
+            SizedBox(height: 19.h,),
+
             (CategoryCubit.get(context).categorySelectMenuModel!=null)?
             Container(
                 width: double.infinity,

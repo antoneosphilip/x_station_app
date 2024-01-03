@@ -18,6 +18,12 @@ abstract class EndPoint{
   static const String acceptPostEndPoint = '/technicals/update_applicant_status';
   static const String rate = '/users/rate';
   static const String allAccepted = '/technicals/all_accepted';
+  static const String getFavorite = '/users/all_favorites';
+
+  static  String? addFavorite(String id) {
+    '/users/${id}/favorite';
+  }
+
   static  String ?getTechnicans(String id) {
     '/categories/${id}/technicals';
   }

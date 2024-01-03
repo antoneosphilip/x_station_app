@@ -37,6 +37,8 @@ class ElectricianDetailsList extends StatelessWidget {
                     phone:  TechnicalCubit.get(context).technicalModel!.data![index]!.user!.phoneNumber!,
                     address:  TechnicalCubit.get(context).technicalModel!.data![index]!.user!.address!,
                     image: '',
+                    id: TechnicalCubit.get(context).technicalModel!.data![index]!.user!.id!,
+
                   );
                 },
                 separatorBuilder: (context,index){

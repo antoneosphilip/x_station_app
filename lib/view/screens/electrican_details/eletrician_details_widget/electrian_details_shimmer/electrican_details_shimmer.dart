@@ -28,12 +28,13 @@ class ElectricalDetailsShimmer extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context,index){
-                return   const ElectricianDetailsItem(
+                return    ElectricianDetailsItem(
                   // image:TechnicalCubit.get(context).technicalModel!.data![index].user!.avatar! ,
                   name: '' ,
                   rate: 1,
                   price: '',
                   image: '', email: '', phone: '', address: '',
+                  id: 1,
                 );
               },
               separatorBuilder: (context,index){

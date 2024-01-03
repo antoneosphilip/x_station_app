@@ -1,17 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:x_station_app/core/route_manager/page_name.dart';
+import 'package:x_station_app/view/core_widget/flutter_toast/flutter_toast.dart';
 import 'package:x_station_app/view/screens/electrician_information/electrician_information_screen/electrician_information_Screen.dart';
 import 'package:x_station_app/view/screens/everent/custom_ratting_bar/custom_rating_bar.dart';
-
 import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/color_manager/color_manager.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
+import '../../../../../view_model/block/add_faveorite_cubit/add_faveorite_cubit.dart';
+import '../../../../../view_model/block/add_faveorite_cubit/add_faveorite_states.dart';
 import '../../../../../view_model/block/profile_cubit/profile_cubit.dart';
 
 class ElectricianDetailsItem extends StatelessWidget {
@@ -22,9 +26,10 @@ class ElectricianDetailsItem extends StatelessWidget {
   final  String email;
   final  String phone;
   final  String address;
+  final  int id;
 
 
-  const ElectricianDetailsItem({super.key, required this.name, required this.rate, required this.image, required this.price, required this.email, required this.phone, required this.address});
+  const ElectricianDetailsItem({super.key, required this.name, required this.rate, required this.image, required this.price, required this.email, required this.phone, required this.address, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,6 @@ class ElectricianDetailsItem extends StatelessWidget {
           duration: const Duration(
           milliseconds: 250,
         ),
-          transition: Transition.downToUp,
         );
       },
       child: Padding(
@@ -94,10 +98,37 @@ class ElectricianDetailsItem extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                Padding(
-                  padding:  EdgeInsets.only(bottom: 57.14.h),
-                  child: SvgPicture.asset(AssetsImage.heart2,color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorPrimary,width: 30),
+                BlocConsumer<AddFavoriteCubit,AddFavoriteStates>(
+                  listener: (context,state){
+                      if(state is AddFavoriteLoadingState){
+                      EasyLoading.show(
+                        status: 'Loading...',
+                        maskType: EasyLoadingMaskType.black
+                      );
+                    }
+                    if(state is AddFavoriteSuccessState){
+                      EasyLoading.dismiss();
+                      showFlutterToast(message: state.addFavoriteMode.message, state: ToastState.SUCCESS);
+                    }
+                   else if(state is AddFavoriteErrorState){
+                      EasyLoading.dismiss();
+                      showFlutterToast(message: state.err, state: ToastState.ERROR);
+                    }
+                  },
+                  builder: (context,state){
+                    return InkWell(
+                      onTap: (){
+                        AddFavoriteCubit.get(context).addFavorite(id: id);
+                      },
+                      child: Padding(
+                        padding:  EdgeInsets.only(bottom: 57.14.h),
+                        child: SvgPicture.asset(AssetsImage.heart,
+                            color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorPrimary,width: 30),
+                      ),
+                    );
+                  },
                 ),
+
                 SizedBox(width: 10.2.w,)
               ],
             ),

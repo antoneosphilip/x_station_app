@@ -18,7 +18,7 @@ class FavoriteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.toNamed(PageName.electricianInformation);
+
       },
       child: Padding(
         padding:  EdgeInsets.symmetric(horizontal: 10.w),

@@ -34,6 +34,7 @@ abstract class SignUpRepo{
       String categoryId,
       String nationalId,
       String experienceYears,
+      String price
       );
 
 
@@ -85,6 +86,7 @@ class SignUpRepoImpl implements SignUpRepo {
       String? categoryId,
       String ?nationalId,
       String ?experienceYears,
+      String?price,
 
       ) async {
     try {
@@ -99,6 +101,7 @@ class SignUpRepoImpl implements SignUpRepo {
         "category_id":categoryId,
         "national_id":nationalId,
         "experience_years":4,
+        'salary':price,
 
       });
       return Right(LoginModel.fromJson(response.data));

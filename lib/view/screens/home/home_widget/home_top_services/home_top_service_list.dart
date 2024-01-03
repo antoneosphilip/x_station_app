@@ -23,7 +23,8 @@ class HomeTopServiceList extends StatelessWidget {
     return  BlocConsumer<PostsCubit,PostsStates>(
         listener: (context,state){},
         builder: (context,state){
-          return state is GetPostsLoadingState?const PostingShimmer():
+          return state is GetPostsLoadingState?
+          const PostingShimmer():
               (PostsCubit.get(context).getPostModel!=null)?
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +33,6 @@ class HomeTopServiceList extends StatelessWidget {
                     padding:  EdgeInsets.only(left: 16.w,right: 16.w),
                     child: Text(TextManager.post.tr,style: TextStyleManager.textStyle36w700.copyWith(fontSize: 25.sp,fontWeight: FontWeight.w500,color: ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorBlack,),),
                   ),
-
                   ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,

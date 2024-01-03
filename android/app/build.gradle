@@ -58,7 +58,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file('C:\\Users\\antoneos\\key.jks')
+            storeFile file('C:\\Users\\antoneos\\AndroidStudioProjects\\x_station_app\\upload-keystore.jks')
             storePassword '123456'
             keyAlias 'key'
             keyPassword '123456'

@@ -22,7 +22,7 @@ class SignUpCubit extends Cubit<SignUpStates>
   var addressController=TextEditingController();
   var nationalId=TextEditingController();
   var codeController=TextEditingController();
-
+  var priceController=TextEditingController();
 
   var formKey = GlobalKey<FormState>();
   String? type;
@@ -94,6 +94,7 @@ class SignUpCubit extends Cubit<SignUpStates>
       technicalTypeSelectedId.toString()!,
       nationalId.text,
       technicalExperienceYears!,
+        priceController.text,
     );
     data.fold(
           (l) {
