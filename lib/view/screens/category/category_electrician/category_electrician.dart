@@ -35,9 +35,9 @@ class CustomCategoryItem extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              width: 153.w,
+              width: 100.w,
               color: ProfileCubit.get(context).isDark?ColorManager.colorLightDark:ColorManager.colorWhite,
-              child: CachedNetworkImage(imageUrl:image,fit: BoxFit.fill,
+              child: CachedNetworkImage(imageUrl:image,fit: BoxFit.cover,
                 placeholder: (context, url) => const Center(child: CircularProgressIndicator(color: ColorManager.colorPrimary,)),
                 errorWidget: (context, url, error) => const Icon(Icons.error),),
             ),

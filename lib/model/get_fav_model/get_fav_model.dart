@@ -1,12 +1,12 @@
-class TechnicalListModel {
+class GetFavoriteModel {
   List<Data>? data;
   String? message;
   int? code;
   String? type;
 
-  TechnicalListModel({this.data, this.message, this.code, this.type});
+  GetFavoriteModel({this.data, this.message, this.code, this.type});
 
-  TechnicalListModel.fromJson(Map<String, dynamic> json) {
+  GetFavoriteModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
@@ -32,54 +32,42 @@ class TechnicalListModel {
 
 class Data {
   int? id;
-  User? user;
-
-  Data({this.id, this.user});
-
-  Data.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
-    }
-    return data;
-  }
-}
-
-class User {
-  int? id;
   String? name;
   String? email;
+  String? emailVerifiedAt;
   String? phoneNumber;
   String? address;
-  String? avatar;
+  String? salary;
+  String? type;
   int? averageRating;
-  int? favorite;
+  String? createdAt;
+  String? updatedAt;
 
-  User(
+  Data(
       {this.id,
         this.name,
         this.email,
+        this.emailVerifiedAt,
         this.phoneNumber,
         this.address,
-        this.avatar,
+        this.salary,
+        this.type,
         this.averageRating,
-        this.favorite});
+        this.createdAt,
+        this.updatedAt});
 
-  User.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     email = json['email'];
+    emailVerifiedAt = json['email_verified_at'];
     phoneNumber = json['phone_number'];
     address = json['address'];
-    avatar = json['avatar']??'';
+    salary = json['salary']??'';
+    type = json['type'];
     averageRating = json['average_rating'];
-    favorite = json['favorite'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -87,11 +75,14 @@ class User {
     data['id'] = this.id;
     data['name'] = this.name;
     data['email'] = this.email;
+    data['email_verified_at'] = this.emailVerifiedAt;
     data['phone_number'] = this.phoneNumber;
     data['address'] = this.address;
-    data['avatar'] = this.avatar;
+    data['salary'] = this.salary;
+    data['type'] = this.type;
     data['average_rating'] = this.averageRating;
-    data['favorite'] = this.favorite;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
     return data;
   }
 }

@@ -11,6 +11,8 @@ import 'package:x_station_app/core/route_manager/page_name.dart';
 import 'package:x_station_app/view/core_widget/flutter_toast/flutter_toast.dart';
 import 'package:x_station_app/view/screens/electrician_information/electrician_information_screen/electrician_information_Screen.dart';
 import 'package:x_station_app/view/screens/everent/custom_ratting_bar/custom_rating_bar.dart';
+import 'package:x_station_app/view_model/block/technical_cubit/technical_cubit.dart';
+import 'package:x_station_app/view_model/block/technical_cubit/technical_states.dart';
 import '../../../../../core/assets_manager/assets_manager.dart';
 import '../../../../../core/color_manager/color_manager.dart';
 import '../../../../../core/style_font_manager/style_manager.dart';
@@ -74,7 +76,7 @@ class ElectricianDetailsItem extends StatelessWidget {
                         height: 96,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(32),
-                          image: const DecorationImage(image: NetworkImage('https://i.stack.imgur.com/l60Hf.png'),fit: BoxFit.cover)
+                          image:  DecorationImage(image: NetworkImage(image!),fit: BoxFit.cover)
                         ),
 
                     )
@@ -98,36 +100,46 @@ class ElectricianDetailsItem extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                BlocConsumer<AddFavoriteCubit,AddFavoriteStates>(
-                  listener: (context,state){
-                      if(state is AddFavoriteLoadingState){
-                      EasyLoading.show(
-                        status: 'Loading...',
-                        maskType: EasyLoadingMaskType.black
-                      );
-                    }
-                    if(state is AddFavoriteSuccessState){
-                      EasyLoading.dismiss();
-                      showFlutterToast(message: state.addFavoriteMode.message, state: ToastState.SUCCESS);
-                    }
-                   else if(state is AddFavoriteErrorState){
-                      EasyLoading.dismiss();
-                      showFlutterToast(message: state.err, state: ToastState.ERROR);
-                    }
+            BlocConsumer<TechnicalCubit,TechnicalStates>(
+              listener: (context,state){
+                if(state is AddFavoriteLoadingState){
+                  EasyLoading.show(
+                      status: 'Loading...',
+                      maskType: EasyLoadingMaskType.black
+                  );
+                }
+                if(state is AddFavoriteSuccessState){
+                  EasyLoading.dismiss();
+                  showFlutterToast(message: state.addFavoriteMode.message, state: ToastState.SUCCESS);
+                  TechnicalCubit.get(context).getTechnicalList(id: id);
+                  TechnicalCubit.get(context).getFavorite();
+
+
+                }
+                else if(state is AddFavoriteErrorState){
+                  EasyLoading.dismiss();
+                  showFlutterToast(message: state.err, state: ToastState.ERROR);
+                }
+              },
+              builder: (context,state){
+                return InkWell(
+                  onTap: (){
+                    TechnicalCubit.get(context).addFavorite(id: id);
+                    print("objecttttttttt");
+                    print(id);
+                    print(TechnicalCubit.get(context).isFav[1]);
                   },
-                  builder: (context,state){
-                    return InkWell(
-                      onTap: (){
-                        AddFavoriteCubit.get(context).addFavorite(id: id);
-                      },
-                      child: Padding(
-                        padding:  EdgeInsets.only(bottom: 57.14.h),
-                        child: SvgPicture.asset(AssetsImage.heart,
-                            color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorPrimary,width: 30),
-                      ),
-                    );
-                  },
-                ),
+                  child: Padding(
+                    padding:  EdgeInsets.only(bottom: 57.14.h),
+                    child: SvgPicture.asset(
+                        TechnicalCubit.get(context).isFav[id]!?AssetsImage.heart
+                        :AssetsImage.heart2
+                        ,
+                        color:ProfileCubit.get(context).isDark?ColorManager.colorWhiteDarkMode:ColorManager.colorPrimary,width: 30),
+                  ),
+                );
+              },
+            ),
 
                 SizedBox(width: 10.2.w,)
               ],

@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_station_app/view/screens/home/home_widget/posting_shimmer/posting_shimmer.dart';
 import 'package:x_station_app/view_model/block/add_faveorite_cubit/add_faveorite_cubit.dart';
 import 'package:x_station_app/view_model/block/add_faveorite_cubit/add_faveorite_states.dart';
+import 'package:x_station_app/view_model/block/technical_cubit/technical_cubit.dart';
+import 'package:x_station_app/view_model/block/technical_cubit/technical_states.dart';
 
 import '../../../../../view_model/block/search_cubit/search_cubit.dart';
 import '../../../electrican_details/eletrician_details_widget/electrician_details_item/electrician_details_item.dart';
@@ -15,33 +17,36 @@ class FavoriteListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddFavoriteCubit,AddFavoriteStates>(
+    TechnicalCubit.get(context).getFavorite();
+    return BlocConsumer<TechnicalCubit,TechnicalStates>(
       listener: (context,state){
       },
       builder: (context,state){
-        return state is GetFavoriteLoadingState?const PostingShimmer(isText: false,)
+
+        return state is GetFavoriteLoadingState?
+        const PostingShimmer(isText: false,)
         :
-        (AddFavoriteCubit.get(context).addFavoriteModel!=null)?
+        (TechnicalCubit.get(context).getFavoriteModel!=null)?
         ListView.separated(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context,index){
               return ElectricianDetailsItem(
-                name: SearchCubit.get(context).searchModel!.data![index].name!,
-                phone: SearchCubit.get(context).searchModel!.data![index].phoneNumber!,
-                address: SearchCubit.get(context).searchModel!.data![index].address!,
-                price:'50',
-                rate: 3,
-                email: SearchCubit.get(context).searchModel!.data![index].email!,
-                image: SearchCubit.get(context).searchModel!.data![index].avatar!,
-                id: SearchCubit.get(context).searchModel!.data![index].id!,
+                name: TechnicalCubit.get(context).getFavoriteModel!.data![index].name!,
+                phone: TechnicalCubit.get(context).getFavoriteModel!.data![index].phoneNumber!,
+                address: TechnicalCubit.get(context).getFavoriteModel!.data![index].address!,
+                price:TechnicalCubit.get(context).getFavoriteModel!.data![index].salary!,
+                rate: TechnicalCubit.get(context).getFavoriteModel!.data![index].averageRating!,
+                email: TechnicalCubit.get(context).getFavoriteModel!.data![index].email!,
+                image: '',
+                id: TechnicalCubit.get(context).getFavoriteModel!.data![index].id!,
               );
             },
             separatorBuilder: (context,index){
               return SizedBox(height: 25.h);
             },
-            itemCount: 10
+            itemCount: TechnicalCubit.get(context).getFavoriteModel!.data!.length
         ):const PostingShimmer(isText: false,);
       },
     );

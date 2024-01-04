@@ -35,7 +35,7 @@ Future<void> setup() async {
   sl.registerLazySingleton<OrderListRepoImpl>(() => OrderListRepoImpl());
   sl.registerLazySingleton<GetNotificationTechnicianRepoImpl>(() => GetNotificationTechnicianRepoImpl());
 
-  sl.registerLazySingleton<AddFavoriteRepoImpl>(() => AddFavoriteRepoImpl());
+  // sl.registerLazySingleton<AddFavoriteRepoImpl>(() => AddFavoriteRepoImpl());
 
 
   // cubit

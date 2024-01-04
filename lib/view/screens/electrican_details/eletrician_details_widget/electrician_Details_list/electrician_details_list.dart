@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_station_app/core/style_font_manager/style_manager.dart';
 import 'package:x_station_app/model/technical_model/technical_model.dart';
 import 'package:x_station_app/view/core_widget/custom_circle_loading/custom_circle_loading.dart';
+import 'package:x_station_app/view/screens/home/home_widget/posting_shimmer/posting_shimmer.dart';
 import 'package:x_station_app/view_model/block/technical_cubit/technical_cubit.dart';
 import 'package:x_station_app/view_model/block/technical_cubit/technical_states.dart';
 
@@ -21,7 +22,7 @@ class ElectricianDetailsList extends StatelessWidget {
     return BlocConsumer<TechnicalCubit,TechnicalStates>(
       listener: (context,state){},
       builder: (context,state){
-        return state is TechnicalLoadingState?const ElectricalDetailsShimmer():
+        return state is TechnicalLoadingState?const PostingShimmer(isText: false,):
             (TechnicalCubit.get(context).technicalModel!=null)?
             ListView.separated(
                 scrollDirection: Axis.vertical,
@@ -36,7 +37,7 @@ class ElectricianDetailsList extends StatelessWidget {
                     email: TechnicalCubit.get(context).technicalModel!.data![index]!.user!.email!,
                     phone:  TechnicalCubit.get(context).technicalModel!.data![index]!.user!.phoneNumber!,
                     address:  TechnicalCubit.get(context).technicalModel!.data![index]!.user!.address!,
-                    image: '',
+                    image: TechnicalCubit.get(context).technicalModel!.data![index]!.user!.avatar!,
                     id: TechnicalCubit.get(context).technicalModel!.data![index]!.user!.id!,
 
                   );
@@ -47,7 +48,7 @@ class ElectricianDetailsList extends StatelessWidget {
                 itemCount: TechnicalCubit.get(context).technicalModel!.data!.length,
             ):
                 state is TechnicalErrorState?
-            Text(state.err.toString()):const ElectricalDetailsShimmer();
+            Text(state.err.toString()):const PostingShimmer(isText: false,);
       },
     );
   }

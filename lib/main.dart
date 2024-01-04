@@ -126,13 +126,12 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => SignUpCubit(sl.get<SignUpRepoImpl>())),
               BlocProvider(create: (context) => ProfileCubit(sl.get<ProfileRepoImpl>())..getProfileData()..ChangeAppMode(FromShared: isDark)),
               BlocProvider(create: (context) => CategoryCubit(sl.get<CategoryRepoImpl>())..getCategory()..getCategorySelectMenu()),
-              BlocProvider(create: (context) => TechnicalCubit(sl.get<TechnicalRepoImpl>())..getTechnicalList(id: 1)),
+              BlocProvider(create: (context) => TechnicalCubit(sl.get<TechnicalRepoImpl>())..getTechnicalList(id: 1)..getFavorite()),
               BlocProvider(create: (context) => PostsCubit(sl.get<PostsRepoImpl>())..getPosts()..showPost(id: 1)),
               BlocProvider(create: (context) => GetNotificationCubit(sl.get<GetNotificationRepoImpl>())..getNotification()..bindNotification()),
               BlocProvider(create: (context) => SearchCubit(sl.get<SearchRepoImpl>())),
               BlocProvider(create: (context) => OrderListCubit(sl.get<OrderListRepoImpl>())..getOrderList()),
               BlocProvider(create: (context) => GetNotificationTechnicianCubit(sl.get<GetNotificationTechnicianRepoImpl>())..getNotification()..bindNotification()),
-              BlocProvider(create: (context) => AddFavoriteCubit(sl.get<AddFavoriteRepoImpl>()..getFavorite())),
 
             ],
             child: BlocConsumer<ProfileCubit,ProfileStates>(

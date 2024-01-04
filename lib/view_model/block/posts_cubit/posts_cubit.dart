@@ -101,7 +101,7 @@ Map<int,bool> isApply={};
           (r) {
             emit(GetPostsSuccessState(r));
             getPostModel=r;
-            getPostModel!.data!.forEach((element) {
+            getPostModel?.data?.forEach((element) {
               isApply?.addAll({
                 element.id!:element.isApplied==0?true:false,
               });
